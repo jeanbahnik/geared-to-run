@@ -38,7 +38,6 @@
 		4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		719878DD5F3A324EAFBEF830 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		FF4029C21C49B0F3007F5078 /* WhatToWearRunning-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhatToWearRunning-Bridging-Header.h"; sourceTree = "<group>"; };
 		FFE02ECA1C4834D5006EF28A /* WhatToWearRunning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWearRunning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE02ECF1C4834D5006EF28A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +127,6 @@
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */,
 				FFE02ED91C4834D5006EF28A /* Info.plist */,
-				FF4029C21C49B0F3007F5078 /* WhatToWearRunning-Bridging-Header.h */,
 			);
 			path = WhatToWearRunning;
 			sourceTree = "<group>";
