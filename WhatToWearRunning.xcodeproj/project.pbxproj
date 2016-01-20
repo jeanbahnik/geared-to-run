@@ -17,6 +17,7 @@
 		FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */; };
 		FFE02EE31C4834D5006EF28A /* WhatToWearRunningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EE21C4834D5006EF28A /* WhatToWearRunningTests.swift */; };
 		FFE02EEE1C4834D5006EF28A /* WhatToWearRunningUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */; };
+		FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF9757E1C4F190400B624F4 /* Gear.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		FFE02EE91C4834D5006EF28A /* WhatToWearRunningUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatToWearRunningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatToWearRunningUITests.swift; sourceTree = "<group>"; };
 		FFE02EEF1C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFF9757E1C4F190400B624F4 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gear.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				FFE02ED91C4834D5006EF28A /* Info.plist */,
 				FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */,
 				FF56B3101C4E8D7700C30BA3 /* Weather.swift */,
+				FFF9757E1C4F190400B624F4 /* Gear.swift */,
 			);
 			path = WhatToWearRunning;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
+				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
 				FFE02ED01C4834D5006EF28A /* ViewController.swift in Sources */,
 				FF5DACD91C4DE91E00CA9C1B /* Recommendations.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
