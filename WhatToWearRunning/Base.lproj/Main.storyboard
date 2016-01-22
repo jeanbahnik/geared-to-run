@@ -17,26 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urg-ct-3T0">
-                                <rect key="frame" x="20" y="289" width="560" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="2JX-ZU-gMU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ddI-js-X18">
+                                <rect key="frame" x="20" y="236" width="560" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="urg-ct-3T0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="19U-sB-1oU"/>
-                            <constraint firstItem="urg-ct-3T0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IlO-Sn-F7F"/>
-                            <constraint firstItem="urg-ct-3T0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NHt-vn-A3a"/>
-                            <constraint firstAttribute="trailing" secondItem="urg-ct-3T0" secondAttribute="trailing" constant="20" id="V6U-Ep-iRh"/>
+                            <constraint firstAttribute="trailing" secondItem="ddI-js-X18" secondAttribute="trailing" constant="20" id="Flu-ss-H1h"/>
+                            <constraint firstItem="ddI-js-X18" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kc4-rk-I8p"/>
+                            <constraint firstItem="ddI-js-X18" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="XwE-le-11V"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="message" destination="urg-ct-3T0" id="i3z-hd-34f"/>
+                        <outlet property="textView" destination="ddI-js-X18" id="s6Q-fG-CYj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -16,7 +16,7 @@ class Recommendations {
     var recommendedOutfit = [String]()
 
     init(forecast: Forecast) {
-        self.currentForecast = forecast.currently
+        self.currentForecast = Weather(forecast: forecast).currentForecast
         self.gearList = Gear().gearList
     }
 
@@ -31,14 +31,20 @@ class Recommendations {
     func getGear(gear: GearItem) {
         var include = false
         if let currentForecast = self.currentForecast {
-            print("wind: \(currentForecast.windSpeed!)")
-            print("temperature: \(currentForecast.temperature!)")
-            if gear.minTemp ..< gear.maxTemp ~= Int(currentForecast.temperature!) {
-                include = true
-                print(gear.minWind)
+            if let temperature = currentForecast.temperature, let windSpeed = currentForecast.windSpeed, let precipitationProbability = currentForecast.precipProbability {
+                if gear.minTemp ..< gear.maxTemp ~=
+                    Int(temperature) {
+                    include = true
+                }
                 if let wind = gear.minWind {
                     include = false
-                    if Int(currentForecast.windSpeed!) >= wind {
+                    if Int(windSpeed) >= wind {
+                        include = true
+                    }
+                }
+                if let rain = gear.rain {
+                    include = false
+                    if rain >= precipitationProbability {
                         include = true
                     }
                 }
