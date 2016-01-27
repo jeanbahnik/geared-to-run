@@ -12,8 +12,9 @@ struct GearConstraints {
     let gearType: GearItem
     let minTemp: Int
     let maxTemp: Int
-    let minWind: Int?
-    let rain: Float?
+    let minWind: Int
+    let maxWind: Int
+    let rain: Float
 }
 
 struct GearItem {
@@ -24,22 +25,48 @@ class GearList {
     var gearList = [GearConstraints]()
 
     init() {
-        let capSunglasses = GearItem(description: "Cap or Sunglasses")
-        let capSunglasses1 = GearConstraints(gearType: capSunglasses, minTemp: 80, maxTemp: 200, minWind: nil, rain: nil)
-        gearList.append(capSunglasses1)
-        let lightHat = GearItem(description: "Light Hat")
-        let lightHat1 = GearConstraints(gearType: lightHat, minTemp: 30, maxTemp: 50, minWind: nil, rain: nil)
-        gearList.append(lightHat1)
-        let heavyHat = GearItem(description: "Heavy Hat")
-        let heavyHat1 = GearConstraints(gearType: heavyHat, minTemp: 20, maxTemp: 30, minWind: nil, rain: nil)
-        gearList.append(heavyHat1)
-        let faceMask = GearItem(description: "Face Mask")
-        let faceMask1 = GearConstraints(gearType: faceMask, minTemp: 0, maxTemp: 10, minWind: 10, rain: nil)
-        gearList.append(faceMask1)
         let tshirt = GearItem(description: "T-shirt")
-        let tshirt1 = GearConstraints(gearType: tshirt, minTemp: 20, maxTemp: 200, minWind: nil, rain: nil)
+        let tshirt1 = GearConstraints(gearType: tshirt, minTemp: 0, maxTemp: 100, minWind: 0, maxWind: 100, rain: 0)
         gearList.append(tshirt1)
-        let tshirt2 = GearConstraints(gearType: tshirt, minTemp: 20, maxTemp: 200, minWind: nil, rain: nil)
-        gearList.append(tshirt2)
+        let shorts = GearItem(description: "Shorts")
+        let shorts1 = GearConstraints(gearType: shorts, minTemp: 40, maxTemp: 100, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(shorts1)
+        let lightSocks = GearItem(description: "Light Socks")
+        let lightSocks1 = GearConstraints(gearType: lightSocks, minTemp: 30, maxTemp: 100, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(lightSocks1)
+        let heavySocks = GearItem(description: "Heavy Socks")
+        let heavySocks1 = GearConstraints(gearType: heavySocks, minTemp: 0, maxTemp: 30, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(heavySocks1)
+        let pants = GearItem(description: "Pants")
+        let pants1 = GearConstraints(gearType: pants, minTemp: 0, maxTemp: 40, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(pants1)
+        let faceMask = GearItem(description: "Face Mask")
+        let faceMask1 = GearConstraints(gearType: faceMask, minTemp: 0, maxTemp: 20, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(faceMask1)
+        let faceMask2 = GearConstraints(gearType: faceMask, minTemp: 0, maxTemp: 30, minWind: 15, maxWind: 100, rain: 0)
+        gearList.append(faceMask2)
+        let lightHat = GearItem(description: "Light Hat")
+        let lightHat1 = GearConstraints(gearType: lightHat, minTemp: 20, maxTemp: 40, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(lightHat1)
+        let longSleevesShirt = GearItem(description: "Long sleeves shirt")
+        let longSleevesShirt1 = GearConstraints(gearType: longSleevesShirt, minTemp: 0, maxTemp: 60, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(longSleevesShirt1)
+        let heavyJacket = GearItem(description: "Heavy Jacket")
+        let heavyJacket1 = GearConstraints(gearType: heavyJacket, minTemp: 0, maxTemp: 50, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(heavyJacket1)
+        let windJacket = GearItem(description: "Wind Jacket")
+        let windJacket1 = GearConstraints(gearType: windJacket, minTemp: 0, maxTemp: 40, minWind: 20, maxWind: 100, rain: 0)
+        gearList.append(windJacket1)
+        let lightGloves = GearItem(description: "Light Gloves")
+        let lightGloves1 = GearConstraints(gearType: lightGloves, minTemp: 30, maxTemp: 50, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(lightGloves1)
+        let lightGloves2 = GearConstraints(gearType: lightGloves, minTemp: 0, maxTemp: 30, minWind: 15, maxWind: 100, rain: 0)
+        gearList.append(lightGloves2)
+        let heavyGloves = GearItem(description: "Heavy Gloves")
+        let heavyGloves1 = GearConstraints(gearType: heavyGloves, minTemp: 0, maxTemp: 30, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(heavyGloves1)
+        let capSunglasses = GearItem(description: "Cap or Sunglasses")
+        let capSunglasses1 = GearConstraints(gearType: capSunglasses, minTemp: 60, maxTemp: 100, minWind: 0, maxWind: 100, rain: 0)
+        gearList.append(capSunglasses1)
     }
 }
