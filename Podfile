@@ -6,3 +6,4 @@ pod 'ForecastIO', '~> 1.3'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'Instabug'
+pod "HockeySDK"

@@ -3,18 +3,23 @@ PODS:
     - Fabric (~> 1.6.3)
   - Fabric (1.6.4)
   - ForecastIO (1.3.2)
+  - HockeySDK (3.8.5):
+    - HockeySDK/AllFeaturesLib (= 3.8.5)
+  - HockeySDK/AllFeaturesLib (3.8.5)
   - Instabug (4.1.10)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
   - ForecastIO (~> 1.3)
+  - HockeySDK
   - Instabug
 
 SPEC CHECKSUMS:
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   Fabric: ed41fd62173c6bdea24ab02c9d7707161eabb750
   ForecastIO: 31fcd462cb955c8ac2f0b86cc420911249c11f3d
+  HockeySDK: dd11a2b9da3372fd025643bee5bc10c8c613d169
   Instabug: 67d01dc94d780a3eb787563fc7a1c32ef5dd8a1f
 
 COCOAPODS: 0.39.0
