@@ -52,7 +52,7 @@ class GearList {
         let longSleevesShirt1 = GearConstraints(gearType: longSleevesShirt, minTemp: 0, maxTemp: 60, minWind: 0, maxWind: 100, rain: 0)
         gearList.append(longSleevesShirt1)
         let heavyJacket = GearItem(description: "Heavy Jacket")
-        let heavyJacket1 = GearConstraints(gearType: heavyJacket, minTemp: 0, maxTemp: 50, minWind: 0, maxWind: 100, rain: 0)
+        let heavyJacket1 = GearConstraints(gearType: heavyJacket, minTemp: 0, maxTemp: 35, minWind: 0, maxWind: 100, rain: 0)
         gearList.append(heavyJacket1)
         let windJacket = GearItem(description: "Wind Jacket")
         let windJacket1 = GearConstraints(gearType: windJacket, minTemp: 0, maxTemp: 40, minWind: 20, maxWind: 100, rain: 0)
