@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719878DD5F3A324EAFBEF830 /* Pods.framework */; };
+		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56B3101C4E8D7700C30BA3 /* Weather.swift */; };
 		FF5DACD91C4DE91E00CA9C1B /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */; };
 		FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */; };
-		FFE02ED01C4834D5006EF28A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECF1C4834D5006EF28A /* ViewController.swift */; };
 		FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED11C4834D5006EF28A /* Main.storyboard */; };
 		FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED41C4834D5006EF28A /* Assets.xcassets */; };
 		FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */; };
@@ -41,12 +41,12 @@
 		4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		719878DD5F3A324EAFBEF830 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF56B3101C4E8D7700C30BA3 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FFE02ECA1C4834D5006EF28A /* WhatToWearRunning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWearRunning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FFE02ECF1C4834D5006EF28A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FFE02ED21C4834D5006EF28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FFE02ED41C4834D5006EF28A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFE02ED71C4834D5006EF28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			children = (
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
-				FFE02ECF1C4834D5006EF28A /* ViewController.swift */,
+				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
 				FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */,
 				FF56B3101C4E8D7700C30BA3 /* Weather.swift */,
 				FFF9757E1C4F190400B624F4 /* Gear.swift */,
@@ -359,9 +359,9 @@
 			files = (
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
-				FFE02ED01C4834D5006EF28A /* ViewController.swift in Sources */,
 				FF5DACD91C4DE91E00CA9C1B /* Recommendations.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
+				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
