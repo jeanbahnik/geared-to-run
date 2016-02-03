@@ -6,7 +6,6 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
-import Foundation
 import ForecastIO
 
 class Recommendations {

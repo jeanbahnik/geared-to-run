@@ -6,8 +6,6 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
-import Foundation
-
 struct GearConstraints {
     let gearType: GearItem
     let minTemp: Int

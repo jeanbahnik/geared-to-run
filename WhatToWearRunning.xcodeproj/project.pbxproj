@@ -134,8 +134,8 @@
 			children = (
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
-				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
+				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
 				FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */,
 				FF56B3101C4E8D7700C30BA3 /* Weather.swift */,
 				FFF9757E1C4F190400B624F4 /* Gear.swift */,
