@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719878DD5F3A324EAFBEF830 /* Pods.framework */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
+		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56B3101C4E8D7700C30BA3 /* Weather.swift */; };
 		FF5DACD91C4DE91E00CA9C1B /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */; };
 		FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 		FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */; };
 		FFE02EE31C4834D5006EF28A /* WhatToWearRunningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EE21C4834D5006EF28A /* WhatToWearRunningTests.swift */; };
 		FFE02EEE1C4834D5006EF28A /* WhatToWearRunningUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */; };
+		FFEC6FB81C61082B0010D994 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC6FB71C61082B0010D994 /* Style.swift */; };
 		FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF9757E1C4F190400B624F4 /* Gear.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,7 @@
 		719878DD5F3A324EAFBEF830 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF56B3101C4E8D7700C30BA3 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		FFE02EE91C4834D5006EF28A /* WhatToWearRunningUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatToWearRunningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatToWearRunningUITests.swift; sourceTree = "<group>"; };
 		FFE02EEF1C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFEC6FB71C61082B0010D994 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		FFF9757E1C4F190400B624F4 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gear.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,10 +138,12 @@
 				FF5DACD81C4DE91E00CA9C1B /* Recommendations.swift */,
 				FF56B3101C4E8D7700C30BA3 /* Weather.swift */,
 				FFF9757E1C4F190400B624F4 /* Gear.swift */,
+				FFEC6FB71C61082B0010D994 /* Style.swift */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FF8A96871C5933C50013AF60 /* Bridging-Header.h */,
 				FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */,
 				FFE02ED91C4834D5006EF28A /* Info.plist */,
+				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
 			);
 			path = WhatToWearRunning;
 			sourceTree = "<group>";
@@ -358,10 +364,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
+				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
 				FF5DACD91C4DE91E00CA9C1B /* Recommendations.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
+				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
