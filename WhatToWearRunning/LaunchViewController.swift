@@ -14,6 +14,9 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     @IBOutlet weak var messageLabel: UILabel!
     
+    var weather = Weather()
+    var Recommendation = Recommendations()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Style.navyBlueColor
@@ -30,10 +33,18 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locationManager.location {
+        SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
+        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
+        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.bounds.height / 4))
+        SVProgressHUD.show()
+//        if let manager = locationManager.location {
             locationManager.stopUpdatingLocation()
-            self.performSegueWithIdentifier("Home", sender: nil)
-        }
+            Weather().getWeatherData(locationManager, completion: { (weather, error) -> Void in
+                SVProgressHUD.dismiss()
+                print(weather)
+                self.performSegueWithIdentifier("Home", sender: nil)
+            })
+//        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {

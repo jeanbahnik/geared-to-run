@@ -10,47 +10,48 @@ import ForecastIO
 
 class Recommendations {
 
-    let currentForecast: DataPoint?
+    var currentForecast: DataPoint?
     let gearList: [GearConstraints]?
     var recommendedOutfit = [String]()
 
-    init(forecast: Forecast) {
-        self.currentForecast = Weather(forecast: forecast).currentForecast
+    init() {
         self.gearList = GearList().gearList
     }
 
-    func getRecommendedOutfit() {
-        if let list = gearList {
-            for item in list {
-                getGear(item)
-            }
-        }
-    }
-
-    func getGear(gear: GearConstraints) {
-        if recommendedOutfit.contains(gear.gearType.description) { return }
-        
-        var include = false
-        
-        if let currentForecast = self.currentForecast {
-            
-            if let temperature = currentForecast.temperature, let windSpeed = currentForecast.windSpeed, let precipitationProbability = currentForecast.precipProbability {
-
-                if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) {
-                        include = true
-                    } else {
-                        include = false
-                    }
-            }
-        }
-        
-        if include == true {
-            recommendedOutfit.append(gear.gearType.description)
-        }
-    }
-
-    func recommendationText() -> String {
-        getRecommendedOutfit()
-        return recommendedOutfit.joinWithSeparator(", ")
-    }
+//    func getRecommendedOutfit(currentForecast: DataPoint) {
+//        self.currentForecast = currentForecast
+//        if let list = gearList {
+//            for item in list {
+//                getGear(item, self.currentForecast)
+//            }
+//        }
+//    }
+//
+//    func getGear(gear: GearConstraints, currentForecast: Forecast) {
+//        self.currentForecast = Weather(forecast: DataPoint).currentForecast
+//        if recommendedOutfit.contains(gear.gearType.description) { return }
+//        
+//        var include = false
+//        
+//        if let currentForecast = self.currentForecast {
+//            
+//            if let temperature = currentForecast.temperature, let windSpeed = currentForecast.windSpeed, let precipitationProbability = currentForecast.precipProbability {
+//
+//                if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) {
+//                        include = true
+//                    } else {
+//                        include = false
+//                    }
+//            }
+//        }
+//        
+//        if include == true {
+//            recommendedOutfit.append(gear.gearType.description)
+//        }
+//    }
+//
+//    func recommendationText() -> String {
+//        getRecommendedOutfit()
+//        return recommendedOutfit.joinWithSeparator(", ")
+//    }
 }
