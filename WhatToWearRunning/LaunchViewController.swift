@@ -33,24 +33,24 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.locationManager.stopUpdatingLocation()
         SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
         SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.bounds.height / 4))
         SVProgressHUD.show()
-//        if let manager = locationManager.location {
-            locationManager.stopUpdatingLocation()
-            Weather().getWeatherData(locationManager, completion: { (weather, error) -> Void in
+        Weather().getWeatherData(locationManager) { ( weather : Weather ) in
+//            if let weather = weather {
+                print(weather.temperature)
+                print(weather.windSpeed)
                 SVProgressHUD.dismiss()
-                print(weather)
                 self.performSegueWithIdentifier("Home", sender: nil)
-            })
-//        }
+//            }
+        }
     }
-    
+
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         self.messageLabel.textAlignment = .Center
         self.messageLabel.textColor = UIColor.whiteColor()
         self.messageLabel.text = "Enable Location Services and Try Again"
     }
-
 }
