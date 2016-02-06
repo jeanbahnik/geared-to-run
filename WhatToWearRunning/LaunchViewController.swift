@@ -39,12 +39,8 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
         SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.bounds.height / 4))
         SVProgressHUD.show()
         Weather().getWeatherData(locationManager) { ( weather : Weather ) in
-//            if let weather = weather {
-                print(weather.temperature)
-                print(weather.windSpeed)
-                SVProgressHUD.dismiss()
-                self.performSegueWithIdentifier("Home", sender: nil)
-//            }
+            SVProgressHUD.dismiss()
+            self.performSegueWithIdentifier("Home", sender: nil)
         }
     }
 
