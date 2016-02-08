@@ -15,7 +15,9 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var messageLabel: UILabel!
     
     var weather = Weather()
-    var Recommendation = Recommendations()
+    var recommendation = Recommendation()
+    
+    var weatherAndRecommendation: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +40,19 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
         SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.bounds.height / 4))
         SVProgressHUD.show()
-        Weather().getWeatherData(locationManager) { ( weather : Weather ) in
-            SVProgressHUD.dismiss()
-            self.performSegueWithIdentifier("Home", sender: nil)
+        Weather().getWeatherData(locationManager) { ( weather : Weather? ) in
+            if let weather = weather {
+                self.weather = weather
+//                , let weatherText = weather.weatherText {
+//                self.weatherAndRecommendation.append(weatherText)
+                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
+                    if let recommendation = recommendation {
+                        self.recommendation = recommendation
+                        SVProgressHUD.dismiss()
+                        self.performSegueWithIdentifier("Home", sender: nil)
+                    }
+                })
+            }
         }
     }
 
@@ -48,5 +60,14 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
         self.messageLabel.textAlignment = .Center
         self.messageLabel.textColor = UIColor.whiteColor()
         self.messageLabel.text = "Enable Location Services and Try Again"
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if (segue.identifier == "Home") {
+            let vc = segue.destinationViewController as! HomeViewController
+            vc.weather = self.weather
+            vc.outfit = self.recommendation
+        }
     }
 }
