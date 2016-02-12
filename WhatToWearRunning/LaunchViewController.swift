@@ -38,13 +38,11 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
         self.locationManager.stopUpdatingLocation()
         SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
-        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.bounds.height / 4))
+        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.frame.height / 4))
         SVProgressHUD.show()
         Weather().getWeatherData(locationManager) { ( weather : Weather? ) in
             if let weather = weather {
                 self.weather = weather
-//                , let weatherText = weather.weatherText {
-//                self.weatherAndRecommendation.append(weatherText)
                 Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
                     if let recommendation = recommendation {
                         self.recommendation = recommendation
