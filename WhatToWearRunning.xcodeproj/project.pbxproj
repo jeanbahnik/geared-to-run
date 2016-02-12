@@ -19,6 +19,7 @@
 		FFE02EE31C4834D5006EF28A /* WhatToWearRunningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EE21C4834D5006EF28A /* WhatToWearRunningTests.swift */; };
 		FFE02EEE1C4834D5006EF28A /* WhatToWearRunningUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */; };
 		FFEC6FB81C61082B0010D994 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC6FB71C61082B0010D994 /* Style.swift */; };
+		FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */; };
 		FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF9757E1C4F190400B624F4 /* Gear.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatToWearRunningUITests.swift; sourceTree = "<group>"; };
 		FFE02EEF1C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFEC6FB71C61082B0010D994 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateSettings.swift; sourceTree = "<group>"; };
 		FFF9757E1C4F190400B624F4 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gear.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 				FFF9757E1C4F190400B624F4 /* Gear.swift */,
 				FFEC6FB71C61082B0010D994 /* Style.swift */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
+				FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */,
 				FF8A96871C5933C50013AF60 /* Bridging-Header.h */,
 				FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */,
 				FFE02ED91C4834D5006EF28A /* Info.plist */,
@@ -367,6 +370,7 @@
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
 				FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */,
+				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
 				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,
