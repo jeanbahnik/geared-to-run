@@ -100,7 +100,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="oIa-cg-BA5">
-                                                        <rect key="frame" x="102" y="0.0" width="98" height="73"/>
+                                                        <rect key="frame" x="103" y="0.0" width="98" height="73"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiE-Ab-b7c">
                                                                 <rect key="frame" x="0.0" y="0.0" width="98" height="47"/>
@@ -108,14 +108,20 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind-little" translatesAutoresizingMaskIntoConstraints="NO" id="cac-JA-aUf">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Se2-Se-oep">
                                                                 <rect key="frame" x="0.0" y="27" width="98" height="47"/>
-                                                            </imageView>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="cac-JA-aUf">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                            </view>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="aiE-Ab-b7c" firstAttribute="leading" secondItem="oIa-cg-BA5" secondAttribute="leading" id="aNL-tA-sLD"/>
                                                             <constraint firstAttribute="trailing" secondItem="aiE-Ab-b7c" secondAttribute="trailing" id="mEm-tg-wXE"/>
                                                         </constraints>
+                                                        <variation key="heightClass=compact-widthClass=compact" alignment="fill"/>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
@@ -208,6 +214,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="wind-little" width="35" height="35"/>
+        <image name="wind" width="35" height="35"/>
     </resources>
 </document>
