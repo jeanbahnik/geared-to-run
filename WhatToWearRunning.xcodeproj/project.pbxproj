@@ -16,10 +16,9 @@
 		FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED11C4834D5006EF28A /* Main.storyboard */; };
 		FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED41C4834D5006EF28A /* Assets.xcassets */; };
 		FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */; };
-		FFE02EE31C4834D5006EF28A /* WhatToWearRunningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EE21C4834D5006EF28A /* WhatToWearRunningTests.swift */; };
-		FFE02EEE1C4834D5006EF28A /* WhatToWearRunningUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */; };
 		FFEC6FB81C61082B0010D994 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC6FB71C61082B0010D994 /* Style.swift */; };
 		FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */; };
+		FFF6A9221C703FA700B34CF7 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */; };
 		FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF9757E1C4F190400B624F4 /* Gear.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,13 +55,12 @@
 		FFE02ED71C4834D5006EF28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFE02ED91C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFE02EDE1C4834D5006EF28A /* WhatToWearRunningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatToWearRunningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFE02EE21C4834D5006EF28A /* WhatToWearRunningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatToWearRunningTests.swift; sourceTree = "<group>"; };
 		FFE02EE41C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFE02EE91C4834D5006EF28A /* WhatToWearRunningUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatToWearRunningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatToWearRunningUITests.swift; sourceTree = "<group>"; };
 		FFE02EEF1C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFEC6FB71C61082B0010D994 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateSettings.swift; sourceTree = "<group>"; };
+		FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		FFF9757E1C4F190400B624F4 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gear.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,8 +152,8 @@
 		FFE02EE11C4834D5006EF28A /* WhatToWearRunningTests */ = {
 			isa = PBXGroup;
 			children = (
-				FFE02EE21C4834D5006EF28A /* WhatToWearRunningTests.swift */,
 				FFE02EE41C4834D5006EF28A /* Info.plist */,
+				FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */,
 			);
 			path = WhatToWearRunningTests;
 			sourceTree = "<group>";
@@ -163,7 +161,6 @@
 		FFE02EEC1C4834D5006EF28A /* WhatToWearRunningUITests */ = {
 			isa = PBXGroup;
 			children = (
-				FFE02EED1C4834D5006EF28A /* WhatToWearRunningUITests.swift */,
 				FFE02EEF1C4834D5006EF28A /* Info.plist */,
 			);
 			path = WhatToWearRunningUITests;
@@ -381,7 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE02EE31C4834D5006EF28A /* WhatToWearRunningTests.swift in Sources */,
+				FFF6A9221C703FA700B34CF7 /* WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +386,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE02EEE1C4834D5006EF28A /* WhatToWearRunningUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WhatToWearRunning/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
@@ -532,6 +529,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
+				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = WhatToWearRunning/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
