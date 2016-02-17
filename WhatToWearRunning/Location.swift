@@ -25,20 +25,19 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestLocation()
+        locationManager.startUpdatingLocation()
     }
     
     func requestPermission(completion: (CLAuthorizationStatus -> Void)?) {
         permissionBlock = completion
         locationManager.requestAlwaysAuthorization()
     }
-    
-//    func getLocation() -> CLLocation? {
-//        return locationManager.location
-//    }
+
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.stopUpdatingLocation()
         locationUpdatedBlock?(locations.first)
     }
     

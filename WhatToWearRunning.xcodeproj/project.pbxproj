@@ -11,6 +11,7 @@
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56B3101C4E8D7700C30BA3 /* Weather.swift */; };
+		FF762A541C74DA5700B19483 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF762A531C74DA5700B19483 /* Reachability.swift */; };
 		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
 		FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0921C1C681EA800308EDB /* Recommendation.swift */; };
 		FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF56B3101C4E8D7700C30BA3 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		FF762A531C74DA5700B19483 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FFB0921C1C681EA800308EDB /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				FFF9757E1C4F190400B624F4 /* Gear.swift */,
 				FFEC6FB71C61082B0010D994 /* Style.swift */,
 				FFACB21A1C73977C009627E6 /* Location.swift */,
+				FF762A531C74DA5700B19483 /* Reachability.swift */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */,
 				FF8A96871C5933C50013AF60 /* Bridging-Header.h */,
@@ -374,6 +377,7 @@
 				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
+				FF762A541C74DA5700B19483 /* Reachability.swift in Sources */,
 				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

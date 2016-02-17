@@ -18,17 +18,17 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = true
-        self.view.backgroundColor = Style.navyBlueColor
+        navigationController?.navigationBarHidden = true
+        view.backgroundColor = Style.navyBlueColor
 
         SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
-        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.frame.height / 4))
+        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: view.frame.height / 4))
         
         LocationManager.sharedInstance.requestPermission() {
             [weak self] status in
             if status != .AuthorizedAlways {
-                self?.displayLocationError()
+                self?.displayError("Enable Location Services and Try Again")
             }
         }
 
@@ -45,25 +45,31 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     func fetchData(locationManager: CLLocation) {
-        SVProgressHUD.show()
-        Weather().getWeatherData(locationManager) { ( weather : Weather? ) in
-            if let weather = weather {
-                self.weather = weather
-                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
-                    if let recommendation = recommendation {
-                        self.recommendation = recommendation
-                        SVProgressHUD.dismiss()
-                        self.performSegueWithIdentifier("Home", sender: nil)
-                    }
-                })
+        if Reachability.isConnectedToNetwork() == false {
+            displayError("Connect Internet and Try Again")
+        } else {
+            messageLabel.text = nil
+            LocationManager.sharedInstance.stopUpdatingLocation()
+            SVProgressHUD.show()
+            Weather().getWeatherData(locationManager) { ( weather : Weather? ) in
+                if let weather = weather {
+                    self.weather = weather
+                    Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
+                        if let recommendation = recommendation {
+                            self.recommendation = recommendation
+                            SVProgressHUD.dismiss()
+                            self.performSegueWithIdentifier("Home", sender: nil)
+                        }
+                    })
+                }
             }
         }
     }
 
-    func displayLocationError() {
-        self.messageLabel.textAlignment = .Center
-        self.messageLabel.textColor = UIColor.whiteColor()
-        self.messageLabel.text = "Enable Location Services and Try Again"
+    func displayError(error: String) {
+        messageLabel.textAlignment = .Center
+        messageLabel.textColor = UIColor.whiteColor()
+        messageLabel.text = error
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
