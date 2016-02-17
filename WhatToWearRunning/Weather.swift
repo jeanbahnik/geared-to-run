@@ -101,7 +101,7 @@ class Weather {
     }
 
     private func getLocalityFromLocation(location: CLLocation, completion: () -> Void) {
-        CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
             if (error != nil) { print(error) }
 
             if let pm = placemarks where pm.count > 0 {
@@ -111,6 +111,21 @@ class Weather {
                 }
             }
         })
+    }
+
+    func getGeolocationFromZipcode(zipcode: Int, completion: (weather: Weather?, error: String?) -> Void) {
+        CLGeocoder().geocodeAddressString("\(zipcode) USA") { (placemarks, error) in
+            if (error != nil) { completion(weather: nil, error: "Could not find address") }
+
+            if let pm = placemarks where pm.count > 0 {
+                if let firstPlacemark = pm.first, local = firstPlacemark.locality, location = firstPlacemark.location {
+                    self.locality = local
+                    self.getWeatherData(location, completion: { (weather) -> Void in
+                        completion(weather: self, error: nil)
+                    })
+                }
+            }
+        }
     }
 
 //    private func isDaytime() {

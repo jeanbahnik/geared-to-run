@@ -535,7 +535,7 @@
 			baseConfigurationReference = 4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
 				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = WhatToWearRunning/Info.plist;

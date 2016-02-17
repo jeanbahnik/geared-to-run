@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HomeViewController: UIViewController {
 
@@ -28,11 +29,16 @@ class HomeViewController: UIViewController {
     
     private func setupView() {
         self.navigationItem.setHidesBackButton(true, animated: false)
+
+//        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "promptForZipcode")
+//        barButtonItem.tag = 1
+//        self.navigationItem.rightBarButtonItem = barButtonItem
+
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationController?.navigationBar.barTintColor = Style.maroonColor
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-        
+
         self.view.backgroundColor = Style.navyBlueColor
 
         if let locality = weather.locality, summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
@@ -57,5 +63,39 @@ class HomeViewController: UIViewController {
         let string2 = NSMutableAttributedString(string: "F", attributes: attribute2)
         string.appendAttributedString(string2)
         return string
+    }
+
+    func promptForZipcode() {
+        var inputTextField: UITextField?
+        let alert : UIAlertController = UIAlertController(title: "Please enter a US Zipcode", message: nil, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alert.addTextFieldWithConfigurationHandler { textField in
+            textField.keyboardType = UIKeyboardType.NumberPad
+            inputTextField = textField
+        }
+        alert.addAction(UIAlertAction(title: "Enter", style: .Default, handler: { alertAction in
+            if let inputTextField = inputTextField, zipcodeText = inputTextField.text where zipcodeText.characters.count == 5, let zipcode = Int(zipcodeText) {
+                self.resetWeatherAndRecommendation(zipcode)
+            }
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    func resetWeatherAndRecommendation(zipcode: Int) {
+        SVProgressHUD.show()
+        Weather().getGeolocationFromZipcode(zipcode) { (weather, error) -> Void in
+            if let error = error {
+                SVProgressHUD.dismiss()
+                print(error)
+            }
+            if let weather = weather {
+                self.weather = weather
+                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation) -> Void in
+                    self.outfit = recommendation
+                    SVProgressHUD.dismiss()
+                    self.setupView()
+                })
+            }
+        }
     }
 }
