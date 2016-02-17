@@ -10,11 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var navBarTitle: UINavigationItem!
     var outfit = Recommendation()
     var weather = Weather()
 
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var summaryIcon: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -24,21 +22,23 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Style.navyBlueColor
-        self.navigationBar.barTintColor = Style.maroonColor
-        self.navigationBar.translucent = false
+        
         setupView()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
     private func setupView() {
-        if let locality = weather.locality, summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
-            self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-            self.navBarTitle.title = "Currently in \(locality)"
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.barTintColor = Style.maroonColor
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
+        self.view.backgroundColor = Style.navyBlueColor
 
+        if let locality = weather.locality, summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
+
+            self.title = "Currently in \(locality)"
+            
             self.summaryLabel.text = summaryText
             self.summaryIcon.image = UIImage(named: summaryIcon)
 

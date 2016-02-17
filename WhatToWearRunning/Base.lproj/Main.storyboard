@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SmP-j7-cLk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fb3-9L-of6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -18,17 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fz0-AZ-4gR">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="euc-nc-TpB"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem id="7WX-R5-Bux"/>
-                                </items>
-                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3u0-Rc-nlB">
-                                <rect key="frame" x="0.0" y="64" width="600" height="94"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="94"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="stz-I8-L4W">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="94"/>
@@ -155,16 +146,11 @@
                         <constraints>
                             <constraint firstItem="3u0-Rc-nlB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3WN-i1-Aza"/>
                             <constraint firstAttribute="trailing" secondItem="3u0-Rc-nlB" secondAttribute="trailing" id="7d3-Fx-472"/>
-                            <constraint firstItem="fz0-AZ-4gR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CWq-JO-iOT"/>
-                            <constraint firstAttribute="trailing" secondItem="fz0-AZ-4gR" secondAttribute="trailing" id="P3u-j2-wOq"/>
-                            <constraint firstItem="3u0-Rc-nlB" firstAttribute="top" secondItem="fz0-AZ-4gR" secondAttribute="bottom" id="PVA-cv-dRu"/>
-                            <constraint firstItem="fz0-AZ-4gR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cjT-Ld-4bk"/>
+                            <constraint firstItem="3u0-Rc-nlB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qRe-Lh-m80"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="apparentTemperatureLabel" destination="h26-97-cIf" id="wmy-cf-VNx"/>
-                        <outlet property="navBarTitle" destination="7WX-R5-Bux" id="23K-oo-mO0"/>
-                        <outlet property="navigationBar" destination="fz0-AZ-4gR" id="VeO-Ca-TGA"/>
                         <outlet property="summaryIcon" destination="nYk-b1-46f" id="1sS-CV-k9Z"/>
                         <outlet property="summaryLabel" destination="chQ-HM-2Mu" id="WCe-a3-n33"/>
                         <outlet property="temperatureLabel" destination="gj2-7b-pvh" id="Ts7-fu-W1s"/>
@@ -174,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="490" y="242"/>
+            <point key="canvasLocation" x="1302" y="242"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="eBr-mI-TPe">
@@ -203,12 +189,31 @@
                             <constraint firstItem="J8i-mf-pUU" firstAttribute="centerX" secondItem="1pL-Je-KHB" secondAttribute="centerX" id="oea-YU-QYH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="vgL-Rf-T40"/>
                     <connections>
                         <outlet property="messageLabel" destination="J8i-mf-pUU" id="DEw-Gt-FSt"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Home" animates="NO" action="showViewController:sender:" id="4Po-pM-yzU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzq-zF-lwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="242"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nfe-tB-6m8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fb3-9L-of6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eXe-pw-UYv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SmP-j7-cLk" kind="relationship" relationship="rootViewController" id="Jlr-iY-G6M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oF1-qk-OPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-298" y="242"/>
         </scene>

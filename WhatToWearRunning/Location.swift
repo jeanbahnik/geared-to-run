@@ -10,10 +10,9 @@ import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedInstance = LocationManager()
-    typealias PermissionBlockType = (CLAuthorizationStatus -> Void)?
 
     private var locationManager: CLLocationManager!
-    private var permissionBlock: PermissionBlockType
+    private var permissionBlock: (CLAuthorizationStatus -> Void)?
     var locationUpdatedBlock: (CLLocation? -> Void)?
     var locationErrorBlock: (NSError -> Void)?
     
@@ -29,14 +28,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.requestLocation()
     }
     
-    func requestPermission(completion: PermissionBlockType) {
+    func requestPermission(completion: (CLAuthorizationStatus -> Void)?) {
         permissionBlock = completion
         locationManager.requestAlwaysAuthorization()
     }
     
-    func getLocation() -> CLLocation? {
-        return locationManager.location
-    }
+//    func getLocation() -> CLLocation? {
+//        return locationManager.location
+//    }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
