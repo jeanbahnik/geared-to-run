@@ -16,8 +16,7 @@ class Weather {
     private var forecast: Forecast?
     var currentForecast: DataPoint?
     private var dailyForecast: DataBlock?
-    
-    var icon: UIImage?
+
     var summary: String?
     var summaryIcon: String?
     var temperature: Int?
@@ -25,7 +24,6 @@ class Weather {
     var windSpeed: Int?
     var windBearing: String?
     var locality: String?
-
     var precipitationProbability: Float?
 //    var daytime: String?
 
