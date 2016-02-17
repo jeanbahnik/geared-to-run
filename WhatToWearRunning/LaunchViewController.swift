@@ -18,6 +18,7 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
         self.view.backgroundColor = Style.navyBlueColor
 
         SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
@@ -37,6 +38,11 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
                 self?.fetchData(location)
             }
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
