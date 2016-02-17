@@ -39,11 +39,6 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-    }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
