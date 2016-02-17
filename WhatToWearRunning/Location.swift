@@ -1,0 +1,53 @@
+//
+//  Location.swift
+//  WhatToWearRunning
+//
+//  Created by Jean Bahnik on 2/16/16.
+//  Copyright © 2016 Jean Bahnik. All rights reserved.
+//
+
+import CoreLocation
+
+class LocationManager: NSObject, CLLocationManagerDelegate {
+    static let sharedInstance = LocationManager()
+    typealias PermissionBlockType = (CLAuthorizationStatus -> Void)?
+
+    private var locationManager: CLLocationManager!
+    private var permissionBlock: PermissionBlockType
+    var locationUpdatedBlock: (CLLocation? -> Void)?
+    var locationErrorBlock: (NSError -> Void)?
+    
+    private override init() {
+        super.init()
+        commonInit()
+    }
+
+    private func commonInit() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestLocation()
+    }
+    
+    func requestPermission(completion: PermissionBlockType) {
+        permissionBlock = completion
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    func getLocation() -> CLLocation? {
+        return locationManager.location
+    }
+
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        locationUpdatedBlock?(locations.first)
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        locationErrorBlock?(error)
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        permissionBlock?(status)
+    }
+}

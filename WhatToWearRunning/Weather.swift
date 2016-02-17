@@ -29,36 +29,33 @@ class Weather {
     var precipitationProbability: Float?
 //    var daytime: String?
 
-    func getWeatherData(locationManager: CLLocationManager, completion: (weather: Weather) -> Void) {
-        if let location = locationManager.location {
-
-            self.getLocalityFromLocation(location, completion: { void in
-                self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { (forecast, error) in
-                    if let forecast = forecast {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.forecast = forecast
-                            self.currentForecast = forecast.currently
-                            self.dailyForecast = forecast.daily
+    func getWeatherData(location: CLLocation, completion: (weather: Weather) -> Void) {
+        self.getLocalityFromLocation(location, completion: { void in
+            self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { (forecast, error) in
+                if let forecast = forecast {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.forecast = forecast
+                        self.currentForecast = forecast.currently
+                        self.dailyForecast = forecast.daily
 
 //                            self.isDaytime()
 
-                            if let currentForecast = self.currentForecast {
-                                if let summary = currentForecast.summary, summaryIcon = currentForecast.icon, temperature = currentForecast.temperature, apparentTemperature = currentForecast.apparentTemperature, windSpeed = currentForecast.windSpeed, windBearing = currentForecast.windBearing, precipitationProbability = currentForecast.precipProbability {
-                                    self.summary = summary
-                                    self.summaryIcon = self.summaryIcon(summaryIcon)
-                                    self.temperature = Int(temperature)
-                                    self.apparentTemperature = Int(apparentTemperature)
-                                    self.windSpeed = Int(windSpeed)
-                                    self.windBearing = self.windBearing(windBearing)
-                                    self.precipitationProbability = precipitationProbability
-                                    completion(weather: self)
-                                }
+                        if let currentForecast = self.currentForecast {
+                            if let summary = currentForecast.summary, summaryIcon = currentForecast.icon, temperature = currentForecast.temperature, apparentTemperature = currentForecast.apparentTemperature, windSpeed = currentForecast.windSpeed, windBearing = currentForecast.windBearing, precipitationProbability = currentForecast.precipProbability {
+                                self.summary = summary
+                                self.summaryIcon = self.summaryIcon(summaryIcon)
+                                self.temperature = Int(temperature)
+                                self.apparentTemperature = Int(apparentTemperature)
+                                self.windSpeed = Int(windSpeed)
+                                self.windBearing = self.windBearing(windBearing)
+                                self.precipitationProbability = precipitationProbability
+                                completion(weather: self)
                             }
-                        })
-                    }
-                })
+                        }
+                    })
+                }
             })
-        }
+        })
     }
 
     func windBearing(windBearing: Float) -> String {

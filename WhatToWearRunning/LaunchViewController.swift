@@ -11,34 +11,39 @@ import SVProgressHUD
 
 class LaunchViewController: UIViewController, CLLocationManagerDelegate {
 
-    private var locationManager = CLLocationManager()
     @IBOutlet weak var messageLabel: UILabel!
-    
+
     var weather = Weather()
     var recommendation = Recommendation()
-    
-    var weatherAndRecommendation: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Style.navyBlueColor
 
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.requestLocation()
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.locationManager.stopUpdatingLocation()
         SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
         SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: self.view.frame.height / 4))
+        
+        LocationManager.sharedInstance.requestPermission() {
+            [weak self] status in
+            if status != .AuthorizedAlways {
+                self?.displayLocationError()
+            }
+        }
+
+        LocationManager.sharedInstance.locationUpdatedBlock = {
+            [weak self] location in
+            if let location = location {
+                self?.fetchData(location)
+            }
+        }
+    }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+
+    func fetchData(locationManager: CLLocation) {
         SVProgressHUD.show()
         Weather().getWeatherData(locationManager) { ( weather : Weather? ) in
             if let weather = weather {
@@ -54,12 +59,12 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func displayLocationError() {
         self.messageLabel.textAlignment = .Center
         self.messageLabel.textColor = UIColor.whiteColor()
         self.messageLabel.text = "Enable Location Services and Try Again"
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if (segue.identifier == "Home") {
