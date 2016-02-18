@@ -9,18 +9,13 @@
 import UIKit
 import SVProgressHUD
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var outfit = Recommendation()
     var weather = Weather()
-
-    @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var summaryIcon: UIImageView!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var apparentTemperatureLabel: UILabel!
-    @IBOutlet weak var windSpeedLabel: UILabel!
-    @IBOutlet weak var windBearingLabel: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,23 +34,54 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = Style.maroonColor
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
 
-        self.view.backgroundColor = Style.navyBlueColor
+        self.tableView.backgroundColor = Style.navyBlueColor
 
-        if let locality = weather.locality, summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
-
+        if let locality = weather.locality {
             self.title = "Currently in \(locality)"
-            
-            self.summaryLabel.text = summaryText
-            self.summaryIcon.image = UIImage(named: summaryIcon)
+        }
 
-            self.temperatureLabel.attributedText = self.setupTemperatureText(temperatureText)
-            self.apparentTemperatureLabel.text = "Feels like \(apparentTemperatureText)\u{00B0}"
+        tableView.registerNib(UINib(nibName: "WeatherTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "WeatherTableViewCell")
+    }
 
-            self.windSpeedLabel.text = "\(windSpeedText)"
-            self.windBearingLabel.text = windBearingText
+
+
+    // TableView
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 94.0
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
+
+            if let summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
+
+                cell.summaryLabel.text = summaryText
+                cell.summaryIcon.image = UIImage(named: summaryIcon)
+
+                cell.temperatureLabel.attributedText = self.setupTemperatureText(temperatureText)
+                cell.apparentTemperatureLabel.text = "Feels like \(apparentTemperatureText)\u{00B0}"
+
+                cell.windSpeedLabel.text = "\(windSpeedText)"
+                cell.windBearingLabel.text = windBearingText
+            }
+
+            return cell
+
+        } else {
+            return UITableViewCell()
         }
     }
-    
+
     private func setupTemperatureText(temperature: Int) -> NSMutableAttributedString {
         let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 42.0)! ]
         let string = NSMutableAttributedString(string: "\(temperature)\u{00B0}", attributes: attribute1)
