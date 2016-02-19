@@ -11,36 +11,46 @@ import SVProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var outfit = Recommendation()
-    var weather = Weather()
+    var outfit: Recommendation?
+    var weather: Weather?
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
     
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.addSubview(refreshControl)
+        
         setupView()
     }
     
     private func setupView() {
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.setHidesBackButton(true, animated: false)
 
 //        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "promptForZipcode")
 //        barButtonItem.tag = 1
 //        self.navigationItem.rightBarButtonItem = barButtonItem
 
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        self.navigationController?.navigationBar.barTintColor = Style.maroonColor
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        navigationController?.navigationBarHidden = false
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        navigationController?.navigationBar.barTintColor = Style.maroonColor
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
 
-        self.tableView.backgroundColor = Style.navyBlueColor
-
-        if let locality = weather.locality {
-            self.title = "Currently in \(locality)"
-        }
+        tableView.backgroundColor = Style.navyBlueColor
+        tableView.alwaysBounceVertical = true
 
         tableView.registerNib(UINib(nibName: "WeatherTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "WeatherTableViewCell")
+
+        if let weather = weather, locality = weather.locality {
+            title = "Currently in \(locality)"
+        }
     }
 
 
@@ -63,7 +73,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
 
-            if let summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
+            if let weather = weather, summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
 
                 cell.summaryLabel.text = summaryText
                 cell.summaryIcon.image = UIImage(named: summaryIcon)
@@ -121,6 +131,41 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     SVProgressHUD.dismiss()
                     self.setupView()
                 })
+            }
+        }
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        if let weather = weather, updateAtDate = weather.updatedAtDate {
+            let elapsedTime = -Int(updateAtDate.timeIntervalSinceNow)
+            if elapsedTime > 3600 { fetchData() }
+        }
+        refreshControl.endRefreshing()
+    }
+    
+    func fetchData() {
+        LocationManager.sharedInstance.locationUpdatedBlock = {
+            [weak self] location in
+            if let location = location {
+                if Reachability.isConnectedToNetwork() == false {
+//                    returns to previous screen and display an error message
+//                    displayError("Connect Internet and Try Again")
+                } else {
+                    LocationManager.sharedInstance.stopUpdatingLocation()
+                    SVProgressHUD.show()
+                    Weather().getWeatherData(location) { ( weather : Weather? ) in
+                        if let weather = weather {
+                            self?.weather = weather
+                            Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
+                                if let recommendation = recommendation {
+                                    self?.outfit = recommendation
+                                    SVProgressHUD.dismiss()
+                                    self?.tableView.reloadData()
+                                }
+                            })
+                        }
+                    }
+                }
             }
         }
     }

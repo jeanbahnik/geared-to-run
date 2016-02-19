@@ -25,6 +25,7 @@ class Weather {
     var windBearing: String?
     var locality: String?
     var precipitationProbability: Float?
+    var updatedAtDate: NSDate?
 //    var daytime: String?
 
     func getWeatherData(location: CLLocation, completion: (weather: Weather) -> Void) {
@@ -47,6 +48,7 @@ class Weather {
                                 self.windSpeed = Int(windSpeed)
                                 self.windBearing = self.windBearing(windBearing)
                                 self.precipitationProbability = precipitationProbability
+                                self.updatedAtDate = NSDate()
                                 completion(weather: self)
                             }
                         }
