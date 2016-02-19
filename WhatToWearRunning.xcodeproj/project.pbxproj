@@ -16,6 +16,8 @@
 		FF7C1E781C7675E4000F3329 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF7C1E771C7675E4000F3329 /* WeatherTableViewCell.xib */; };
 		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
 		FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0921C1C681EA800308EDB /* Recommendation.swift */; };
+		FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */; };
+		FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */; };
 		FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */; };
 		FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED11C4834D5006EF28A /* Main.storyboard */; };
 		FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED41C4834D5006EF28A /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FFB0921C1C681EA800308EDB /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
+		FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		FFE02ECA1C4834D5006EF28A /* WhatToWearRunning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWearRunning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE02ED21C4834D5006EF28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 		FFE02ECC1C4834D5006EF28A /* WhatToWearRunning */ = {
 			isa = PBXGroup;
 			children = (
+				FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */,
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
@@ -157,6 +162,7 @@
 				FFE02ED91C4834D5006EF28A /* Info.plist */,
 				FF7C1E771C7675E4000F3329 /* WeatherTableViewCell.xib */,
 				FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */,
+				FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */,
 			);
 			path = WhatToWearRunning;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 				FF7C1E781C7675E4000F3329 /* WeatherTableViewCell.xib in Resources */,
 				FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */,
 				FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */,
+				FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */,
 				FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +391,7 @@
 				FFACB21B1C73977C009627E6 /* Location.swift in Sources */,
 				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
+				FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
 				FF762A541C74DA5700B19483 /* Reachability.swift in Sources */,
 				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,

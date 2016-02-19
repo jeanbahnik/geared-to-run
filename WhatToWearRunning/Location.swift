@@ -48,4 +48,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         permissionBlock?(status)
     }
+    
+    func getLocation() -> CLLocation? {
+        locationManager.requestLocation()
+        return locationManager.location
+    }
 }

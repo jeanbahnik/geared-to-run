@@ -13,22 +13,46 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     var outfit: Recommendation?
     var weather: Weather?
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
-        return refreshControl
-    }()
+    var refreshControl: UIRefreshControl!
+    var pullToRefreshView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clearColor()
+        refreshControl.tintColor = UIColor.clearColor()
         tableView.addSubview(refreshControl)
         
+        loadCustomRefreshContents()
         setupView()
+    }
+    
+    func loadCustomRefreshContents() {
+        let refreshContents = NSBundle.mainBundle().loadNibNamed("PullToRefreshView", owner: self, options: nil)
+        let customView = refreshContents.first as! PullToRefreshView
+        customView.frame = self.refreshControl.bounds
+        
+        if let weather = self.weather, updatedAtDate = weather.updatedAtDate {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MMM dd, yyyy 'at' h:mm aaa"
+            let formattedUpdatedAtDate = dateFormatter.stringFromDate(updatedAtDate)
+            
+            customView.updatedAtLabel.text = "Last udpated \(formattedUpdatedAtDate)"
+        }
+
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addSubview(customView)
+    }
+    
+    // MARK: UIScrollView delegate method implementation
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if refreshControl.refreshing {
+            refreshControl.endRefreshing()
+        }
     }
     
     private func setupView() {
@@ -53,8 +77,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-
-
     // TableView
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -72,6 +94,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
+            
+            cell.userInteractionEnabled = false
 
             if let weather = weather, summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
 
@@ -140,10 +164,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let elapsedTime = -Int(updateAtDate.timeIntervalSinceNow)
             if elapsedTime > 3600 { fetchData() }
         }
-        refreshControl.endRefreshing()
     }
     
     func fetchData() {
+        LocationManager.sharedInstance.getLocation()
         LocationManager.sharedInstance.locationUpdatedBlock = {
             [weak self] location in
             if let location = location {
