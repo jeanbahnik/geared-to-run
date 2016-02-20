@@ -144,7 +144,6 @@
 		FFE02ECC1C4834D5006EF28A /* WhatToWearRunning */ = {
 			isa = PBXGroup;
 			children = (
-				FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */,
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
@@ -162,6 +161,7 @@
 				FFE02ED91C4834D5006EF28A /* Info.plist */,
 				FF7C1E771C7675E4000F3329 /* WeatherTableViewCell.xib */,
 				FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */,
+				FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */,
 				FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */,
 			);
 			path = WhatToWearRunning;

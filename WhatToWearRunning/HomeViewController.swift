@@ -26,33 +26,36 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.tintColor = UIColor.clearColor()
         tableView.addSubview(refreshControl)
         
-        loadCustomRefreshContents()
+        loadCustomRefreshContents("")
         setupView()
     }
     
-    func loadCustomRefreshContents() {
+    func loadCustomRefreshContents(text: String) {
+        if refreshControl.subviews.count > 0 {
+            refreshControl.subviews.first?.removeFromSuperview()
+        }
         let refreshContents = NSBundle.mainBundle().loadNibNamed("PullToRefreshView", owner: self, options: nil)
         let customView = refreshContents.first as! PullToRefreshView
-        customView.frame = self.refreshControl.bounds
-        
-        if let weather = self.weather, updatedAtDate = weather.updatedAtDate {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy 'at' h:mm aaa"
-            let formattedUpdatedAtDate = dateFormatter.stringFromDate(updatedAtDate)
-            
-            customView.updatedAtLabel.text = "Last udpated \(formattedUpdatedAtDate)"
-        }
+        customView.frame = refreshControl.bounds
+        customView.updatedAtLabel.text = text
 
-        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "fetchData", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.addSubview(customView)
     }
     
     // MARK: UIScrollView delegate method implementation
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if refreshControl.refreshing {
-            refreshControl.endRefreshing()
+
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if handleRefresh() == true {
+            loadCustomRefreshContents("Updating...")
+        } else {
+            loadCustomRefreshContents("Upgrade to Pro to update more than once an hour.")
         }
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if refreshControl.refreshing { refreshControl.endRefreshing() }
     }
     
     private func setupView() {
@@ -159,34 +162,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func handleRefresh(refreshControl: UIRefreshControl) {
+    func handleRefresh() -> Bool {
         if let weather = weather, updateAtDate = weather.updatedAtDate {
             let elapsedTime = -Int(updateAtDate.timeIntervalSinceNow)
-            if elapsedTime > 3600 { fetchData() }
+            if elapsedTime > 3600 { return true }
         }
+        return false
     }
     
     func fetchData() {
-        LocationManager.sharedInstance.getLocation()
-        LocationManager.sharedInstance.locationUpdatedBlock = {
-            [weak self] location in
-            if let location = location {
-                if Reachability.isConnectedToNetwork() == false {
-//                    returns to previous screen and display an error message
-//                    displayError("Connect Internet and Try Again")
-                } else {
-                    LocationManager.sharedInstance.stopUpdatingLocation()
-                    SVProgressHUD.show()
-                    Weather().getWeatherData(location) { ( weather : Weather? ) in
-                        if let weather = weather {
-                            self?.weather = weather
-                            Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
-                                if let recommendation = recommendation {
-                                    self?.outfit = recommendation
-                                    SVProgressHUD.dismiss()
-                                    self?.tableView.reloadData()
-                                }
-                            })
+        if handleRefresh() == true {
+            LocationManager.sharedInstance.getLocation()
+            LocationManager.sharedInstance.locationUpdatedBlock = {
+                [weak self] location in
+                if let location = location {
+                    if Reachability.isConnectedToNetwork() == false {
+    //                    returns to previous screen and display an error message
+    //                    displayError("Connect Internet and Try Again")
+                    } else {
+                        LocationManager.sharedInstance.stopUpdatingLocation()
+                        SVProgressHUD.show()
+                        Weather().getWeatherData(location) { ( weather : Weather? ) in
+                            if let weather = weather {
+                                self?.weather = weather
+                                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
+                                    if let recommendation = recommendation {
+                                        self?.outfit = recommendation
+                                        SVProgressHUD.dismiss()
+                                        self?.tableView.reloadData()
+                                    }
+                                })
+                            }
                         }
                     }
                 }
