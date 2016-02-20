@@ -148,21 +148,10 @@
 				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
 				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
-				FFB0921C1C681EA800308EDB /* Recommendation.swift */,
-				FF56B3101C4E8D7700C30BA3 /* Weather.swift */,
-				FFF9757E1C4F190400B624F4 /* Gear.swift */,
-				FFEC6FB71C61082B0010D994 /* Style.swift */,
-				FFACB21A1C73977C009627E6 /* Location.swift */,
-				FF762A531C74DA5700B19483 /* Reachability.swift */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
-				FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */,
-				FF8A96871C5933C50013AF60 /* Bridging-Header.h */,
-				FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */,
-				FFE02ED91C4834D5006EF28A /* Info.plist */,
-				FF7C1E771C7675E4000F3329 /* WeatherTableViewCell.xib */,
-				FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */,
-				FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */,
-				FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */,
+				FFFD1CD11C78CD4A00EBDC6A /* Models */,
+				FFFD1CD21C78D39600EBDC6A /* Views */,
+				FFFD1CD31C78D3EA00EBDC6A /* SupportFiles */,
 			);
 			path = WhatToWearRunning;
 			sourceTree = "<group>";
@@ -182,6 +171,41 @@
 				FFE02EEF1C4834D5006EF28A /* Info.plist */,
 			);
 			path = WhatToWearRunningUITests;
+			sourceTree = "<group>";
+		};
+		FFFD1CD11C78CD4A00EBDC6A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FFB0921C1C681EA800308EDB /* Recommendation.swift */,
+				FF56B3101C4E8D7700C30BA3 /* Weather.swift */,
+				FFF9757E1C4F190400B624F4 /* Gear.swift */,
+				FFEC6FB71C61082B0010D994 /* Style.swift */,
+				FFACB21A1C73977C009627E6 /* Location.swift */,
+				FF762A531C74DA5700B19483 /* Reachability.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FFFD1CD21C78D39600EBDC6A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FF7C1E771C7675E4000F3329 /* WeatherTableViewCell.xib */,
+				FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */,
+				FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */,
+				FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FFFD1CD31C78D3EA00EBDC6A /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */,
+				FF8A96871C5933C50013AF60 /* Bridging-Header.h */,
+				FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */,
+				FFE02ED91C4834D5006EF28A /* Info.plist */,
+			);
+			name = SupportFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
