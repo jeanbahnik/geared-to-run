@@ -21,7 +21,7 @@ struct GearItem {
 }
 
 enum GearSlot: Int {
-    case Head, Torso, Legs, Feet, Accessories
+    case Head, Torso, Legs, Feet, Accessories, Count
 }
 
 class GearList {

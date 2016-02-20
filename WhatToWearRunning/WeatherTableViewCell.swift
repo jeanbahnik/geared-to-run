@@ -6,8 +6,6 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
-import UIKit
-
 class WeatherTableViewCell: UITableViewCell {
 
     @IBOutlet weak var summaryLabel: UILabel!

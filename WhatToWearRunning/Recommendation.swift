@@ -10,8 +10,7 @@ import ForecastIO
 
 class Recommendation {
     let gearList: [GearConstraints]?
-    var recommendedOutfit: [String] = []
-    var recommendationText: String?
+    var recommendedOutfit: [] = []
 
     init() {
         self.gearList = GearList().gearList
@@ -43,11 +42,11 @@ class Recommendation {
         }
 
         if include == true {
-            recommendedOutfit.append(gear.gearType.description)
+            recommendedOutfit.append(gear)
         }
     }
 
-    func getRecommendationText() -> String {
+    func getRecommendationText(gearSlot: GearSlot) -> String {
         return recommendedOutfit.joinWithSeparator(", ")
     }
 }

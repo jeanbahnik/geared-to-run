@@ -10,6 +10,14 @@ import UIKit
 import SVProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    enum TableSection: Int {
+        case Weather, GearList, Sections
+        
+        static func numberOfSections() -> Int {
+            return TableSection.Sections.rawValue
+        }
+    }
 
     var outfit: Recommendation?
     var weather: Weather?
@@ -74,6 +82,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.alwaysBounceVertical = true
 
         tableView.registerNib(UINib(nibName: "WeatherTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "WeatherTableViewCell")
+        tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
 
         if let weather = weather, locality = weather.locality {
             title = "Currently in \(locality)"
@@ -83,11 +92,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // TableView
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return TableSection.numberOfSections()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch TableSection(rawValue: section)! {
+        case .Weather:
+            return 1
+        case .GearList:
+            return GearSlot.Count.rawValue
+        case .Sections:
+            return 0
+        }
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -95,7 +111,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        switch TableSection(rawValue: indexPath.section)! {
+        case .Weather:
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
             
             cell.userInteractionEnabled = false
@@ -111,11 +128,27 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.windSpeedLabel.text = "\(windSpeedText)"
                 cell.windBearingLabel.text = windBearingText
             }
-
             return cell
+        case .GearList:
+            let cell = tableView.dequeueReusableCellWithIdentifier("GearListTableViewCell", forIndexPath: indexPath) as! GearListTableViewCell
+            cell.userInteractionEnabled = false
+            cell.backgroundColor = UIColor.clearColor()
 
-        } else {
-            return UITableViewCell()
+            switch GearSlot(rawValue: indexPath.row)! {
+            case .Head:
+                cell.gearLabel.text = "TEXT1"
+            case .Torso:
+                cell.gearLabel.text = "TEXT1"
+            case .Legs:
+                cell.gearLabel.text = "TEXT3"
+            case .Feet:
+                cell.gearLabel.text = "TEXT4"
+            case .Accessories:
+                cell.gearLabel.text = "TEsadf"
+            default: cell.gearLabel.text = nil
+            }
+            return cell
+        default: return UITableViewCell()
         }
     }
 
