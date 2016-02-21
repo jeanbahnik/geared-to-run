@@ -10,7 +10,7 @@ import ForecastIO
 
 class Recommendation {
     let gearList: [GearConstraints]?
-    var recommendedOutfit: [] = []
+    var recommendedOutfit: [GearItem] = []
 
     init() {
         self.gearList = GearList().gearList
@@ -22,31 +22,18 @@ class Recommendation {
                 for item in list {
                     getGear(item, currentForecast: currentWeather)
                 }
-                self.recommendationText = getRecommendationText()
+                recommendedOutfit = recommendedOutfit.flatMap{$0}
                 completion(recommendation: self)
             }
         }
     }
 
     func getGear(gear: GearConstraints, currentForecast: DataPoint) {
-        if recommendedOutfit.contains(gear.gearType.description) { return }
-        
-        var include = false
         if let temperature = currentForecast.temperature, windSpeed = currentForecast.windSpeed, precipitationProbability = currentForecast.precipProbability {
 
             if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) {
-                    include = true
-                } else {
-                    include = false
+                    recommendedOutfit.append(gear.gearItem)
                 }
         }
-
-        if include == true {
-            recommendedOutfit.append(gear)
-        }
-    }
-
-    func getRecommendationText(gearSlot: GearSlot) -> String {
-        return recommendedOutfit.joinWithSeparator(", ")
     }
 }

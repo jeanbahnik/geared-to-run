@@ -12,7 +12,7 @@ import SVProgressHUD
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum TableSection: Int {
-        case Weather, GearList, Sections
+        case Weather, GearIcon, GearList, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -97,7 +97,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather:
+        case .Weather, .GearIcon:
             return 1
         case .GearList:
             return GearSlot.Count.rawValue
@@ -107,7 +107,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 94.0
+        switch TableSection(rawValue: indexPath.section)! {
+        case .Weather:
+            return 94.0
+        case .GearIcon:
+            return self.view.frame.width
+        case .GearList:
+            return 30.0
+        case .Sections:
+            return 0
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -129,6 +138,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.windBearingLabel.text = windBearingText
             }
             return cell
+        case .GearIcon:
+            let cell = UITableViewCell()
+            cell.userInteractionEnabled = false
+            let catView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width))
+            let icon = UIImage(named: "runner")
+            let imageView = UIImageView(image: icon)
+            imageView.contentMode = .Center
+            imageView.frame = catView.bounds
+            catView.addSubview(imageView)
+            cell.addSubview(catView)
+            cell.backgroundColor = UIColor.clearColor()
+            return cell
         case .GearList:
             let cell = tableView.dequeueReusableCellWithIdentifier("GearListTableViewCell", forIndexPath: indexPath) as! GearListTableViewCell
             cell.userInteractionEnabled = false
@@ -136,20 +157,41 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             switch GearSlot(rawValue: indexPath.row)! {
             case .Head:
-                cell.gearLabel.text = "TEXT1"
+                cell.gearLabel.text = gearListForSlot(.Head)
             case .Torso:
-                cell.gearLabel.text = "TEXT1"
+                cell.gearLabel.text = gearListForSlot(.Torso)
             case .Legs:
-                cell.gearLabel.text = "TEXT3"
+                cell.gearLabel.text = gearListForSlot(.Legs)
             case .Feet:
-                cell.gearLabel.text = "TEXT4"
+                cell.gearLabel.text = gearListForSlot(.Feet)
             case .Accessories:
-                cell.gearLabel.text = "TEsadf"
+                cell.gearLabel.text = gearListForSlot(.Accessories)
             default: cell.gearLabel.text = nil
             }
             return cell
         default: return UITableViewCell()
         }
+    }
+    
+    func gearListForSlot(slot: GearSlot) -> String {
+        var text = ""
+        var itemCount = 0
+        if let outfit = outfit {
+            for item in outfit.recommendedOutfit {
+                if item.slot == slot {
+                    itemCount++
+                    text += "\(item.description), "
+                }
+            }
+        }
+
+        if itemCount == 0 {
+            text = "-"
+        } else {
+            text = text.substringWithRange(Range<String.Index>(start: text.startIndex.advancedBy(0), end: text.endIndex.advancedBy(-2)))
+        }
+
+        return text
     }
 
     private func setupTemperatureText(temperature: Int) -> NSMutableAttributedString {
