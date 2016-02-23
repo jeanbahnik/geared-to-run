@@ -19,7 +19,7 @@ struct HourlyWeather {
     var locality: String?
     var precipitationProbability: Float?
     var updatedAtDate: NSDate?
-//    var daytime: String?
+    var isDaytime: Bool?
 }
 
 class Weather {
@@ -40,7 +40,7 @@ class Weather {
     }
 
     func constructHourlyWeather(forecast: Forecast, locality: String) -> HourlyWeather? {
-        if let hourly = forecast.hourly, hourlyData = hourly.data?[0], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability {
+        if let hourly = forecast.hourly, hourlyData = hourly.data?[0], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.hourly {
             var hourlyWeather = HourlyWeather()
             hourlyWeather.locality = locality
             hourlyWeather.summary = summary
@@ -51,7 +51,7 @@ class Weather {
             hourlyWeather.windBearing = self.windBearing(windBearing)
             hourlyWeather.precipitationProbability = precipitationProbability
             hourlyWeather.updatedAtDate = NSDate()
-//              self.isDaytime()
+            hourlyWeather.isDaytime = self.isDaytime(daily)
             return hourlyWeather
         } else {
             return nil
@@ -129,14 +129,16 @@ class Weather {
 //        }
 //    }
 
-//    private func isDaytime() {
-//        if let dailyForecast = dailyForecast, sunrise = dailyForecast.data?[0].sunriseTime, sunset = dailyForecast.data?[0].sunsetTime {
-//            let now = NSDate()
-//            if (now.compare(sunrise) == .OrderedDescending) && (now.compare(sunset) == .OrderedAscending) {
-//                self.daytime = "daytime"
-//            } else {
-//                self.daytime = "nighttime"
-//            }
-//        }
-//    }
+    private func isDaytime(dailyForecast: DataBlock) -> Bool {
+        var isDaytime: Bool = true
+        if let sunrise = dailyForecast.data?[0].sunriseTime, sunset = dailyForecast.data?[0].sunsetTime {
+            let now = NSDate()
+            if (now.compare(sunrise) == .OrderedDescending) && (now.compare(sunset) == .OrderedAscending) {
+                isDaytime = true
+            } else {
+                isDaytime = false
+            }
+        }
+        return isDaytime
+    }
 }
