@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     var outfit: Recommendation?
-    var weather: HourlyWeather?
+    var weather: [HourlyWeather]?
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
     
@@ -84,7 +84,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.registerNib(UINib(nibName: "WeatherTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "WeatherTableViewCell")
         tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
 
-        if let weather = weather, locality = weather.locality {
+        // Can call first on this one since locality is the same for all HourlyWeather objects
+        if let weather = weather?.first, locality = weather.locality {
             title = "Currently in \(locality)"
         }
     }
@@ -126,7 +127,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             cell.userInteractionEnabled = false
 
-            if let weather = weather, summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
+            if let weather = weather?[indexPath.row], summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
 
                 cell.summaryLabel.text = summaryText
                 cell.summaryIcon.image = UIImage(named: summaryIcon)
@@ -238,8 +239,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    }
     
     func handleRefresh() -> Bool {
-        if let weather = weather, updateAtDate = weather.updatedAtDate {
-            let elapsedTime = -Int(updateAtDate.timeIntervalSinceNow)
+        // Can call first on weather since all weather objects share the same UpdatedAtDate
+        if let weather = weather?.first, updatedAtDate = weather.updatedAtDate {
+            let elapsedTime = -Int(updatedAtDate.timeIntervalSinceNow)
             if elapsedTime > 3600 { return true }
         }
         return false
@@ -257,10 +259,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     } else {
                         LocationManager.sharedInstance.stopUpdatingLocation()
                         SVProgressHUD.show()
-                        Weather().getWeatherData(location) { ( weather : HourlyWeather? ) in
+                        Weather().getWeatherData(location) { ( weather : [HourlyWeather]? ) in
                             if let weather = weather {
                                 self?.weather = weather
-                                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
+                                Recommendation().getRecommendedOutfit(weather[0], completion: { (recommendation : Recommendation?) -> Void in
                                     if let recommendation = recommendation {
                                         self?.outfit = recommendation
                                         SVProgressHUD.dismiss()

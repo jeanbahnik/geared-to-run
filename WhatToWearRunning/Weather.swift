@@ -26,11 +26,14 @@ class Weather {
 
     let forecastIOClient = APIClient(apiKey: forecastIOClientApiKey)
 
-    func getWeatherData(location: CLLocation, completion: (weather: HourlyWeather?) -> Void) {
+    func getWeatherData(location: CLLocation, completion: (weather: [HourlyWeather]?) -> Void) {
         self.getLocalityFromLocation(location, completion: { locality in
             self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { forecast, error in
                 if let forecast = forecast {
                     dispatch_async(dispatch_get_main_queue(), {
+
+                        for var i = 0; i < 3; ++i {
+                        }
                         let hourlyWeather = self.constructHourlyWeather(forecast, locality: locality)
                         completion(weather: hourlyWeather)
                     })
@@ -38,23 +41,38 @@ class Weather {
             })
         })
     }
+    
+    func threeTimes() {
+        for var i = 0; i < 3; ++i {
+            print("index is \(index)")
+        }
+    }
 
-    func constructHourlyWeather(forecast: Forecast, locality: String) -> HourlyWeather? {
-        if let hourly = forecast.hourly, hourlyData = hourly.data?[0], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.hourly {
-            var hourlyWeather = HourlyWeather()
-            hourlyWeather.locality = locality
-            hourlyWeather.summary = summary
-            hourlyWeather.summaryIcon = self.summaryIcon(summaryIcon)
-            hourlyWeather.temperature = Int(temperature)
-            hourlyWeather.apparentTemperature = Int(apparentTemperature)
-            hourlyWeather.windSpeed = Int(windSpeed)
-            hourlyWeather.windBearing = self.windBearing(windBearing)
-            hourlyWeather.precipitationProbability = precipitationProbability
-            hourlyWeather.updatedAtDate = NSDate()
-            hourlyWeather.isDaytime = self.isDaytime(daily)
-            return hourlyWeather
-        } else {
+    func constructHourlyWeather(forecast: Forecast, locality: String) -> [HourlyWeather]? {
+        var threeHourlyWeather: [HourlyWeather] = []
+        
+        for var i = 0; i < 3; ++i {
+            if let hourly = forecast.hourly, hourlyData = hourly.data?[i], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.daily {
+                var hourlyWeather = HourlyWeather()
+                hourlyWeather.locality = locality
+                hourlyWeather.summary = summary
+                hourlyWeather.summaryIcon = self.summaryIcon(summaryIcon)
+                hourlyWeather.temperature = Int(temperature)
+                hourlyWeather.apparentTemperature = Int(apparentTemperature)
+                hourlyWeather.windSpeed = Int(windSpeed)
+                hourlyWeather.windBearing = self.windBearing(windBearing)
+                hourlyWeather.precipitationProbability = precipitationProbability
+                hourlyWeather.updatedAtDate = NSDate()
+                hourlyWeather.isDaytime = self.isDaytime(daily)
+                
+                threeHourlyWeather.append(hourlyWeather)
+            }
+        }
+        
+        if threeHourlyWeather.isEmpty {
             return nil
+        } else {
+            return threeHourlyWeather
         }
     }
 
@@ -107,7 +125,7 @@ class Weather {
             if (error != nil) { print(error) }
 
             if let pm = placemarks where pm.count > 0 {
-                if let local  = pm[0].locality {
+                if let local  = pm.first?.locality {
                     completion(locality: local)
                 }
             }
@@ -131,7 +149,7 @@ class Weather {
 
     private func isDaytime(dailyForecast: DataBlock) -> Bool {
         var isDaytime: Bool = true
-        if let sunrise = dailyForecast.data?[0].sunriseTime, sunset = dailyForecast.data?[0].sunsetTime {
+        if let sunrise = dailyForecast.data?.first?.sunriseTime, sunset = dailyForecast.data?.first?.sunsetTime {
             let now = NSDate()
             if (now.compare(sunrise) == .OrderedDescending) && (now.compare(sunset) == .OrderedAscending) {
                 isDaytime = true
