@@ -19,45 +19,43 @@ struct HourlyWeather {
     var locality: String?
     var precipitationProbability: Float?
     var updatedAtDate: NSDate?
+//    var daytime: String?
 }
 
 class Weather {
 
     let forecastIOClient = APIClient(apiKey: forecastIOClientApiKey)
 
-    private var forecast: Forecast?
-    private var currentForecast: DataPoint?
-    private var dailyForecast: DataBlock?
-
-//    var daytime: String?
-
     func getWeatherData(location: CLLocation, completion: (weather: HourlyWeather?) -> Void) {
         self.getLocalityFromLocation(location, completion: { locality in
             self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { forecast, error in
                 if let forecast = forecast {
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.forecast = forecast
-                        self.currentForecast = forecast.currently
-                        self.dailyForecast = forecast.daily
-//                            self.isDaytime()
-
-                        if let hourly = forecast.hourly, hourlyData = hourly.data?[0], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability {
-                            var hourlyWeather = HourlyWeather()
-                            hourlyWeather.locality = locality
-                            hourlyWeather.summary = summary
-                            hourlyWeather.summaryIcon = self.summaryIcon(summaryIcon)
-                            hourlyWeather.temperature = Int(temperature)
-                            hourlyWeather.apparentTemperature = Int(apparentTemperature)
-                            hourlyWeather.windSpeed = Int(windSpeed)
-                            hourlyWeather.windBearing = self.windBearing(windBearing)
-                            hourlyWeather.precipitationProbability = precipitationProbability
-                            hourlyWeather.updatedAtDate = NSDate()
-                            completion(weather: hourlyWeather)
-                        }
+                        let hourlyWeather = self.constructHourlyWeather(forecast, locality: locality)
+                        completion(weather: hourlyWeather)
                     })
                 }
             })
         })
+    }
+
+    func constructHourlyWeather(forecast: Forecast, locality: String) -> HourlyWeather? {
+        if let hourly = forecast.hourly, hourlyData = hourly.data?[0], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability {
+            var hourlyWeather = HourlyWeather()
+            hourlyWeather.locality = locality
+            hourlyWeather.summary = summary
+            hourlyWeather.summaryIcon = self.summaryIcon(summaryIcon)
+            hourlyWeather.temperature = Int(temperature)
+            hourlyWeather.apparentTemperature = Int(apparentTemperature)
+            hourlyWeather.windSpeed = Int(windSpeed)
+            hourlyWeather.windBearing = self.windBearing(windBearing)
+            hourlyWeather.precipitationProbability = precipitationProbability
+            hourlyWeather.updatedAtDate = NSDate()
+//              self.isDaytime()
+            return hourlyWeather
+        } else {
+            return nil
+        }
     }
 
     func windBearing(windBearing: Float) -> String {
