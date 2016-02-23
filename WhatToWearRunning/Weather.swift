@@ -31,9 +31,9 @@ class Weather {
 
 //    var daytime: String?
 
-    func getWeatherData(location: CLLocation, completion: (weather: HourlyWeather) -> Void) {
-        self.getLocalityFromLocation(location, completion: { (locality) in
-            self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { (forecast, error) in
+    func getWeatherData(location: CLLocation, completion: (weather: HourlyWeather?) -> Void) {
+        self.getLocalityFromLocation(location, completion: { locality in
+            self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { forecast, error in
                 if let forecast = forecast {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.forecast = forecast
@@ -41,7 +41,7 @@ class Weather {
                         self.dailyForecast = forecast.daily
 //                            self.isDaytime()
 
-                        if let hourly = forecast.hourly, summary = hourly.summary, summaryIcon = hourly.icon, hourlyData = hourly.data?[0], temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability {
+                        if let hourly = forecast.hourly, hourlyData = hourly.data?[0], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability {
                             var hourlyWeather = HourlyWeather()
                             hourlyWeather.locality = locality
                             hourlyWeather.summary = summary

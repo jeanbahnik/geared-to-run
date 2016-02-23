@@ -51,7 +51,7 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
             messageLabel.text = nil
             LocationManager.sharedInstance.stopUpdatingLocation()
             SVProgressHUD.show()
-            Weather().getWeatherData(locationManager) { ( weather : HourlyWeather? ) in
+            Weather().getWeatherData(locationManager, completion: { weather in
                 if let weather = weather {
                     self.weather = weather
                     Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in
@@ -62,7 +62,7 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     })
                 }
-            }
+            })
         }
     }
 
