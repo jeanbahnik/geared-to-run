@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-Ha-pzQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="aVT-V3-ZeD"/>
@@ -29,19 +29,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kjZ-Ha-pzQ" secondAttribute="bottom" id="53W-ba-yc3"/>
                             <constraint firstItem="kjZ-Ha-pzQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7SW-0T-bDT"/>
-                            <constraint firstItem="kjZ-Ha-pzQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="QRW-ME-X3S"/>
                             <constraint firstAttribute="bottom" secondItem="kjZ-Ha-pzQ" secondAttribute="bottom" id="QbS-TH-Dpr"/>
-                            <constraint firstItem="kjZ-Ha-pzQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ThO-Xc-4oE"/>
+                            <constraint firstItem="kjZ-Ha-pzQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="ThO-Xc-4oE"/>
                             <constraint firstAttribute="trailing" secondItem="kjZ-Ha-pzQ" secondAttribute="trailing" id="nOg-I7-vTU"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="QRW-ME-X3S"/>
-                                <exclude reference="53W-ba-yc3"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="kjZ-Ha-pzQ" id="8k1-Nm-7Ox"/>
