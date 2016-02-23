@@ -9,14 +9,7 @@
 import ForecastIO
 import CoreLocation
 
-class Weather {
-    
-    let forecastIOClient = APIClient(apiKey: forecastIOClientApiKey)
-
-    private var forecast: Forecast?
-    var currentForecast: DataPoint?
-    private var dailyForecast: DataBlock?
-
+struct HourlyWeather {
     var summary: String?
     var summaryIcon: String?
     var temperature: Int?
@@ -26,31 +19,40 @@ class Weather {
     var locality: String?
     var precipitationProbability: Float?
     var updatedAtDate: NSDate?
+}
+
+class Weather {
+
+    let forecastIOClient = APIClient(apiKey: forecastIOClientApiKey)
+
+    private var forecast: Forecast?
+    private var currentForecast: DataPoint?
+    private var dailyForecast: DataBlock?
+
 //    var daytime: String?
 
-    func getWeatherData(location: CLLocation, completion: (weather: Weather) -> Void) {
-        self.getLocalityFromLocation(location, completion: { void in
+    func getWeatherData(location: CLLocation, completion: (weather: HourlyWeather) -> Void) {
+        self.getLocalityFromLocation(location, completion: { (locality) in
             self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { (forecast, error) in
                 if let forecast = forecast {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.forecast = forecast
                         self.currentForecast = forecast.currently
                         self.dailyForecast = forecast.daily
-
 //                            self.isDaytime()
 
-                        if let currentForecast = self.currentForecast {
-                            if let summary = currentForecast.summary, summaryIcon = currentForecast.icon, temperature = currentForecast.temperature, apparentTemperature = currentForecast.apparentTemperature, windSpeed = currentForecast.windSpeed, windBearing = currentForecast.windBearing, precipitationProbability = currentForecast.precipProbability {
-                                self.summary = summary
-                                self.summaryIcon = self.summaryIcon(summaryIcon)
-                                self.temperature = Int(temperature)
-                                self.apparentTemperature = Int(apparentTemperature)
-                                self.windSpeed = Int(windSpeed)
-                                self.windBearing = self.windBearing(windBearing)
-                                self.precipitationProbability = precipitationProbability
-                                self.updatedAtDate = NSDate()
-                                completion(weather: self)
-                            }
+                        if let hourly = forecast.hourly, summary = hourly.summary, summaryIcon = hourly.icon, hourlyData = hourly.data?[0], temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability {
+                            var hourlyWeather = HourlyWeather()
+                            hourlyWeather.locality = locality
+                            hourlyWeather.summary = summary
+                            hourlyWeather.summaryIcon = self.summaryIcon(summaryIcon)
+                            hourlyWeather.temperature = Int(temperature)
+                            hourlyWeather.apparentTemperature = Int(apparentTemperature)
+                            hourlyWeather.windSpeed = Int(windSpeed)
+                            hourlyWeather.windBearing = self.windBearing(windBearing)
+                            hourlyWeather.precipitationProbability = precipitationProbability
+                            hourlyWeather.updatedAtDate = NSDate()
+                            completion(weather: hourlyWeather)
                         }
                     })
                 }
@@ -102,33 +104,32 @@ class Weather {
         }
     }
 
-    private func getLocalityFromLocation(location: CLLocation, completion: () -> Void) {
+    private func getLocalityFromLocation(location: CLLocation, completion: (locality: String) -> Void) {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
             if (error != nil) { print(error) }
 
             if let pm = placemarks where pm.count > 0 {
                 if let local  = pm[0].locality {
-                    self.locality = local
-                    completion()
+                    completion(locality: local)
                 }
             }
         })
     }
 
-    func getGeolocationFromZipcode(zipcode: Int, completion: (weather: Weather?, error: String?) -> Void) {
-        CLGeocoder().geocodeAddressString("\(zipcode) USA") { (placemarks, error) in
-            if (error != nil) { completion(weather: nil, error: "Could not find address") }
-
-            if let pm = placemarks where pm.count > 0 {
-                if let firstPlacemark = pm.first, local = firstPlacemark.locality, location = firstPlacemark.location {
-                    self.locality = local
-                    self.getWeatherData(location, completion: { (weather) -> Void in
-                        completion(weather: self, error: nil)
-                    })
-                }
-            }
-        }
-    }
+//    func getGeolocationFromZipcode(zipcode: Int, completion: (weather: Weather?, error: String?) -> Void) {
+//        CLGeocoder().geocodeAddressString("\(zipcode) USA") { (placemarks, error) in
+//            if (error != nil) { completion(weather: nil, error: "Could not find address") }
+//
+//            if let pm = placemarks where pm.count > 0 {
+//                if let firstPlacemark = pm.first, local = firstPlacemark.locality, location = firstPlacemark.location {
+//                    self.locality = local
+//                    self.getWeatherData(location, completion: { (weather) -> Void in
+//                        completion(weather: self, error: nil)
+//                    })
+//                }
+//            }
+//        }
+//    }
 
 //    private func isDaytime() {
 //        if let dailyForecast = dailyForecast, sunrise = dailyForecast.data?[0].sunriseTime, sunset = dailyForecast.data?[0].sunsetTime {

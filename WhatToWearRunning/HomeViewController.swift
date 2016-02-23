@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     var outfit: Recommendation?
-    var weather: Weather?
+    var weather: HourlyWeather?
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
     
@@ -203,39 +203,39 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return string
     }
 
-    func promptForZipcode() {
-        var inputTextField: UITextField?
-        let alert : UIAlertController = UIAlertController(title: "Please enter a US Zipcode", message: nil, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        alert.addTextFieldWithConfigurationHandler { textField in
-            textField.keyboardType = UIKeyboardType.NumberPad
-            inputTextField = textField
-        }
-        alert.addAction(UIAlertAction(title: "Enter", style: .Default, handler: { alertAction in
-            if let inputTextField = inputTextField, zipcodeText = inputTextField.text where zipcodeText.characters.count == 5, let zipcode = Int(zipcodeText) {
-                self.resetWeatherAndRecommendation(zipcode)
-            }
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
+//    func promptForZipcode() {
+//        var inputTextField: UITextField?
+//        let alert : UIAlertController = UIAlertController(title: "Please enter a US Zipcode", message: nil, preferredStyle: .Alert)
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+//        alert.addTextFieldWithConfigurationHandler { textField in
+//            textField.keyboardType = UIKeyboardType.NumberPad
+//            inputTextField = textField
+//        }
+//        alert.addAction(UIAlertAction(title: "Enter", style: .Default, handler: { alertAction in
+//            if let inputTextField = inputTextField, zipcodeText = inputTextField.text where zipcodeText.characters.count == 5, let zipcode = Int(zipcodeText) {
+//                self.resetWeatherAndRecommendation(zipcode)
+//            }
+//        }))
+//        self.presentViewController(alert, animated: true, completion: nil)
+//    }
 
-    func resetWeatherAndRecommendation(zipcode: Int) {
-        SVProgressHUD.show()
-        Weather().getGeolocationFromZipcode(zipcode) { (weather, error) -> Void in
-            if let error = error {
-                SVProgressHUD.dismiss()
-                print(error)
-            }
-            if let weather = weather {
-                self.weather = weather
-                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation) -> Void in
-                    self.outfit = recommendation
-                    SVProgressHUD.dismiss()
-                    self.setupView()
-                })
-            }
-        }
-    }
+//    func resetWeatherAndRecommendation(zipcode: Int) {
+//        SVProgressHUD.show()
+//        Weather().getGeolocationFromZipcode(zipcode) { (weather, error) -> Void in
+//            if let error = error {
+//                SVProgressHUD.dismiss()
+//                print(error)
+//            }
+//            if let weather = weather {
+//                self.weather = weather
+//                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation) -> Void in
+//                    self.outfit = recommendation
+//                    SVProgressHUD.dismiss()
+//                    self.setupView()
+//                })
+//            }
+//        }
+//    }
     
     func handleRefresh() -> Bool {
         if let weather = weather, updateAtDate = weather.updatedAtDate {
@@ -257,7 +257,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     } else {
                         LocationManager.sharedInstance.stopUpdatingLocation()
                         SVProgressHUD.show()
-                        Weather().getWeatherData(location) { ( weather : Weather? ) in
+                        Weather().getWeatherData(location) { ( weather : HourlyWeather? ) in
                             if let weather = weather {
                                 self?.weather = weather
                                 Recommendation().getRecommendedOutfit(weather, completion: { (recommendation : Recommendation?) -> Void in

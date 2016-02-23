@@ -16,11 +16,11 @@ class Recommendation {
         self.gearList = GearList().gearList
     }
 
-    func getRecommendedOutfit(weather: Weather?, completion: (recommendation: Recommendation) -> Void) {
-        if let weather = weather, currentWeather = weather.currentForecast {
+    func getRecommendedOutfit(weather: HourlyWeather?, completion: (recommendation: Recommendation) -> Void) {
+        if let weather = weather {
             if let list = gearList {
                 for item in list {
-                    getGear(item, currentForecast: currentWeather)
+                    getGear(item, currentForecast: weather)
                 }
                 recommendedOutfit = recommendedOutfit.flatMap{$0}
                 completion(recommendation: self)
@@ -28,8 +28,8 @@ class Recommendation {
         }
     }
 
-    func getGear(gear: GearConstraints, currentForecast: DataPoint) {
-        if let temperature = currentForecast.temperature, windSpeed = currentForecast.windSpeed, precipitationProbability = currentForecast.precipProbability {
+    func getGear(gear: GearConstraints, currentForecast: HourlyWeather) {
+        if let temperature = currentForecast.temperature, windSpeed = currentForecast.windSpeed, precipitationProbability = currentForecast.precipitationProbability {
 
             if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) {
                     recommendedOutfit.append(gear.gearItem)
