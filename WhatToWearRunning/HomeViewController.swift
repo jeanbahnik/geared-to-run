@@ -140,7 +140,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             return cell
         case .GearIcon:
-            let cell = UITableViewCell()
+            let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath)
             cell.userInteractionEnabled = false
             let catView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width))
             let icon = UIImage(named: "runner")
