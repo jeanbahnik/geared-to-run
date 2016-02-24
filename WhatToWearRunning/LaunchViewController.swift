@@ -54,7 +54,7 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
             Weather().getWeatherData(locationManager, completion: { weather in
                 if let weather = weather {
                     self.weather = weather
-                    Recommendation().getRecommendedOutfit(weather, completion: { (recommendation) -> Void in
+                    Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
                         self.recommendation = recommendation
                         SVProgressHUD.dismiss()
                         self.performSegueWithIdentifier("Home", sender: nil)

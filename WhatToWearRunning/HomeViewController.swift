@@ -262,7 +262,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         Weather().getWeatherData(location) { ( weather : [HourlyWeather]? ) in
                             if let weather = weather {
                                 self?.weather = weather
-                                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation) -> Void in
+                                Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
                                     self?.outfit = recommendation
                                     SVProgressHUD.dismiss()
                                     self?.tableView.reloadData()

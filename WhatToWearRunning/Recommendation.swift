@@ -10,35 +10,26 @@ import ForecastIO
 
 class Recommendation {
     private let gearList: [GearConstraints]
-    var recommendedOutfit: [[GearItem]] = []
+    private var recommendedOutfit: [[GearItem]] = []
 
-    init() {
-        gearList = GearList().gearList
-    }
+    init() { gearList = GearList().gearList }
 
     func getRecommendedOutfit(weather: [HourlyWeather], completion: (recommendation: [[GearItem]]) -> Void) {
         for hourlyWeather in weather {
             var hourlyItemSet: [GearItem] = []
             for item in gearList {
-                if self.getGear(item, currentForecast: hourlyWeather) == true {
-                    hourlyItemSet.append(item.gearItem)
-                }
+                if (self.getGear(item, currentForecast: hourlyWeather) == true) { hourlyItemSet.append(item.gearItem) }
             }
+
             hourlyItemSet = hourlyItemSet.flatMap{$0}
-            if !hourlyItemSet.isEmpty {
-                recommendedOutfit.append(hourlyItemSet)
-            }
+            if !hourlyItemSet.isEmpty { recommendedOutfit.append(hourlyItemSet) }
         }
         completion(recommendation: recommendedOutfit)
     }
 
     func getGear(gear: GearConstraints, currentForecast: HourlyWeather) -> Bool {
         if let temperature = currentForecast.temperature, windSpeed = currentForecast.windSpeed, precipitationProbability = currentForecast.precipitationProbability {
-
-            if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) {
-//                    recommendedOutfit.append(gear.gearItem)
-                return true
-                }
+            if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) { return true }
         }
         return false
     }
