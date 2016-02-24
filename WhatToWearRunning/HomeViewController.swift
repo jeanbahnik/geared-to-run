@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-    var outfit: Recommendation?
+    var outfit: [[GearItem]]?
     var weather: [HourlyWeather]?
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
@@ -158,15 +158,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             switch GearSlot(rawValue: indexPath.row)! {
             case .Head:
-                cell.gearLabel.text = gearListForSlot(.Head)
+                cell.gearLabel.text = gearListForSlot(.Head, atIndex: 1)
             case .Torso:
-                cell.gearLabel.text = gearListForSlot(.Torso)
+                cell.gearLabel.text = gearListForSlot(.Torso, atIndex: 1)
             case .Legs:
-                cell.gearLabel.text = gearListForSlot(.Legs)
+                cell.gearLabel.text = gearListForSlot(.Legs, atIndex: 1)
             case .Feet:
-                cell.gearLabel.text = gearListForSlot(.Feet)
+                cell.gearLabel.text = gearListForSlot(.Feet, atIndex: 1)
             case .Accessories:
-                cell.gearLabel.text = gearListForSlot(.Accessories)
+                cell.gearLabel.text = gearListForSlot(.Accessories, atIndex: 1)
             default: cell.gearLabel.text = nil
             }
             return cell
@@ -174,11 +174,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func gearListForSlot(slot: GearSlot) -> String {
+    func gearListForSlot(slot: GearSlot, atIndex: Int) -> String {
         var text = ""
         var itemCount = 0
-        if let outfit = outfit {
-            for item in outfit.recommendedOutfit {
+        if let outfit = outfit?[atIndex] {
+            for item in outfit {
                 if item.slot == slot {
                     itemCount++
                     text += "\(item.description), "
@@ -262,12 +262,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         Weather().getWeatherData(location) { ( weather : [HourlyWeather]? ) in
                             if let weather = weather {
                                 self?.weather = weather
-                                Recommendation().getRecommendedOutfit(weather[0], completion: { (recommendation : Recommendation?) -> Void in
-                                    if let recommendation = recommendation {
-                                        self?.outfit = recommendation
-                                        SVProgressHUD.dismiss()
-                                        self?.tableView.reloadData()
-                                    }
+                                Recommendation().getRecommendedOutfit(weather, completion: { (recommendation) -> Void in
+                                    self?.outfit = recommendation
+                                    SVProgressHUD.dismiss()
+                                    self?.tableView.reloadData()
                                 })
                             }
                         }

@@ -14,7 +14,7 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var messageLabel: UILabel!
 
     var weather = [HourlyWeather]()
-    var recommendation = Recommendation()
+    var recommendation: [[GearItem]]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +54,10 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
             Weather().getWeatherData(locationManager, completion: { weather in
                 if let weather = weather {
                     self.weather = weather
-                    Recommendation().getRecommendedOutfit(weather[0], completion: { (recommendation : Recommendation?) -> Void in
-                        if let recommendation = recommendation {
-                            self.recommendation = recommendation
-                            SVProgressHUD.dismiss()
-                            self.performSegueWithIdentifier("Home", sender: nil)
-                        }
+                    Recommendation().getRecommendedOutfit(weather, completion: { (recommendation) -> Void in
+                        self.recommendation = recommendation
+                        SVProgressHUD.dismiss()
+                        self.performSegueWithIdentifier("Home", sender: nil)
                     })
                 }
             })
