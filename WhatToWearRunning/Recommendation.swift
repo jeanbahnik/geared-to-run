@@ -9,31 +9,28 @@
 import ForecastIO
 
 class Recommendation {
-    let gearList: [GearConstraints]?
-    var recommendedOutfit: [GearItem] = []
+    private let gearList: [GearConstraints]
+    private var recommendedOutfit: [[GearItem]] = []
 
-    init() {
-        self.gearList = GearList().gearList
-    }
+    init() { gearList = GearList().gearList }
 
-    func getRecommendedOutfit(weather: HourlyWeather?, completion: (recommendation: Recommendation) -> Void) {
-        if let weather = weather {
-            if let list = gearList {
-                for item in list {
-                    getGear(item, currentForecast: weather)
-                }
-                recommendedOutfit = recommendedOutfit.flatMap{$0}
-                completion(recommendation: self)
+    func getRecommendedOutfit(weather: [HourlyWeather], completion: (recommendation: [[GearItem]]) -> Void) {
+        for hourlyWeather in weather {
+            var hourlyItemSet: [GearItem] = []
+            for item in gearList {
+                if (self.getGear(item, currentForecast: hourlyWeather) == true) { hourlyItemSet.append(item.gearItem) }
             }
+
+            hourlyItemSet = hourlyItemSet.flatMap{$0}
+            if !hourlyItemSet.isEmpty { recommendedOutfit.append(hourlyItemSet) }
         }
+        completion(recommendation: recommendedOutfit)
     }
 
-    func getGear(gear: GearConstraints, currentForecast: HourlyWeather) {
+    func getGear(gear: GearConstraints, currentForecast: HourlyWeather) -> Bool {
         if let temperature = currentForecast.temperature, windSpeed = currentForecast.windSpeed, precipitationProbability = currentForecast.precipitationProbability {
-
-            if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) {
-                    recommendedOutfit.append(gear.gearItem)
-                }
+            if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) { return true }
         }
+        return false
     }
 }
