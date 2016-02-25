@@ -29,7 +29,7 @@ class Recommendation {
 
     func getGear(gear: GearConstraints, currentForecast: HourlyWeather) -> Bool {
         if let temperature = currentForecast.temperature, windSpeed = currentForecast.windSpeed, precipitationProbability = currentForecast.precipitationProbability {
-            if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.rain >= precipitationProbability) { return true }
+            if (gear.minTemp ..< gear.maxTemp ~= Int(temperature)) && (Int(windSpeed) >= gear.minWind) && (gear.minRain ..< gear.maxRain ~= precipitationProbability) { return true }
         }
         return false
     }

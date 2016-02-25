@@ -52,7 +52,7 @@ class Weather {
         var threeHourlyWeather: [HourlyWeather] = []
         
         for var i = 0; i < 3; ++i {
-            if let hourly = forecast.hourly, hourlyData = hourly.data?[i], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.daily {
+            if let hourly = forecast.hourly, hourlyData = hourly.data?[i*3], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.daily {
                 var hourlyWeather = HourlyWeather()
                 hourlyWeather.locality = locality
                 hourlyWeather.summary = summary

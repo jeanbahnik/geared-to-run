@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var weather: [HourlyWeather]?
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
+    var collectionViewItem = 0
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -61,11 +62,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             loadCustomRefreshContents("Upgrade to Pro to update more than once an hour.")
         }
     }
-    
+
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if refreshControl.refreshing { refreshControl.endRefreshing() }
+
+        if scrollView.isKindOfClass(UICollectionView) {
+            if scrollView.panGestureRecognizer.translationInView(scrollView.superview).x > 0 {
+                if collectionViewItem > 0 {
+                    --collectionViewItem
+                    tableView.reloadData()
+                }
+            } else {
+                if collectionViewItem < 2 {
+                    ++collectionViewItem
+                    tableView.reloadData()
+                }
+            }
+        }
     }
-    
+
     private func setupView() {
         navigationItem.setHidesBackButton(true, animated: false)
 
@@ -81,7 +96,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Style.navyBlueColor
         tableView.alwaysBounceVertical = true
 
-        tableView.registerNib(UINib(nibName: "WeatherTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "WeatherTableViewCell")
         tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
 
         // Can call first on this one since locality is the same for all HourlyWeather objects
@@ -125,20 +139,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Weather:
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
             
-            cell.userInteractionEnabled = false
-
-            if let weather = weather?[indexPath.row], summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
-
-                cell.summaryLabel.text = summaryText
-                cell.summaryIcon.image = UIImage(named: summaryIcon)
-
-                cell.temperatureLabel.attributedText = self.setupTemperatureText(temperatureText)
-                cell.apparentTemperatureLabel.text = "Feels like \(apparentTemperatureText)\u{00B0}"
-
-                cell.windSpeedLabel.text = "\(windSpeedText)"
-                cell.windBearingLabel.text = windBearingText
-            }
+            cell.backgroundColor = UIColor.clearColor()
             return cell
+
         case .GearIcon:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath)
             cell.userInteractionEnabled = false
@@ -151,6 +154,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.addSubview(catView)
             cell.backgroundColor = UIColor.clearColor()
             return cell
+
         case .GearList:
             let cell = tableView.dequeueReusableCellWithIdentifier("GearListTableViewCell", forIndexPath: indexPath) as! GearListTableViewCell
             cell.userInteractionEnabled = false
@@ -158,30 +162,41 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             switch GearSlot(rawValue: indexPath.row)! {
             case .Head:
-                cell.gearLabel.text = gearListForSlot(.Head, atIndex: 1)
+                cell.gearLabel.text = gearListForSlot(.Head, atIndex: collectionViewItem)
             case .Torso:
-                cell.gearLabel.text = gearListForSlot(.Torso, atIndex: 1)
+                cell.gearLabel.text = gearListForSlot(.Torso, atIndex: collectionViewItem)
             case .Legs:
-                cell.gearLabel.text = gearListForSlot(.Legs, atIndex: 1)
+                cell.gearLabel.text = gearListForSlot(.Legs, atIndex: collectionViewItem)
             case .Feet:
-                cell.gearLabel.text = gearListForSlot(.Feet, atIndex: 1)
+                cell.gearLabel.text = gearListForSlot(.Feet, atIndex: collectionViewItem)
             case .Accessories:
-                cell.gearLabel.text = gearListForSlot(.Accessories, atIndex: 1)
+                cell.gearLabel.text = gearListForSlot(.Accessories, atIndex: collectionViewItem)
             default: cell.gearLabel.text = nil
             }
             return cell
+
         default: return UITableViewCell()
         }
     }
-    
+
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == TableSection.Weather.rawValue {
+            guard let tableViewCell = cell as? WeatherTableViewCell else { return }
+
+            tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+        }
+    }
+
     func gearListForSlot(slot: GearSlot, atIndex: Int) -> String {
         var text = ""
         var itemCount = 0
-        if let outfit = outfit?[atIndex] {
-            for item in outfit {
-                if item.slot == slot {
-                    itemCount++
-                    text += "\(item.description), "
+        if outfit?.count > 0 {
+            if let outfit = outfit?[atIndex] {
+                for item in outfit {
+                    if item.slot == slot {
+                        itemCount++
+                        text += "\(item.description), "
+                    }
                 }
             }
         }
@@ -273,5 +288,36 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
         }
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("WeatherCollectionViewCell", forIndexPath: indexPath) as! WeatherCollectionViewCell
+
+        cell.userInteractionEnabled = false
+        cell.tag = indexPath.row
+
+        if let weather = weather?[indexPath.row], summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
+
+            cell.summaryLabel.text = summaryText
+            cell.summaryIcon.image = UIImage(named: summaryIcon)
+
+            cell.temperatureLabel.attributedText = self.setupTemperatureText(temperatureText)
+            cell.apparentTemperatureLabel.text = "Feels like \(apparentTemperatureText)\u{00B0}"
+
+            cell.windSpeedLabel.text = "\(windSpeedText)"
+            cell.windBearingLabel.text = windBearingText
+        }
+
+        return cell
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return collectionView.bounds.size
     }
 }

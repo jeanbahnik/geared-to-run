@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WeatherTableViewCell" customModule="WhatToWearRunning" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WeatherCollectionViewCell" customModule="WhatToWearRunning" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -145,12 +145,12 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="apparentTemperatureLabel" destination="uam-d4-j9P" id="GvK-lX-g2r"/>
-                <outlet property="summaryIcon" destination="buV-pG-QUC" id="VNU-Xa-ULv"/>
-                <outlet property="summaryLabel" destination="WBx-ea-Ov1" id="i26-oW-JD8"/>
-                <outlet property="temperatureLabel" destination="Mpx-A4-q27" id="UO8-fP-DBk"/>
-                <outlet property="windBearingLabel" destination="eOs-u0-Rkn" id="CcZ-aQ-Yky"/>
-                <outlet property="windSpeedLabel" destination="I8p-jG-7be" id="jqj-hf-3Gb"/>
+                <outlet property="apparentTemperatureLabel" destination="uam-d4-j9P" id="nMz-sj-1Wg"/>
+                <outlet property="summaryIcon" destination="buV-pG-QUC" id="sPH-RP-i2G"/>
+                <outlet property="summaryLabel" destination="WBx-ea-Ov1" id="0Tp-Oc-U1c"/>
+                <outlet property="temperatureLabel" destination="Mpx-A4-q27" id="z0u-zl-taH"/>
+                <outlet property="windBearingLabel" destination="eOs-u0-Rkn" id="Teg-J3-pqY"/>
+                <outlet property="windSpeedLabel" destination="I8p-jG-7be" id="DUD-9C-nZe"/>
             </connections>
         </view>
     </objects>
