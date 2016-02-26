@@ -12,7 +12,7 @@ import SVProgressHUD
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum TableSection: Int {
-        case Weather, GearIcon, GearList, Sections
+        case Weather, PageControl, GearIcon, GearList, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -67,12 +67,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if refreshControl.refreshing { refreshControl.endRefreshing() }
 
         if scrollView.isKindOfClass(UICollectionView) {
-            if scrollView.panGestureRecognizer.translationInView(scrollView.superview).x > 0 {
+            if Float(scrollView.bounds.width) * Float(collectionViewItem) > Float(scrollView.contentOffset.x) {
                 if collectionViewItem > 0 {
                     --collectionViewItem
                     tableView.reloadData()
                 }
-            } else {
+            } else if Float(scrollView.bounds.width) * Float(collectionViewItem) < Float(scrollView.contentOffset.x) {
                 if collectionViewItem < 2 {
                     ++collectionViewItem
                     tableView.reloadData()
@@ -96,6 +96,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Style.navyBlueColor
         tableView.alwaysBounceVertical = true
 
+        tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
         tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
 
         // Can call first on this one since locality is the same for all HourlyWeather objects
@@ -112,7 +113,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .GearIcon:
+        case .Weather, .PageControl, .GearIcon:
             return 1
         case .GearList:
             return GearSlot.Count.rawValue
@@ -125,6 +126,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather:
             return 94.0
+        case .PageControl:
+            return 37.0
         case .GearIcon:
             return self.view.frame.width
         case .GearList:
@@ -142,6 +145,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.backgroundColor = UIColor.clearColor()
             return cell
 
+        case .PageControl:
+            let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
+
+            cell.pageControl.numberOfPages = 3
+            cell.pageControl.currentPage = collectionViewItem
+            cell.userInteractionEnabled = false
+            return cell
         case .GearIcon:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath)
             cell.userInteractionEnabled = false
