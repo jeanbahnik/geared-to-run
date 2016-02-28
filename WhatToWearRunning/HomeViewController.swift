@@ -125,7 +125,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather:
-            return 94.0
+            return 115.0
         case .PageControl:
             return 37.0
         case .GearIcon:
@@ -312,7 +312,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.userInteractionEnabled = false
         cell.tag = indexPath.row
 
-        if let weather = weather?[indexPath.row], summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing {
+        if let weather = weather?[indexPath.row], summaryText = weather.summary, summaryIcon = weather.summaryIcon, temperatureText = weather.temperature, apparentTemperatureText = weather.apparentTemperature, windSpeedText = weather.windSpeed, windBearingText = weather.windBearing, weatherTime = weather.weatherTime {
+
+            let formattedTime = self.formatTime(weatherTime)
+            cell.weatherTimeLabel.text = "Weather at \(formattedTime)"
 
             cell.summaryLabel.text = summaryText
             cell.summaryIcon.image = UIImage(named: summaryIcon)
@@ -329,5 +332,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return collectionView.bounds.size
+    }
+
+    func formatTime(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.stringFromDate(date)
     }
 }

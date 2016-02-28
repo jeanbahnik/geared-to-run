@@ -8,11 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WeatherCollectionViewCell" customModule="WhatToWearRunning" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="115"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="toh-rm-W1O">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
+                    <rect key="frame" x="0.0" y="21" width="600" height="94"/>
                     <subviews>
                         <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="cCK-HS-jVm">
                             <rect key="frame" x="0.0" y="0.0" width="200" height="94"/>
@@ -96,7 +96,7 @@
                                                     <rect key="frame" x="0.0" y="26" width="98" height="38"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-be-x3i">
-                                                            <rect key="frame" x="0.0" y="0.0" width="36" height="38"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
@@ -134,13 +134,22 @@
                         <constraint firstAttribute="height" constant="94" id="S4D-TI-R2x"/>
                     </constraints>
                 </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3F-QY-tRc">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="E3F-QY-tRc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0YB-Ir-1Bf"/>
+                <constraint firstAttribute="trailing" secondItem="E3F-QY-tRc" secondAttribute="trailing" id="966-mj-Q95"/>
                 <constraint firstAttribute="trailing" secondItem="toh-rm-W1O" secondAttribute="trailing" id="GhK-3f-D7i"/>
+                <constraint firstItem="toh-rm-W1O" firstAttribute="top" secondItem="E3F-QY-tRc" secondAttribute="bottom" id="RkJ-db-5Jd"/>
                 <constraint firstItem="toh-rm-W1O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SVO-ht-xdd"/>
+                <constraint firstItem="E3F-QY-tRc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fto-2r-QIn"/>
                 <constraint firstAttribute="bottom" secondItem="toh-rm-W1O" secondAttribute="bottom" id="qew-C3-h8W"/>
-                <constraint firstItem="toh-rm-W1O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xsU-jq-bHh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -149,6 +158,7 @@
                 <outlet property="summaryIcon" destination="buV-pG-QUC" id="sPH-RP-i2G"/>
                 <outlet property="summaryLabel" destination="WBx-ea-Ov1" id="0Tp-Oc-U1c"/>
                 <outlet property="temperatureLabel" destination="Mpx-A4-q27" id="z0u-zl-taH"/>
+                <outlet property="weatherTimeLabel" destination="E3F-QY-tRc" id="T0z-bK-uHE"/>
                 <outlet property="windBearingLabel" destination="eOs-u0-Rkn" id="Teg-J3-pqY"/>
                 <outlet property="windSpeedLabel" destination="I8p-jG-7be" id="DUD-9C-nZe"/>
             </connections>

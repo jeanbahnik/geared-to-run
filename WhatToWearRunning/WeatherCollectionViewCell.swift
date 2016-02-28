@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var weatherTimeLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var summaryIcon: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!

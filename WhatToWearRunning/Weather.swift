@@ -118,8 +118,8 @@ class Weather {
             if (error != nil) { print(error) }
 
             if let pm = placemarks where pm.count > 0 {
-                if let local  = pm.first?.locality {
-                    completion(locality: local)
+                if let local  = pm.first?.locality, state = pm.first?.administrativeArea {
+                    completion(locality: "\(local), \(state)")
                 }
             }
         })
