@@ -18,6 +18,7 @@ struct HourlyWeather {
     var windBearing: String?
     var locality: String?
     var precipitationProbability: Float?
+    var weatherTime: NSDate?
     var updatedAtDate: NSDate?
     var isDaytime: Bool?
 }
@@ -31,9 +32,6 @@ class Weather {
             self.forecastIOClient.getForecast(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { forecast, error in
                 if let forecast = forecast {
                     dispatch_async(dispatch_get_main_queue(), {
-
-                        for var i = 0; i < 3; ++i {
-                        }
                         let hourlyWeather = self.constructHourlyWeather(forecast, locality: locality)
                         completion(weather: hourlyWeather)
                     })
@@ -42,15 +40,9 @@ class Weather {
         })
     }
     
-    func threeTimes() {
-        for var i = 0; i < 3; ++i {
-            print("index is \(index)")
-        }
-    }
-
     func constructHourlyWeather(forecast: Forecast, locality: String) -> [HourlyWeather]? {
         var threeHourlyWeather: [HourlyWeather] = []
-        
+
         for var i = 0; i < 3; ++i {
             if let hourly = forecast.hourly, hourlyData = hourly.data?[i*3], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.daily {
                 var hourlyWeather = HourlyWeather()
@@ -62,6 +54,7 @@ class Weather {
                 hourlyWeather.windSpeed = Int(windSpeed)
                 hourlyWeather.windBearing = self.windBearing(windBearing)
                 hourlyWeather.precipitationProbability = precipitationProbability
+                hourlyWeather.weatherTime = hourlyData.time
                 hourlyWeather.updatedAtDate = NSDate()
                 hourlyWeather.isDaytime = self.isDaytime(daily)
                 
