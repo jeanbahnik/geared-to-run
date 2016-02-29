@@ -12,7 +12,7 @@ import SVProgressHUD
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum TableSection: Int {
-        case Weather, PageControl, GearIcon, GearList, Sections
+        case Weather, PageControl, Runner, GearList, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -96,6 +96,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Style.navyBlueColor
         tableView.alwaysBounceVertical = true
 
+        tableView.registerNib(UINib(nibName: "RunnerTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "RunnerTableViewCell")
         tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
         tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
 
@@ -113,7 +114,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .PageControl, .GearIcon:
+        case .Weather, .PageControl, .Runner:
             return 1
         case .GearList:
             return GearSlot.Count.rawValue
@@ -128,8 +129,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return 115.0
         case .PageControl:
             return 37.0
-        case .GearIcon:
-            return self.view.frame.width
+        case .Runner:
+            return tableView.frame.width
         case .GearList:
             return 30.0
         case .Sections:
@@ -152,17 +153,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.pageControl.currentPage = collectionViewItem
             cell.userInteractionEnabled = false
             return cell
-        case .GearIcon:
-            let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath)
+        case .Runner:
+            let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
             cell.userInteractionEnabled = false
-            let catView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width))
-            let icon = UIImage(named: "runner")
-            let imageView = UIImageView(image: icon)
-            imageView.contentMode = .Center
-            imageView.frame = catView.bounds
-            catView.addSubview(imageView)
-            cell.addSubview(catView)
-            cell.backgroundColor = UIColor.clearColor()
+//            let catView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width))
+//            let icon = UIImage(named: "runner")
+//            let imageView = UIImageView(image: icon)
+//            imageView.contentMode = .Center
+//            imageView.frame = catView.bounds
+//            catView.addSubview(imageView)
+//            cell.addSubview(catView)
+//            cell.backgroundColor = UIColor.clearColor()
             return cell
 
         case .GearList:
