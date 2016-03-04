@@ -12,7 +12,7 @@ import SVProgressHUD
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum TableSection: Int {
-        case Weather, PageControl, Runner, GearList, Sections
+        case Weather, PageControl, Runner, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -96,9 +96,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Style.navyBlueColor
         tableView.alwaysBounceVertical = true
 
-        tableView.registerNib(UINib(nibName: "RunnerTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "RunnerTableViewCell")
         tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
-        tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
 
         // Can call first on this one since locality is the same for all HourlyWeather objects
         if let weather = weather?.first, locality = weather.locality {
@@ -116,8 +114,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch TableSection(rawValue: section)! {
         case .Weather, .PageControl, .Runner:
             return 1
-        case .GearList:
-            return GearSlot.Count.rawValue
         case .Sections:
             return 0
         }
@@ -131,8 +127,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return 37.0
         case .Runner:
             return tableView.frame.width
-        case .GearList:
-            return 30.0
         case .Sections:
             return 0
         }
@@ -142,7 +136,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather:
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
-            
             cell.backgroundColor = UIColor.clearColor()
             return cell
 
@@ -153,37 +146,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.pageControl.currentPage = collectionViewItem
             cell.userInteractionEnabled = false
             return cell
+
         case .Runner:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
             cell.userInteractionEnabled = false
-//            let catView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width))
-//            let icon = UIImage(named: "runner")
-//            let imageView = UIImageView(image: icon)
-//            imageView.contentMode = .Center
-//            imageView.frame = catView.bounds
-//            catView.addSubview(imageView)
-//            cell.addSubview(catView)
-//            cell.backgroundColor = UIColor.clearColor()
-            return cell
-
-        case .GearList:
-            let cell = tableView.dequeueReusableCellWithIdentifier("GearListTableViewCell", forIndexPath: indexPath) as! GearListTableViewCell
-            cell.userInteractionEnabled = false
-            cell.backgroundColor = UIColor.clearColor()
-
-            switch GearSlot(rawValue: indexPath.row)! {
-            case .Head:
-                cell.gearLabel.text = gearListForSlot(.Head, atIndex: collectionViewItem)
-            case .Torso:
-                cell.gearLabel.text = gearListForSlot(.Torso, atIndex: collectionViewItem)
-            case .Legs:
-                cell.gearLabel.text = gearListForSlot(.Legs, atIndex: collectionViewItem)
-            case .Feet:
-                cell.gearLabel.text = gearListForSlot(.Feet, atIndex: collectionViewItem)
-            case .Accessories:
-                cell.gearLabel.text = gearListForSlot(.Accessories, atIndex: collectionViewItem)
-            default: cell.gearLabel.text = nil
-            }
+            cell.outfit = outfit?[collectionViewItem]
+            cell.reloadView()
             return cell
 
         default: return UITableViewCell()
@@ -196,29 +164,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
         }
-    }
-
-    func gearListForSlot(slot: GearSlot, atIndex: Int) -> String {
-        var text = ""
-        var itemCount = 0
-        if outfit?.count > 0 {
-            if let outfit = outfit?[atIndex] {
-                for item in outfit {
-                    if item.slot == slot {
-                        itemCount++
-                        text += "\(item.description), "
-                    }
-                }
-            }
-        }
-
-        if itemCount == 0 {
-            text = "-"
-        } else {
-            text = text.substringWithRange(Range<String.Index>(start: text.startIndex.advancedBy(0), end: text.endIndex.advancedBy(-2)))
-        }
-
-        return text
     }
 
     private func setupTemperatureText(temperature: Int) -> NSMutableAttributedString {

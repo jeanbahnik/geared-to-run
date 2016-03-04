@@ -9,6 +9,7 @@
 class GearListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var gearLabel: UILabel!
+    @IBOutlet weak var dottedLineImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

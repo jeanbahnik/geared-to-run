@@ -17,7 +17,6 @@ class WeatherTableViewCell: UITableViewCell {
 
         collectionView.registerNib(UINib(nibName: "WeatherCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "WeatherCollectionViewCell")
     }
-
 }
 
 extension WeatherTableViewCell {
