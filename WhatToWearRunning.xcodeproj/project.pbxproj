@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719878DD5F3A324EAFBEF830 /* Pods.framework */; };
+		FF31720A1C8A2FF700B4DE24 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3172091C8A2FF700B4DE24 /* StyleKit.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */; };
@@ -56,6 +57,7 @@
 		4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		719878DD5F3A324EAFBEF830 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FF3172091C8A2FF700B4DE24 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,9 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
-				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
 				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
+				FF3172091C8A2FF700B4DE24 /* StyleKit.swift */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFFD1CD11C78CD4A00EBDC6A /* Models */,
 				FFFD1CD21C78D39600EBDC6A /* Views */,
@@ -203,15 +205,16 @@
 		FFFD1CD21C78D39600EBDC6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FF7C1E771C7675E4000F3329 /* WeatherCollectionViewCell.xib */,
+				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
 				FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */,
 				FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */,
 				FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */,
-				FF855C3C1C79213100B9D4C8 /* GearListTableViewCell.swift */,
 				FF855C3E1C79216800B9D4C8 /* GearListTableViewCell.xib */,
+				FF855C3C1C79213100B9D4C8 /* GearListTableViewCell.swift */,
+				FF7C1E771C7675E4000F3329 /* WeatherCollectionViewCell.xib */,
 				FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */,
-				FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */,
 				FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */,
+				FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */,
 				FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */,
 				FFEC0A1D1C83C48A00A1B760 /* RunnerTableViewCell.xib */,
 			);
@@ -434,6 +437,7 @@
 				FF855C3D1C79213100B9D4C8 /* GearListTableViewCell.swift in Sources */,
 				FFEC0A1C1C83C47700A1B760 /* RunnerTableViewCell.swift in Sources */,
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
+				FF31720A1C8A2FF700B4DE24 /* StyleKit.swift in Sources */,
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
 				FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,

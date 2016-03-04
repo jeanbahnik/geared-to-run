@@ -8,17 +8,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GearListTableViewCell" customModule="WhatToWearRunning" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFm-Fw-dxE">
-                    <rect key="frame" x="30" y="0.0" width="540" height="67"/>
+                    <rect key="frame" x="30" y="0.0" width="540" height="597"/>
                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotted-line" translatesAutoresizingMaskIntoConstraints="NO" id="63U-Yz-Yvq">
-                    <rect key="frame" x="30" y="67" width="540" height="3"/>
+                    <rect key="frame" x="30" y="597" width="540" height="3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="g2O-6W-rY2"/>
                     </constraints>
@@ -35,7 +35,6 @@
                 <constraint firstItem="UFm-Fw-dxE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="yLQ-xm-k6D"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="dottedLineImageView" destination="63U-Yz-Yvq" id="tln-fH-36s"/>
                 <outlet property="gearLabel" destination="UFm-Fw-dxE" id="wrx-xN-kdT"/>
