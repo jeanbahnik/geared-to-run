@@ -11,14 +11,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFm-Fw-dxE">
-                    <rect key="frame" x="30" y="0.0" width="540" height="597"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFm-Fw-dxE" customClass="UIVerticalAlignLabel" customModule="WhatToWearRunning" customModuleProvider="target">
+                    <rect key="frame" x="10" y="2" width="590" height="595"/>
                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotted-line" translatesAutoresizingMaskIntoConstraints="NO" id="63U-Yz-Yvq">
-                    <rect key="frame" x="30" y="597" width="540" height="3"/>
+                <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotted-line" translatesAutoresizingMaskIntoConstraints="NO" id="63U-Yz-Yvq">
+                    <rect key="frame" x="10" y="597" width="590" height="3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="g2O-6W-rY2"/>
                     </constraints>
@@ -27,12 +27,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="63U-Yz-Yvq" secondAttribute="bottom" id="2F2-l0-w6X"/>
-                <constraint firstItem="UFm-Fw-dxE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NPd-1A-icr"/>
-                <constraint firstItem="63U-Yz-Yvq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="V7W-qv-GGs"/>
+                <constraint firstItem="UFm-Fw-dxE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="NPd-1A-icr"/>
+                <constraint firstItem="63U-Yz-Yvq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="V7W-qv-GGs"/>
                 <constraint firstItem="63U-Yz-Yvq" firstAttribute="top" secondItem="UFm-Fw-dxE" secondAttribute="bottom" id="Vi2-B3-nNJ"/>
-                <constraint firstAttribute="trailing" secondItem="63U-Yz-Yvq" secondAttribute="trailing" constant="30" id="fWX-m6-SUC"/>
-                <constraint firstAttribute="trailing" secondItem="UFm-Fw-dxE" secondAttribute="trailing" constant="30" id="yCl-26-ffX"/>
-                <constraint firstItem="UFm-Fw-dxE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="yLQ-xm-k6D"/>
+                <constraint firstAttribute="trailing" secondItem="63U-Yz-Yvq" secondAttribute="trailing" id="fWX-m6-SUC"/>
+                <constraint firstAttribute="trailing" secondItem="UFm-Fw-dxE" secondAttribute="trailing" id="yCl-26-ffX"/>
+                <constraint firstItem="UFm-Fw-dxE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yLQ-xm-k6D"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
@@ -42,6 +42,6 @@
         </view>
     </objects>
     <resources>
-        <image name="dotted-line" width="343" height="1"/>
+        <image name="dotted-line" width="511" height="1"/>
     </resources>
 </document>

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719878DD5F3A324EAFBEF830 /* Pods.framework */; };
-		FF31720A1C8A2FF700B4DE24 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3172091C8A2FF700B4DE24 /* StyleKit.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */; };
@@ -20,6 +19,7 @@
 		FF855C3F1C79216800B9D4C8 /* GearListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF855C3E1C79216800B9D4C8 /* GearListTableViewCell.xib */; };
 		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
 		FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0921C1C681EA800308EDB /* Recommendation.swift */; };
+		FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */; };
 		FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */; };
 		FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */; };
 		FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */; };
@@ -29,7 +29,6 @@
 		FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED41C4834D5006EF28A /* Assets.xcassets */; };
 		FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */; };
 		FFEC0A1C1C83C47700A1B760 /* RunnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */; };
-		FFEC0A1E1C83C48A00A1B760 /* RunnerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFEC0A1D1C83C48A00A1B760 /* RunnerTableViewCell.xib */; };
 		FFEC6FB81C61082B0010D994 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC6FB71C61082B0010D994 /* Style.swift */; };
 		FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */; };
 		FFF6A9221C703FA700B34CF7 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */; };
@@ -57,7 +56,6 @@
 		4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		719878DD5F3A324EAFBEF830 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		FF3172091C8A2FF700B4DE24 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
@@ -70,6 +68,7 @@
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FFB0921C1C681EA800308EDB /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVerticalAlignLabel.swift; sourceTree = "<group>"; };
 		FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
 		FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlTableViewCell.swift; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 		FFE02EE91C4834D5006EF28A /* WhatToWearRunningUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatToWearRunningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02EEF1C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerTableViewCell.swift; sourceTree = "<group>"; };
-		FFEC0A1D1C83C48A00A1B760 /* RunnerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunnerTableViewCell.xib; sourceTree = "<group>"; };
 		FFEC6FB71C61082B0010D994 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateSettings.swift; sourceTree = "<group>"; };
 		FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
@@ -163,7 +161,7 @@
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
 				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
-				FF3172091C8A2FF700B4DE24 /* StyleKit.swift */,
+				FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFFD1CD11C78CD4A00EBDC6A /* Models */,
 				FFFD1CD21C78D39600EBDC6A /* Views */,
@@ -216,7 +214,6 @@
 				FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */,
 				FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */,
 				FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */,
-				FFEC0A1D1C83C48A00A1B760 /* RunnerTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -346,7 +343,6 @@
 				FF855C3F1C79216800B9D4C8 /* GearListTableViewCell.xib in Resources */,
 				FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */,
 				FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */,
-				FFEC0A1E1C83C48A00A1B760 /* RunnerTableViewCell.xib in Resources */,
 				FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */,
 				FFD619451C7FBA8D0035119B /* PageControlTableViewCell.xib in Resources */,
 			);
@@ -436,8 +432,8 @@
 			files = (
 				FF855C3D1C79213100B9D4C8 /* GearListTableViewCell.swift in Sources */,
 				FFEC0A1C1C83C47700A1B760 /* RunnerTableViewCell.swift in Sources */,
+				FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */,
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
-				FF31720A1C8A2FF700B4DE24 /* StyleKit.swift in Sources */,
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
 				FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,

@@ -24,19 +24,22 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
         
         tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
         
-        runnerImageView.image = StyleKit.imageOfRunnerw(frame: CGRectMake(0, 0, runnerImageView.frame.width - 90.0, ((runnerImageView.frame.width - 90.0) * 1.2375)))
+//        runnerImageView.image = StyleKit.imageOfRunnerw(frame: CGRectMake(0, 0, runnerImageView.frame.width - 90.0, ((runnerImageView.frame.width - 90.0) * 1.2375)))
+        runnerImageView.image = UIImage(named: "runner-w")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(GearSlot.Count.rawValue)
+//        var rows = 0, n = 0
+//        while let item = GearSlot(rawValue: n) {
+//            if gearListForSlot(item) != "" { rows++ }
+//            n++
+//        }
+//        return rows
         return GearSlot.Count.rawValue
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == GearSlot.Head.rawValue {
-            return 3.0
-        }
-        return 70.0
+        return 60.0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -44,27 +47,18 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
 
         cell.userInteractionEnabled = false
         cell.backgroundColor = UIColor.clearColor()
-        
+
         switch GearSlot(rawValue: indexPath.row)! {
         case .Head:
-            let gearLabelText = gearListForSlot(.Head)
-            cell.gearLabel.text = gearLabelText
-            if gearLabelText == "" { cell.hidden = true }
+            cell.gearLabel.text = "Head: \(gearListForSlot(.Head))"
         case .Torso:
-            let gearLabelText = gearListForSlot(.Torso)
-            cell.gearLabel.text = gearLabelText
-            if gearLabelText == "" { cell.hidden = true }
+            cell.gearLabel.text = "Torso: \(gearListForSlot(.Torso))"
         case .Legs:
-            let gearLabelText = gearListForSlot(.Legs)
-            cell.gearLabel.text = gearLabelText
-            if gearLabelText == "" { cell.hidden = true }
+            cell.gearLabel.text = "Legs: \(gearListForSlot(.Legs))"
         case .Feet:
-            let gearLabelText = gearListForSlot(.Feet)
-            cell.gearLabel.text = gearLabelText
-            if gearLabelText == "" { cell.hidden = true }
+            cell.gearLabel.text = "Feet: \(gearListForSlot(.Feet))"
         case .Accessories:
-            let gearLabelText = gearListForSlot(.Accessories)
-            cell.gearLabel.text = gearLabelText
+            cell.gearLabel.text = "Accessories: \(gearListForSlot(.Accessories))"
             cell.dottedLineImageView.hidden = true
         default:
             cell.gearLabel.text = nil
@@ -89,7 +83,7 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
         }
 
         if itemCount == 0 {
-            text = ""
+            text = " -"
         } else {
             text = text.substringWithRange(Range<String.Index>(start: text.startIndex.advancedBy(0), end: text.endIndex.advancedBy(-2)))
         }

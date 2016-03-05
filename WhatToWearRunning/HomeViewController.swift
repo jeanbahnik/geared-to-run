@@ -126,7 +126,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .PageControl:
             return 37.0
         case .Runner:
-            return tableView.frame.width
+            return 322.0
         case .Sections:
             return 0
         }
