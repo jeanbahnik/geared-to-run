@@ -85,8 +85,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationItem.setHidesBackButton(true, animated: false)
 
 //        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "promptForZipcode")
-//        barButtonItem.tag = 1
-//        self.navigationItem.rightBarButtonItem = barButtonItem
+        let barButtonItem = UIBarButtonItem(image: UIImage(named: "settings4"), style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        barButtonItem.tag = 1
+        barButtonItem.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = barButtonItem
 
         navigationController?.navigationBarHidden = false
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
