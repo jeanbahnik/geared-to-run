@@ -30,7 +30,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func requestPermission(completion: (CLAuthorizationStatus -> Void)?) {
         permissionBlock = completion
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
     }
 
     func stopUpdatingLocation() {
