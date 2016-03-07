@@ -84,9 +84,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private func setupView() {
         navigationItem.setHidesBackButton(true, animated: false)
 
-//        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "promptForZipcode")
-        let barButtonItem = UIBarButtonItem(image: UIImage(named: "settings4"), style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-        barButtonItem.tag = 1
+        let barButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: "segueToPreferences")
         barButtonItem.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = barButtonItem
 
@@ -246,6 +244,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
         }
+    }
+    
+    func segueToPreferences() {
+        print("segueToPreferences")
     }
 }
 
