@@ -6,13 +6,23 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
+let kTCAppReviewLink = NSURL(string: "itms-apps://itunes.apple.com/app/id1075193930")
+
 class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private enum TableSection: Int {
-        case Gender, Sections
+        case Communication, Gender, Sections
 
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
+        }
+    }
+    
+    private enum GenderRows: Int {
+        case Female, Male, Rows
+        
+        static func numberOfRow() -> Int {
+            return GenderRows.Rows.rawValue
         }
     }
 
@@ -61,17 +71,21 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = UIColor.whiteColor()
 
         switch TableSection(rawValue: section)! {
+        case .Communication:
+            return ""
         case .Gender:
             return "Gender preference"
-        default:
+        case .Sections:
             return ""
         }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
+        case .Communication:
+            return 1
         case .Gender:
-            return 2
+            return GenderRows.numberOfRow()
         case .Sections:
             return 0
         }
@@ -81,14 +95,20 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         switch TableSection(rawValue: indexPath.section)! {
+        case .Communication:
+            cell.textLabel?.text = "Rate us in the App Store"
+
         case .Gender:
-            if indexPath.row == 0 {
+            switch GenderRows(rawValue: indexPath.row)! {
+            case .Female:
                 cell.textLabel?.text = "Female"
                 if preferences.boolForKey("prefersFemale") == true { cell.accessoryType = .Checkmark }
-            } else {
+            case .Male:
                 cell.textLabel?.text = "Male"
                 if preferences.boolForKey("prefersFemale") == false { cell.accessoryType = .Checkmark }
+            case .Rows: break
             }
+
         case .Sections:
             return cell
         }
@@ -97,15 +117,24 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.section == TableSection.Gender.rawValue {
-            if indexPath.row == 0 {
+
+        switch TableSection(rawValue: indexPath.section)! {
+        case .Communication:
+            UIApplication.sharedApplication().openURL(kTCAppReviewLink!)
+
+        case .Gender:
+            switch GenderRows(rawValue: indexPath.row)! {
+            case .Female:
                 tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: TableSection.Gender.rawValue))!.accessoryType = .None
                 preferences.setBool(true, forKey: "prefersFemale")
-            } else if indexPath.row == 1 {
+            case .Male:
                 tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: TableSection.Gender.rawValue))!.accessoryType = .None
                 preferences.setBool(false, forKey: "prefersFemale")
+            case .Rows: break
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+
+        case .Sections: break
         }
     }
 }
