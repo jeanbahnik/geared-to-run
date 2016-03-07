@@ -23,13 +23,6 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = UIColor.clearColor()
         
         tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
-        
-//        runnerImageView.image = StyleKit.imageOfRunnerw(frame: CGRectMake(0, 0, runnerImageView.frame.width - 90.0, ((runnerImageView.frame.width - 90.0) * 1.2375)))
-        if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
-            runnerImageView.image = UIImage(named: "runner-w")
-        } else {
-            runnerImageView.image = UIImage(named: "runner-m")
-        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

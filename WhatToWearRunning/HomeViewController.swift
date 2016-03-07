@@ -150,6 +150,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Runner:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
             cell.userInteractionEnabled = false
+            if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
+                cell.runnerImageView.image = UIImage(named: "runner-w")
+            } else {
+                cell.runnerImageView.image = UIImage(named: "runner-m")
+            }
             cell.outfit = outfit?[collectionViewItem]
             cell.reloadView()
             return cell
@@ -249,6 +254,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func segueToPreferences() {
         performSegueWithIdentifier("Preferences", sender: nil)
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if (segue.identifier == "Preferences") {
+            let vc = segue.destinationViewController as! PreferencesViewController
+            vc.preferencesUpdatedBlock = { Void in
+                self.tableView.reloadData()
+            }
+        }
+    }
+
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

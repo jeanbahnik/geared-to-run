@@ -17,6 +17,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     let preferences = NSUserDefaults.standardUserDefaults()
+    var preferencesUpdatedBlock: (Void -> Void)?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -42,11 +43,29 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func doneButtonPressed() {
+        if let preferencesUpdatedBlock = preferencesUpdatedBlock {
+            preferencesUpdatedBlock()
+        }
         navigationController?.popViewControllerAnimated(true)
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return TableSection.numberOfSections()
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30.0
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = UIColor.whiteColor()
+
+        switch TableSection(rawValue: section)! {
+        case .Gender:
+            return "Gender preference"
+        default:
+            return ""
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
