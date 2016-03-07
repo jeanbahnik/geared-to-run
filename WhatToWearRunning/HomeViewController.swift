@@ -247,7 +247,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func segueToPreferences() {
-        print("segueToPreferences")
+        performSegueWithIdentifier("Preferences", sender: nil)
     }
 }
 

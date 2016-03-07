@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719878DD5F3A324EAFBEF830 /* Pods.framework */; };
+		FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */; };
@@ -56,6 +57,7 @@
 		4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		719878DD5F3A324EAFBEF830 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
 				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
+				FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */,
 				FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFFD1CD11C78CD4A00EBDC6A /* Models */,
@@ -441,6 +444,7 @@
 				FFACB21B1C73977C009627E6 /* Location.swift in Sources */,
 				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
 				FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */,
+				FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
 				FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
