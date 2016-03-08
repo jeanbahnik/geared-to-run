@@ -6,9 +6,11 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
+import MessageUI
+
 let kTCAppReviewLink = NSURL(string: "itms-apps://itunes.apple.com/app/id1075193930")
 
-class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
     private enum TableSection: Int {
         case Communication, Gender, Sections
@@ -18,10 +20,18 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    private enum CommunicationRows: Int {
+        case Rate, SendFeedback, Rows
+        
+        static func numberOfRows() -> Int {
+            return CommunicationRows.Rows.rawValue
+        }
+    }
+
     private enum GenderRows: Int {
         case Female, Male, Rows
         
-        static func numberOfRow() -> Int {
+        static func numberOfRows() -> Int {
             return GenderRows.Rows.rawValue
         }
     }
@@ -83,9 +93,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
         case .Communication:
-            return 1
+            return CommunicationRows.numberOfRows()
         case .Gender:
-            return GenderRows.numberOfRow()
+            return GenderRows.numberOfRows()
         case .Sections:
             return 0
         }
@@ -96,7 +106,14 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
         switch TableSection(rawValue: indexPath.section)! {
         case .Communication:
-            cell.textLabel?.text = "Rate us in the App Store"
+            switch CommunicationRows(rawValue: indexPath.row)! {
+            case .Rate:
+                cell.textLabel?.text = "Rate us in the App Store"
+            case .SendFeedback:
+                cell.textLabel?.text = "Send us feedback/Report an issue"
+            case .Rows: break
+            }
+
 
         case .Gender:
             switch GenderRows(rawValue: indexPath.row)! {
@@ -120,7 +137,13 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
         switch TableSection(rawValue: indexPath.section)! {
         case .Communication:
-            UIApplication.sharedApplication().openURL(kTCAppReviewLink!)
+            switch CommunicationRows(rawValue: indexPath.row)! {
+            case .Rate:
+                UIApplication.sharedApplication().openURL(kTCAppReviewLink!)
+            case .SendFeedback:
+                sendEmail()
+            case .Rows: break
+            }
 
         case .Gender:
             switch GenderRows(rawValue: indexPath.row)! {
@@ -136,5 +159,22 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
         case .Sections: break
         }
+    }
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["support@beebuzz.com"])
+            mail.setMessageBody("<p>Feedback for What To Wear: Running</p>", isHTML: true)
+            
+            presentViewController(mail, animated: true, completion: nil)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
