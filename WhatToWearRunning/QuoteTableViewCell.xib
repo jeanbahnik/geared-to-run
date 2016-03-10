@@ -11,8 +11,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1Z-G3-DYB">
-                    <rect key="frame" x="300" y="300" width="0.0" height="0.0"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="s1Z-G3-DYB">
+                    <rect key="frame" x="10" y="300" width="580" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -20,7 +20,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="s1Z-G3-DYB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Kj1-ql-yx8"/>
+                <constraint firstItem="s1Z-G3-DYB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="B6X-at-C2J"/>
+                <constraint firstAttribute="trailing" secondItem="s1Z-G3-DYB" secondAttribute="trailing" constant="10" id="IKt-lf-Xrx"/>
                 <constraint firstItem="s1Z-G3-DYB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zG5-iC-176"/>
             </constraints>
             <connections>

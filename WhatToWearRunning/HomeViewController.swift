@@ -12,7 +12,7 @@ import SVProgressHUD
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum TableSection: Int {
-        case Weather, PageControl, Runner, Sections
+        case Weather, PageControl, Runner, Quote, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -97,6 +97,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.alwaysBounceVertical = true
 
         tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
+        tableView.registerNib(UINib(nibName: "QuoteTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "QuoteTableViewCell")
 
         // Can call first on this one since locality is the same for all HourlyWeather objects
         if let weather = weather?.first, locality = weather.locality {
@@ -112,7 +113,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .PageControl, .Runner:
+        case .Weather, .PageControl, .Quote, .Runner:
             return 1
         case .Sections:
             return 0
@@ -127,6 +128,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return 37.0
         case .Runner:
             return 322.0
+        case .Quote:
+            return 60.0
         case .Sections:
             return 0
         }
@@ -157,6 +160,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             cell.outfit = outfit?[collectionViewItem]
             cell.reloadView()
+            return cell
+
+        case .Quote:
+            let cell = tableView.dequeueReusableCellWithIdentifier("QuoteTableViewCell", forIndexPath: indexPath) as! QuoteTableViewCell
+            cell.userInteractionEnabled = false
+            cell.backgroundColor = UIColor.clearColor()
+
+            cell.quoteLabel.attributedText = Quote.sharedInstance.randomQuote()
+
             return cell
 
         default: return UITableViewCell()

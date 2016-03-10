@@ -9,10 +9,5 @@
 class QuoteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var quoteLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        // Stuff or delete this function
-    }
+
 }
