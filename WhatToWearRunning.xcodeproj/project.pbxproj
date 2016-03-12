@@ -21,7 +21,7 @@
 		FF8A56861C9060AF009E5869 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A56851C9060AF009E5869 /* Quote.swift */; };
 		FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */; };
 		FF8A568A1C906487009E5869 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */; };
-		FFA61DA81C94AD33007BF174 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA61C94AD33007BF174 /* Model.xcdatamodeld */; };
+		FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */; };
 		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
 		FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0921C1C681EA800308EDB /* Recommendation.swift */; };
 		FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */; };
@@ -75,7 +75,7 @@
 		FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
 		FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuoteTableViewCell.xib; sourceTree = "<group>"; };
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		FFA61DA71C94AD33007BF174 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		FFA61DA71C94AD33007BF174 /* WhatToWearRunning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToWearRunning.xcdatamodel; sourceTree = "<group>"; };
 		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FFB0921C1C681EA800308EDB /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVerticalAlignLabel.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
 				FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */,
 				FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */,
-				FFA61DA61C94AD33007BF174 /* Model.xcdatamodeld */,
+				FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFFD1CD11C78CD4A00EBDC6A /* Models */,
 				FFFD1CD21C78D39600EBDC6A /* Views */,
@@ -463,7 +463,7 @@
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
 				FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
-				FFA61DA81C94AD33007BF174 /* Model.xcdatamodeld in Sources */,
+				FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */,
 				FF762A541C74DA5700B19483 /* Reachability.swift in Sources */,
 				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,
 				FF640B781C7E759200D9E261 /* WeatherCollectionViewCell.swift in Sources */,
@@ -725,13 +725,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FFA61DA61C94AD33007BF174 /* Model.xcdatamodeld */ = {
+		FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FFA61DA71C94AD33007BF174 /* Model.xcdatamodel */,
+				FFA61DA71C94AD33007BF174 /* WhatToWearRunning.xcdatamodel */,
 			);
-			currentVersion = FFA61DA71C94AD33007BF174 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = FFA61DA71C94AD33007BF174 /* WhatToWearRunning.xcdatamodel */;
+			path = WhatToWearRunning.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
