@@ -32,7 +32,7 @@ class Quote: NSObject {
     func randomQuote() -> NSMutableAttributedString {
         let randomIndex = Int(arc4random_uniform(UInt32(quotes.count)))
         let quoteWithAuthor = quotes[randomIndex]
-        let quoteAndAuthor = quoteWithAuthor.componentsSeparatedByString(", ")
+        let quoteAndAuthor = quoteWithAuthor.componentsSeparatedByString("., ")
 
         let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 18.0)! ]
         let quote = NSMutableAttributedString(string: "\"\(quoteAndAuthor[0])\" - ", attributes: attribute1)
