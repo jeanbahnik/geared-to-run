@@ -22,6 +22,8 @@
 		FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */; };
 		FF8A568A1C906487009E5869 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */; };
 		FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */; };
+		FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA91C950E54007BF174 /* GearItem.swift */; };
+		FFA61DAC1C951B5E007BF174 /* ItemConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DAB1C951B5E007BF174 /* ItemConstraint.swift */; };
 		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
 		FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0921C1C681EA800308EDB /* Recommendation.swift */; };
 		FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */; };
@@ -76,6 +78,8 @@
 		FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuoteTableViewCell.xib; sourceTree = "<group>"; };
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FFA61DA71C94AD33007BF174 /* WhatToWearRunning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToWearRunning.xcdatamodel; sourceTree = "<group>"; };
+		FFA61DA91C950E54007BF174 /* GearItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearItem.swift; sourceTree = "<group>"; };
+		FFA61DAB1C951B5E007BF174 /* ItemConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemConstraint.swift; sourceTree = "<group>"; };
 		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FFB0921C1C681EA800308EDB /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVerticalAlignLabel.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				FFACB21A1C73977C009627E6 /* Location.swift */,
 				FF762A531C74DA5700B19483 /* Reachability.swift */,
 				FF8A56851C9060AF009E5869 /* Quote.swift */,
+				FFA61DA91C950E54007BF174 /* GearItem.swift */,
+				FFA61DAB1C951B5E007BF174 /* ItemConstraint.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
 				FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */,
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
+				FFA61DAC1C951B5E007BF174 /* ItemConstraint.swift in Sources */,
 				FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
 				FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */,
@@ -461,6 +468,7 @@
 				FF8A56861C9060AF009E5869 /* Quote.swift in Sources */,
 				FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
+				FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */,
 				FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
 				FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */,

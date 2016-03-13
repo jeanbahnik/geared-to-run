@@ -12,7 +12,7 @@ class Recommendation {
     private let gearList: [GearConstraints]
     private var recommendedOutfit: [[GearItem]] = []
 
-    init() { gearList = GearList().gearList }
+    init() { gearList = GearList.sharedInstance.gearList }
 
     func getRecommendedOutfit(weather: [HourlyWeather], completion: (recommendation: [[GearItem]]) -> Void) {
         for hourlyWeather in weather {

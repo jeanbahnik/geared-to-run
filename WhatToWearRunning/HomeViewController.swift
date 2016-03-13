@@ -6,12 +6,11 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
-import UIKit
 import SVProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    enum TableSection: Int {
+    private enum TableSection: Int {
         case Weather, PageControl, Runner, Quote, Sections
         
         static func numberOfSections() -> Int {

@@ -47,15 +47,15 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
 
         switch GearSlot(rawValue: indexPath.row)! {
         case .Head:
-            cell.gearLabel.text = "Head: \(gearListForSlot(.Head))"
+            cell.gearLabel.text = "Head: \(gearListForSlot(GearSlot.Head.rawValue))"
         case .Torso:
-            cell.gearLabel.text = "Torso: \(gearListForSlot(.Torso))"
+            cell.gearLabel.text = "Torso: \(gearListForSlot(GearSlot.Torso.rawValue))"
         case .Legs:
-            cell.gearLabel.text = "Legs: \(gearListForSlot(.Legs))"
+            cell.gearLabel.text = "Legs: \(gearListForSlot(GearSlot.Legs.rawValue))"
         case .Feet:
-            cell.gearLabel.text = "Feet: \(gearListForSlot(.Feet))"
+            cell.gearLabel.text = "Feet: \(gearListForSlot(GearSlot.Feet.rawValue))"
         case .Accessories:
-            cell.gearLabel.text = "Accessories: \(gearListForSlot(.Accessories))"
+            cell.gearLabel.text = "Accessories: \(gearListForSlot(GearSlot.Accessories.rawValue))"
             cell.dottedLineImageView.hidden = true
         default:
             cell.gearLabel.text = nil
@@ -65,7 +65,7 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func gearListForSlot(slot: GearSlot) -> String {
+    func gearListForSlot(slot: GearSlot.RawValue) -> String {
         var text = ""
         var itemCount = 0
         if outfit?.count > 0 {
