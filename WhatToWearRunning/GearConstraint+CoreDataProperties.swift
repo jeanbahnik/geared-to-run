@@ -14,13 +14,12 @@ import CoreData
 
 extension GearConstraint {
 
-    @NSManaged var gearItem: Int16
     @NSManaged var maxRain: Float
     @NSManaged var maxTemp: Float
     @NSManaged var maxWind: Int16
     @NSManaged var minRain: Float
     @NSManaged var minTemp: Float
     @NSManaged var minWind: Int16
-    @NSManaged var item: NSSet?
+    @NSManaged var item: GearItem?
 
 }

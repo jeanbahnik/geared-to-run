@@ -39,9 +39,9 @@
 		FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */; };
 		FFF6A9221C703FA700B34CF7 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */; };
 		FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF9757E1C4F190400B624F4 /* Gear.swift */; };
-		FFFD35BC1C96001F00A3996B /* GearItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35B91C96001F00A3996B /* GearItem+CoreDataProperties.swift */; };
-		FFFD35BD1C96001F00A3996B /* GearConstraint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35BA1C96001F00A3996B /* GearConstraint+CoreDataProperties.swift */; };
 		FFFD35BE1C96001F00A3996B /* GearConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35BB1C96001F00A3996B /* GearConstraint.swift */; };
+		FFFD35C11C96219000A3996B /* GearItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35BF1C96219000A3996B /* GearItem+CoreDataProperties.swift */; };
+		FFFD35C21C96219000A3996B /* GearConstraint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,9 +103,9 @@
 		FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateSettings.swift; sourceTree = "<group>"; };
 		FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		FFF9757E1C4F190400B624F4 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gear.swift; sourceTree = "<group>"; };
-		FFFD35B91C96001F00A3996B /* GearItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FFFD35BA1C96001F00A3996B /* GearConstraint+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearConstraint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FFFD35BB1C96001F00A3996B /* GearConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearConstraint.swift; sourceTree = "<group>"; };
+		FFFD35BF1C96219000A3996B /* GearItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearConstraint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,9 +218,9 @@
 				FF762A531C74DA5700B19483 /* Reachability.swift */,
 				FF8A56851C9060AF009E5869 /* Quote.swift */,
 				FFA61DA91C950E54007BF174 /* GearItem.swift */,
-				FFFD35B91C96001F00A3996B /* GearItem+CoreDataProperties.swift */,
 				FFFD35BB1C96001F00A3996B /* GearConstraint.swift */,
-				FFFD35BA1C96001F00A3996B /* GearConstraint+CoreDataProperties.swift */,
+				FFFD35BF1C96219000A3996B /* GearItem+CoreDataProperties.swift */,
+				FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -472,15 +472,15 @@
 				FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */,
 				FF8A56861C9060AF009E5869 /* Quote.swift in Sources */,
 				FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */,
-				FFFD35BC1C96001F00A3996B /* GearItem+CoreDataProperties.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
+				FFFD35C11C96219000A3996B /* GearItem+CoreDataProperties.swift in Sources */,
 				FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */,
 				FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */,
 				FFFD35BE1C96001F00A3996B /* GearConstraint.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
 				FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */,
 				FF762A541C74DA5700B19483 /* Reachability.swift in Sources */,
-				FFFD35BD1C96001F00A3996B /* GearConstraint+CoreDataProperties.swift in Sources */,
+				FFFD35C21C96219000A3996B /* GearConstraint+CoreDataProperties.swift in Sources */,
 				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,
 				FF640B781C7E759200D9E261 /* WeatherCollectionViewCell.swift in Sources */,
 			);

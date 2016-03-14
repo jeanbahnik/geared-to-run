@@ -15,15 +15,15 @@ class GearConstraint: NSManagedObject {
         let managedContext = appDelegate.managedObjectContext
         let entity =  NSEntityDescription.entityForName("GearConstraint", inManagedObjectContext:managedContext)
         let gearConstraint = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as! GearConstraint
-        
+
         gearConstraint.minTemp = minTemp
         gearConstraint.maxTemp = maxTemp
         gearConstraint.minWind = minWind
         gearConstraint.maxWind = maxWind
         gearConstraint.minRain = minRain
         gearConstraint.maxRain = maxRain
-        gearConstraint.item = NSSet(object: gearItem)
-        
+        gearConstraint.item = gearItem
+
         do {
             try gearConstraint.managedObjectContext?.save()
         } catch let error as NSError  {

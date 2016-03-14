@@ -73,7 +73,9 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
                 for item in outfit {
                     if Int(item.slot) == slot.rawValue {
                         itemCount++
-                        text += "\(item.description), "
+                        if let itemName = item.name {
+                            text += "\(itemName), "
+                        }
                     }
                 }
             }

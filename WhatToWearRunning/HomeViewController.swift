@@ -69,12 +69,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if Float(scrollView.bounds.width) * Float(collectionViewItem) > Float(scrollView.contentOffset.x) {
                 if collectionViewItem > 0 {
                     --collectionViewItem
-                    tableView.reloadData()
+                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
                 }
             } else if Float(scrollView.bounds.width) * Float(collectionViewItem) < Float(scrollView.contentOffset.x) {
                 if collectionViewItem < 2 {
                     ++collectionViewItem
-                    tableView.reloadData()
+                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
                 }
             }
         }

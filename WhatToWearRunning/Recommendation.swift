@@ -18,7 +18,7 @@ class Recommendation {
         for hourlyWeather in weather {
             var hourlyItemSet: [GearItem] = []
             for item in gearList {
-//                if (self.getGear(item, currentForecast: hourlyWeather) == true) { hourlyItemSet.append(item.item! as! GearItem) }
+                if (self.getGear(item, currentForecast: hourlyWeather) == true) { hourlyItemSet.append(item.item!) }
             }
 
             hourlyItemSet = hourlyItemSet.flatMap{$0}
