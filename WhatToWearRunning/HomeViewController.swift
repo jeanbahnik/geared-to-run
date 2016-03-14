@@ -6,12 +6,11 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
-import UIKit
 import SVProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    enum TableSection: Int {
+    private enum TableSection: Int {
         case Weather, PageControl, Runner, Quote, Sections
         
         static func numberOfSections() -> Int {
@@ -70,12 +69,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if Float(scrollView.bounds.width) * Float(collectionViewItem) > Float(scrollView.contentOffset.x) {
                 if collectionViewItem > 0 {
                     --collectionViewItem
-                    tableView.reloadData()
+                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
                 }
             } else if Float(scrollView.bounds.width) * Float(collectionViewItem) < Float(scrollView.contentOffset.x) {
                 if collectionViewItem < 2 {
                     ++collectionViewItem
-                    tableView.reloadData()
+                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
                 }
             }
         }
