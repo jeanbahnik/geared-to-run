@@ -66,15 +66,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if refreshControl.refreshing { refreshControl.endRefreshing() }
 
         if scrollView.isKindOfClass(UICollectionView) {
+            let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 2))
             if Float(scrollView.bounds.width) * Float(collectionViewItem) > Float(scrollView.contentOffset.x) {
                 if collectionViewItem > 0 {
                     --collectionViewItem
-                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
+                    tableView.reloadSections(indexSet, withRowAnimation: .None)
                 }
             } else if Float(scrollView.bounds.width) * Float(collectionViewItem) < Float(scrollView.contentOffset.x) {
                 if collectionViewItem < 2 {
                     ++collectionViewItem
-                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
+                    tableView.reloadSections(indexSet, withRowAnimation: .None)
                 }
             }
         }

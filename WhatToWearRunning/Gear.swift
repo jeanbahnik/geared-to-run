@@ -12,6 +12,7 @@ class GearList: NSObject {
     static let sharedInstance = GearList()
     
     var gearList = [GearConstraint]()
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     private override init() {
         super.init()
@@ -19,7 +20,9 @@ class GearList: NSObject {
         if isDataStoreEmpty() == true {
             createDefaultGearList()
         } else {
-            getGearList()
+            if let gearList = getGearConstraints() as [GearConstraint]! {
+                self.gearList = gearList
+            }
         }
     }
 
@@ -66,11 +69,12 @@ class GearList: NSObject {
         let heavySocks = GearItem.saveItem("Heavy Socks", slot: GearSlot.Accessories.rawValue)
         GearConstraint.saveConstraint(heavySocks, minTemp: 0, maxTemp: 30, minWind: 0, maxWind: 100, minRain: 0.0, maxRain: 1.0)
         
-        getGearList()
+        if let gearList = getGearConstraints() as [GearConstraint]! {
+            self.gearList = gearList
+        }
     }
 
-    private func getGearList() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    func getGearConstraints() -> [GearConstraint]? {
         let managedObjectContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest()
         let entityDescription = NSEntityDescription.entityForName("GearConstraint", inManagedObjectContext: managedObjectContext)
@@ -79,18 +83,39 @@ class GearList: NSObject {
 
         do {
             let result = try managedObjectContext.executeFetchRequest(fetchRequest)
-            self.gearList = result as! [GearConstraint]
+            return result as? [GearConstraint]
             
         } catch {
             let fetchError = error as NSError
             print(fetchError.description)
         }
+        
+        return nil
     }
+
+    func getGearItems() -> [GearItem]? {
+        let managedObjectContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("GearItem", inManagedObjectContext: managedObjectContext)
+        
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result = try managedObjectContext.executeFetchRequest(fetchRequest)
+            return result as? [GearItem]
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError.description)
+        }
+        
+        return nil
+    }
+
     
     private func isDataStoreEmpty() -> Bool {
         var response = true
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
         let managedObjectContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest()
         let entityDescription = NSEntityDescription.entityForName("GearConstraint", inManagedObjectContext: managedObjectContext)

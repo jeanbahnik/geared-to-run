@@ -13,7 +13,7 @@ let kTCAppReviewLink = NSURL(string: "itms-apps://itunes.apple.com/app/id1075193
 class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
     private enum TableSection: Int {
-        case Communication, Gender, Sections
+        case Communication, Gender, Gear, Sections
 
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -81,7 +81,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = UIColor.whiteColor()
 
         switch TableSection(rawValue: section)! {
-        case .Communication:
+        case .Communication, .Gear:
             return ""
         case .Gender:
             return "Gender preference"
@@ -96,6 +96,8 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             return CommunicationRows.numberOfRows()
         case .Gender:
             return GenderRows.numberOfRows()
+        case .Gear:
+            return 1
         case .Sections:
             return 0
         }
@@ -125,6 +127,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
                 if preferences.boolForKey("prefersFemale") == false { cell.accessoryType = .Checkmark }
             case .Rows: break
             }
+            
+        case .Gear:
+            cell.textLabel?.text = "My gear"
 
         case .Sections:
             return cell
@@ -156,6 +161,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rows: break
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+            
+        case .Gear:
+            performSegueWithIdentifier("Gear", sender: nil)
 
         case .Sections: break
         }
