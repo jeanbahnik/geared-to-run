@@ -8,7 +8,7 @@
 
 class GearViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var gearList = GearList.sharedInstance.getGearItems()!
+    var gearList: [GearItem] = GearList.sharedInstance.getGearItems()!
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -49,7 +49,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.prepareForSegue(segue, sender: sender)
         if (segue.identifier == "ItemConstraints") {
             let vc = segue.destinationViewController as! ItemDetailsViewController
-            vc.constraint = sender as? GearConstraint
+            vc.item = sender as? GearItem
         }
     }
 }

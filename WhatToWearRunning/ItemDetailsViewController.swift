@@ -8,11 +8,7 @@
 
 class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var constraint: GearConstraint? {
-        didSet {
-            print(constraint)
-        }
-    }
+    var item: GearItem?
 
     private enum TableSection: Int {
         case Item, Actions, Constraints, Sections
@@ -40,6 +36,10 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func setupViews() {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        if let item = item {
+            self.title = item.name
+        }
     }
 
     // MARK: - TableView
@@ -50,32 +50,45 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Item, .Constraints:
+        case .Item:
             return 1
+        case .Constraints:
+            if let item = item {
+                let gearConstraints = Array(item.constraints!) as! [GearConstraint]
+                return gearConstraints.count
+            } else {
+                return 0
+            }
         case .Actions:
-            return 2
+            return ActionsRows.numberOfRows()
         case .Sections:
             return 0
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
-
-        switch TableSection(rawValue: indexPath.section)! {
-        case .Item:
-            cell.textLabel?.text = "item name"
-        case .Actions:
-            switch ActionsRows(rawValue: indexPath.row)! {
-            case .Delete:
-                cell.textLabel?.text = "Delete item and constraints"
-            case .Rows: break
+        if let item = item {
+            switch TableSection(rawValue: indexPath.section)! {
+            case .Item:
+                let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
+                cell.textLabel?.text = item.name
+            case .Actions:
+                let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
+                switch ActionsRows(rawValue: indexPath.row)! {
+                case .Delete:
+                    cell.textLabel?.text = "Delete item and constraints"
+                case .Rows: break
+                }
+            case .Constraints:
+                let cell = tableView.dequeueReusableCellWithIdentifier("ConstraintsCell", forIndexPath: indexPath)
+                let gearConstraints = Array(item.constraints!) as! [GearConstraint]
+                let gearConstraint = gearConstraints[indexPath.row]
+                cell.textLabel?.text = gearConstraint.item?.name
+            case .Sections: break
             }
-        case .Constraints:
-            cell.textLabel?.text = "Constraints list in a table"
-        case .Sections: break
         }
 
+        let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
         return cell
     }
 }
