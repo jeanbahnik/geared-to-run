@@ -129,6 +129,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
         case .Gear:
+            cell.accessoryType = .DisclosureIndicator
             cell.textLabel?.text = "My gear"
 
         case .Sections:

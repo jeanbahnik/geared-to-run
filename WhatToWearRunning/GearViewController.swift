@@ -25,6 +25,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
 
+        cell.accessoryType = .DisclosureIndicator
         cell.textLabel?.text = gearList[indexPath.row].name
 
         return cell
