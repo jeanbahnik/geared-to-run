@@ -16,6 +16,16 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
 
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed")
+        self.navigationItem.rightBarButtonItem = barButtonItem
+        
+        self.title = "Your gear"
+    }
+    
+    func addButtonPressed() {
+        print("addButtonPressed")
+//        performSegueWithIdentifier("", sender: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,5 +39,17 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.text = gearList[indexPath.row].name
 
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("ItemConstraints", sender: gearList[indexPath.row])
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if (segue.identifier == "ItemConstraints") {
+            let vc = segue.destinationViewController as! ItemDetailsViewController
+            vc.constraint = sender as? GearConstraint
+        }
     }
 }

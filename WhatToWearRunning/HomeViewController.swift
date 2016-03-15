@@ -105,7 +105,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-    // TableView
+    // MARK: - TableView
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return TableSection.numberOfSections()
