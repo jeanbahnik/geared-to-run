@@ -31,6 +31,9 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed")
+        self.navigationItem.rightBarButtonItem = barButtonItem
+
         setupViews()
     }
 
@@ -43,6 +46,11 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         if let item = item {
             self.title = item.name
         }
+    }
+
+    func addButtonPressed() {
+        print("addButtonPressed")
+        //        performSegueWithIdentifier("", sender: nil)
     }
 
     // MARK: - TableView

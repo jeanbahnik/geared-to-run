@@ -16,10 +16,10 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
 
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        
+
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed")
         self.navigationItem.rightBarButtonItem = barButtonItem
-        
+
         tableView.backgroundColor = Style.navyBlueColor
         tableView.separatorStyle = .None
 
