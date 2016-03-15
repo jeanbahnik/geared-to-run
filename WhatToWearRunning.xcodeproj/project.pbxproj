@@ -23,7 +23,6 @@
 		FF8A56861C9060AF009E5869 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A56851C9060AF009E5869 /* Quote.swift */; };
 		FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */; };
 		FF8A568A1C906487009E5869 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */; };
-		FFA40DC51C97B7F000E5B002 /* ItemConstraintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA40DC41C97B7F000E5B002 /* ItemConstraintsViewController.swift */; };
 		FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */; };
 		FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA91C950E54007BF174 /* GearItem.swift */; };
 		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
@@ -84,7 +83,6 @@
 		FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
 		FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuoteTableViewCell.xib; sourceTree = "<group>"; };
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		FFA40DC41C97B7F000E5B002 /* ItemConstraintsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemConstraintsViewController.swift; sourceTree = "<group>"; };
 		FFA61DA71C94AD33007BF174 /* WhatToWearRunning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToWearRunning.xcdatamodel; sourceTree = "<group>"; };
 		FFA61DA91C950E54007BF174 /* GearItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearItem.swift; sourceTree = "<group>"; };
 		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */,
 				FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */,
 				FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */,
-				FFA40DC41C97B7F000E5B002 /* ItemConstraintsViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -479,7 +476,6 @@
 				FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */,
 				FF1E977F1C9771C30085C407 /* GearViewController.swift in Sources */,
 				FFACB21B1C73977C009627E6 /* Location.swift in Sources */,
-				FFA40DC51C97B7F000E5B002 /* ItemConstraintsViewController.swift in Sources */,
 				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
 				FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */,
 				FF8A56861C9060AF009E5869 /* Quote.swift in Sources */,
