@@ -20,6 +20,9 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed")
         self.navigationItem.rightBarButtonItem = barButtonItem
         
+        tableView.backgroundColor = Style.navyBlueColor
+        tableView.separatorStyle = .None
+
         self.title = "Your gear"
     }
     

@@ -7,7 +7,7 @@
 //
 
 class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
     var item: GearItem?
 
     private enum TableSection: Int {
@@ -36,7 +36,10 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func setupViews() {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        
+
+        tableView.backgroundColor = Style.navyBlueColor
+        tableView.separatorStyle = .None
+
         if let item = item {
             self.title = item.name
         }
@@ -81,14 +84,22 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             case .Constraints:
                 let cell = tableView.dequeueReusableCellWithIdentifier("ConstraintsCell", forIndexPath: indexPath)
-                let gearConstraints = Array(item.constraints!) as! [GearConstraint]
-                let gearConstraint = gearConstraints[indexPath.row]
-                cell.textLabel?.text = gearConstraint.item?.name
+                cell.textLabel?.text = constraintText(indexPath.row)
             case .Sections: break
             }
         }
 
         let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
         return cell
+    }
+
+    func constraintText(indexPath: Int) -> String {
+        var constraintText = ""
+        if let item = item {
+            let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath]
+            let minWind = gearConstraint.minWind, maxWind = gearConstraint.maxWind, minTemp = gearConstraint.minTemp, maxTemp = gearConstraint.maxTemp, minRain = gearConstraint.minRain, maxRain = gearConstraint.maxRain
+            constraintText = "minWind: \(minWind), maxWind: \(maxWind), minTemp: \(minTemp), maxTemp: \(maxTemp), minRain: \(minRain), maxRain: \(maxRain)"
+        }
+        return constraintText
     }
 }
