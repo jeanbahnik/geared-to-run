@@ -10,6 +10,17 @@ import CoreData
 
 enum GearSlot: Int {
     case Head, Torso, Legs, Feet, Accessories, Count
+    
+    var description: String {
+        switch (self) {
+        case .Head: return "Head"
+        case .Torso: return "Torso"
+        case .Legs: return "Legs"
+        case .Feet: return "Feet"
+        case .Accessories: return "Accessories"
+        case .Count: return ""
+        }
+    }
 }
 
 class GearItem: NSManagedObject {

@@ -52,7 +52,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
         let barButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButtonPressed")
         barButtonItem.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = barButtonItem
+        navigationItem.leftBarButtonItem = barButtonItem
 
         navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
 

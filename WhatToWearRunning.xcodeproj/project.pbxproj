@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719878DD5F3A324EAFBEF830 /* Pods.framework */; };
 		FF1E977F1C9771C30085C407 /* GearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E977E1C9771C30085C407 /* GearViewController.swift */; };
+		FF21FD7F1C98A2A20065185A /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21FD7E1C98A2A20065185A /* NewItemViewController.swift */; };
 		FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
@@ -68,6 +69,7 @@
 		719878DD5F3A324EAFBEF830 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FF1E977E1C9771C30085C407 /* GearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearViewController.swift; sourceTree = "<group>"; };
+		FF21FD7E1C98A2A20065185A /* NewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */,
 				FF1E977E1C9771C30085C407 /* GearViewController.swift */,
 				FF866D451C978DFD0056EE42 /* ItemDetailsViewController.swift */,
+				FF21FD7E1C98A2A20065185A /* NewItemViewController.swift */,
 				FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFFD1CD11C78CD4A00EBDC6A /* Models */,
@@ -470,6 +473,7 @@
 				FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */,
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
 				FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */,
+				FF21FD7F1C98A2A20065185A /* NewItemViewController.swift in Sources */,
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
 				FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
