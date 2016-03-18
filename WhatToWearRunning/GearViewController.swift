@@ -27,7 +27,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func addButtonPressed() {
-        performSegueWithIdentifier("NewItem", sender: nil)
+        performSegueWithIdentifier("ItemDetails", sender: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,20 +44,14 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("ItemConstraints", sender: gearList[indexPath.row])
+        performSegueWithIdentifier("ItemDetails", sender: gearList[indexPath.row])
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-        if (segue.identifier == "ItemConstraints") {
+        if (segue.identifier == "ItemDetails") {
             let vc = segue.destinationViewController as! ItemDetailsViewController
             vc.item = sender as? GearItem
-        } else if (segue.identifier == "NewItem") {
-            let vc = segue.destinationViewController as! NewItemViewController
-            vc.itemCreatedBlock = { [weak self] in
-                self?.gearList = GearList.sharedInstance.getGearItems()!
-                self?.tableView.reloadData()
-            }
         }
     }
 }

@@ -273,18 +273,17 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="YiT-Rs-QQM" id="yJs-Tz-rUf"/>
-                        <segue destination="Z7Y-dw-pQt" kind="show" identifier="ItemConstraints" id="Uwl-1c-rhX"/>
-                        <segue destination="S4Y-zA-hxf" kind="show" identifier="NewItem" id="5TN-ml-Euk"/>
+                        <segue destination="S4Y-zA-hxf" kind="show" identifier="ItemDetails" id="5TN-ml-Euk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9b-yy-zwu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2646" y="242"/>
         </scene>
-        <!--New Item View Controller-->
+        <!--Item Details View Controller-->
         <scene sceneID="wtY-hK-oDF">
             <objects>
-                <viewController id="S4Y-zA-hxf" customClass="NewItemViewController" customModule="WhatToWearRunning" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="S4Y-zA-hxf" customClass="ItemDetailsViewController" customModule="WhatToWearRunning" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pcx-kP-Q5y"/>
                         <viewControllerLayoutGuide type="bottom" id="5VU-tW-sg5"/>
@@ -323,62 +322,11 @@
                                     <constraint firstAttribute="trailing" secondItem="Hby-UU-tLM" secondAttribute="trailing" constant="10" id="v8T-Yo-ZTZ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yWt-OD-rmp">
-                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GearSlotCell" id="79Y-qB-f9C">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="79Y-qB-f9C" id="bI6-6G-Qjd">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="S4Y-zA-hxf" id="Tkp-1x-dfB"/>
-                                    <outlet property="delegate" destination="S4Y-zA-hxf" id="pNJ-3i-n8l"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Lr6-ML-YDE" secondAttribute="trailing" id="JZX-PT-DAy"/>
-                            <constraint firstAttribute="trailing" secondItem="yWt-OD-rmp" secondAttribute="trailing" id="QnH-Jd-bpK"/>
-                            <constraint firstItem="yWt-OD-rmp" firstAttribute="top" secondItem="Lr6-ML-YDE" secondAttribute="bottom" id="UcT-kF-ugp"/>
-                            <constraint firstItem="Lr6-ML-YDE" firstAttribute="top" secondItem="pcx-kP-Q5y" secondAttribute="bottom" id="bju-q8-Apl"/>
-                            <constraint firstItem="Lr6-ML-YDE" firstAttribute="leading" secondItem="UjR-jL-QT7" secondAttribute="leading" id="dtC-nW-GLc"/>
-                            <constraint firstItem="yWt-OD-rmp" firstAttribute="leading" secondItem="UjR-jL-QT7" secondAttribute="leading" id="jo3-mI-pQX"/>
-                            <constraint firstItem="5VU-tW-sg5" firstAttribute="top" secondItem="yWt-OD-rmp" secondAttribute="bottom" id="po0-Kh-wIl"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="itemNameTextField" destination="Hby-UU-tLM" id="V2J-dm-ilf"/>
-                        <outlet property="tableView" destination="yWt-OD-rmp" id="XoU-zE-s2Z"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YQP-w1-Qx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3318" y="-467"/>
-        </scene>
-        <!--Item Details View Controller-->
-        <scene sceneID="xQm-sc-PAw">
-            <objects>
-                <viewController id="Z7Y-dw-pQt" customClass="ItemDetailsViewController" customModule="WhatToWearRunning" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wo4-gx-7ak"/>
-                        <viewControllerLayoutGuide type="bottom" id="vzA-l2-dGe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1N8-lz-Mdg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="VqD-21-XOk">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GearCell" id="zZ9-l9-qJS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GearSlotCell" id="zZ9-l9-qJS">
                                         <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zZ9-l9-qJS" id="c7Q-XG-R1z">
@@ -386,7 +334,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConstraintsCell" textLabel="aWP-JZ-tOv" style="IBUITableViewCellStyleDefault" id="4v7-UG-e2N">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConstraintCell" textLabel="aWP-JZ-tOv" style="IBUITableViewCellStyleDefault" id="4v7-UG-e2N">
                                         <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4v7-UG-e2N" id="fge-Dq-sxH">
@@ -403,29 +351,40 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionCell" id="4SA-WW-xRe">
+                                        <rect key="frame" x="0.0" y="137.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4SA-WW-xRe" id="kwM-Tj-MkI">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="Z7Y-dw-pQt" id="2FX-6l-QDx"/>
-                                    <outlet property="delegate" destination="Z7Y-dw-pQt" id="A5j-E4-uLI"/>
+                                    <outlet property="dataSource" destination="S4Y-zA-hxf" id="5Lo-bz-Arr"/>
+                                    <outlet property="delegate" destination="S4Y-zA-hxf" id="UNe-mK-foc"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="VqD-21-XOk" secondAttribute="trailing" id="7oX-2k-0J9"/>
-                            <constraint firstItem="VqD-21-XOk" firstAttribute="top" secondItem="wo4-gx-7ak" secondAttribute="bottom" id="ABP-E0-W1q"/>
-                            <constraint firstItem="VqD-21-XOk" firstAttribute="leading" secondItem="1N8-lz-Mdg" secondAttribute="leading" id="Rxw-fi-XLG"/>
-                            <constraint firstItem="vzA-l2-dGe" firstAttribute="top" secondItem="VqD-21-XOk" secondAttribute="bottom" id="tC5-4Y-Fq8"/>
+                            <constraint firstItem="5VU-tW-sg5" firstAttribute="top" secondItem="VqD-21-XOk" secondAttribute="bottom" id="1nE-oe-hfH"/>
+                            <constraint firstItem="VqD-21-XOk" firstAttribute="leading" secondItem="UjR-jL-QT7" secondAttribute="leading" id="26s-79-G1f"/>
+                            <constraint firstAttribute="trailing" secondItem="Lr6-ML-YDE" secondAttribute="trailing" id="JZX-PT-DAy"/>
+                            <constraint firstItem="Lr6-ML-YDE" firstAttribute="top" secondItem="pcx-kP-Q5y" secondAttribute="bottom" id="bju-q8-Apl"/>
+                            <constraint firstItem="Lr6-ML-YDE" firstAttribute="leading" secondItem="UjR-jL-QT7" secondAttribute="leading" id="dtC-nW-GLc"/>
+                            <constraint firstAttribute="trailing" secondItem="VqD-21-XOk" secondAttribute="trailing" id="iB9-G7-Sg1"/>
+                            <constraint firstItem="VqD-21-XOk" firstAttribute="top" secondItem="Lr6-ML-YDE" secondAttribute="bottom" id="tW6-96-4Y0"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="VqD-21-XOk" id="bxq-vR-eZe"/>
-                        <segue destination="glF-rQ-X8Y" kind="show" identifier="ConstrainDetail" id="0Sc-Te-PDo"/>
+                        <outlet property="itemNameTextField" destination="Hby-UU-tLM" id="V2J-dm-ilf"/>
+                        <outlet property="tableView" destination="VqD-21-XOk" id="fYr-t0-oXW"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A0F-iz-CU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YQP-w1-Qx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3318" y="242"/>
+            <point key="canvasLocation" x="3308" y="242"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UjD-1W-QJi">
