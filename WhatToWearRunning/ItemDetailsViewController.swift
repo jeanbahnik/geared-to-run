@@ -45,11 +45,13 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.backgroundColor = Style.navyBlueColor
         tableView.separatorStyle = .None
 
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed")
+        barButtonItem.tintColor = UIColor.whiteColor()
+        navigationItem.rightBarButtonItem = barButtonItem
+
         if let item = item {
             title = item.name
-            let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "addButtonPressed")
-            barButtonItem.tintColor = UIColor.whiteColor()
-            navigationItem.rightBarButtonItem = barButtonItem
+            itemNameTextField.text = item.name
         } else {
             title = "New Item"
         }
@@ -92,24 +94,26 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let item = item {
-            //        case Slots, Constraints, Actions, Sections
-            switch TableSection(rawValue: indexPath.section)! {
-            case .Slots:
-                let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
-                cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
-            case .Constraints:
+        switch TableSection(rawValue: indexPath.section)! {
+        case .Slots:
+            let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
+            cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
+            if let item = item {
+                if Int(item.slot) == indexPath.row { cell.accessoryType = .Checkmark }
+            }
+        case .Constraints:
+            if item != nil {
                 let cell = tableView.dequeueReusableCellWithIdentifier("ConstraintCell", forIndexPath: indexPath)
                 cell.textLabel?.text = constraintText(indexPath.row)
-            case .Actions:
-                let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath)
-                switch ActionsRows(rawValue: indexPath.row)! {
-                case .Delete:
-                    cell.textLabel?.text = "Delete item and constraints"
-                case .Rows: break
-                }
-            case .Sections: break
             }
+        case .Actions:
+            let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath)
+            switch ActionsRows(rawValue: indexPath.row)! {
+            case .Delete:
+                cell.textLabel?.text = "Delete item and constraints"
+            case .Rows: break
+            }
+        case .Sections: break
         }
 
         let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
