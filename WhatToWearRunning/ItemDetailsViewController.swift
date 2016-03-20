@@ -30,7 +30,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var item: GearItem?
     @IBOutlet weak var itemNameTextField: UITextField!
     var selectedSlot: NSIndexPath?
-    var itemCreatedBlock: (Void -> Void)?
+    var itemCreatedOrUpdatedBlock: (Void -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +45,12 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.backgroundColor = Style.navyBlueColor
         tableView.separatorStyle = .None
 
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed")
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped")
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
 
         if let item = item {
+            selectedSlot = NSIndexPath(forRow: Int(item.slot), inSection: TableSection.Slots.rawValue)
             title = item.name
             itemNameTextField.text = item.name
         } else {
@@ -57,13 +58,22 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
-    func addButtonPressed() {
-        if let name =  itemNameTextField.text, selectedSlot = selectedSlot {
-            GearItem.saveItem(name, slot: selectedSlot.row)
-            navigationController?.popViewControllerAnimated(true)
-            if let itemCreatedBlock = itemCreatedBlock {
-                itemCreatedBlock()
+    func saveButtonTapped() {
+        if let selectedSlot = selectedSlot, name =  itemNameTextField.text where name > "" {
+            if item == nil {
+                GearItem.saveNewItem(name, slot: Int16(selectedSlot.row), completion: { [weak self] item in
+                    if item != nil {
+                        self?.navigationController?.popViewControllerAnimated(true)
+                        if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
+                    }
+                })
+            } else if let item = item {
+                GearItem.updateItem(name, slot: Int16(selectedSlot.row), item: item, completion: { [weak self] item in
+                    self?.navigationController?.popViewControllerAnimated(true)
+                    if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
+                })
             }
+
         } else {
             SVProgressHUD.showErrorWithStatus("Name or Slot can't be blank")
         }
@@ -72,7 +82,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK: - TableView
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return TableSection.numberOfSections()
+        return item != nil ? TableSection.numberOfSections() : TableSection.numberOfSections() - 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +93,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             if let item = item {
                 let gearConstraints = Array(item.constraints!) as! [GearConstraint]
                 return gearConstraints.count
-            } else {
+            }
+            else {
                 return 0
             }
         case .Actions:
@@ -101,10 +112,13 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             if let item = item {
                 if Int(item.slot) == indexPath.row { cell.accessoryType = .Checkmark }
             }
+            return cell
         case .Constraints:
             if item != nil {
                 let cell = tableView.dequeueReusableCellWithIdentifier("ConstraintCell", forIndexPath: indexPath)
                 cell.textLabel?.text = constraintText(indexPath.row)
+                cell.userInteractionEnabled = true
+                return cell
             }
         case .Actions:
             let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath)
@@ -113,11 +127,25 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.textLabel?.text = "Delete item and constraints"
             case .Rows: break
             }
+            return cell
         case .Sections: break
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
-        return cell
+        return UITableViewCell()
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.section == TableSection.Slots.rawValue {
+    //        tableView.becomeFirstResponder()
+
+            if let selectedSlot = selectedSlot {
+                tableView.cellForRowAtIndexPath(selectedSlot)!.accessoryType = .None
+            }
+            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+            
+            selectedSlot = indexPath
+        }
     }
 
     func constraintText(indexPath: Int) -> String {

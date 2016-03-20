@@ -15,7 +15,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private var permissionBlock: (CLAuthorizationStatus -> Void)?
     var locationUpdatedBlock: (CLLocation? -> Void)?
     var locationErrorBlock: (NSError -> Void)?
-    
+
     private override init() {
         super.init()
         commonInit()

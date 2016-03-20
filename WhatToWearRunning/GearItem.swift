@@ -25,14 +25,14 @@ enum GearSlot: Int {
 
 class GearItem: NSManagedObject {
 
-    class func saveItem(name: String, slot: Int) -> GearItem {
+    class func saveNewItem(name: String, slot: Int16, completion: (item: GearItem?) -> Void) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let entity =  NSEntityDescription.entityForName("GearItem", inManagedObjectContext:managedContext)
-        let gearItem = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        let gearItem = GearItem(entity: entity!, insertIntoManagedObjectContext: managedContext)
 
-        gearItem.setValue(name, forKey: "name")
-        gearItem.setValue(slot, forKey: "slot")
+        gearItem.name = name
+        gearItem.slot = slot
 
         do {
             try gearItem.managedObjectContext?.save()
@@ -40,6 +40,21 @@ class GearItem: NSManagedObject {
             print("Could not save \(error), \(error.userInfo)")
         }
         
-        return gearItem as! GearItem
+        completion(item: gearItem)
+    }
+    
+    class func updateItem(name: String, slot: Int16, item: GearItem, completion: (item: GearItem?) -> Void) {
+
+        let gearItem = item
+        gearItem.name = name
+        gearItem.slot = slot
+        
+        do {
+            try gearItem.managedObjectContext?.save()
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        completion(item: gearItem)
     }
 }

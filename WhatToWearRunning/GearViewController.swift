@@ -53,6 +53,10 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (segue.identifier == "ItemDetails") {
             let vc = segue.destinationViewController as! ItemDetailsViewController
             vc.item = sender as? GearItem
+            vc.itemCreatedOrUpdatedBlock = { [weak self] in
+                self?.gearList = GearList.sharedInstance.getGearItems()!
+                self?.tableView.reloadData()
+            }
         }
     }
 }
