@@ -12,6 +12,8 @@
 		FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
+		FF44BA9F1C9F693300E54877 /* ConstraintEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44BA9E1C9F693300E54877 /* ConstraintEditTableViewCell.swift */; };
+		FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */; };
 		FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */; };
 		FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56B3101C4E8D7700C30BA3 /* Weather.swift */; };
 		FF640B781C7E759200D9E261 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */; };
@@ -71,6 +73,8 @@
 		FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		FF44BA9E1C9F693300E54877 /* ConstraintEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintEditTableViewCell.swift; sourceTree = "<group>"; };
+		FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintDetailsViewController.swift; sourceTree = "<group>"; };
 		FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		FF56B3101C4E8D7700C30BA3 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */,
 				FF1E977E1C9771C30085C407 /* GearViewController.swift */,
 				FF866D451C978DFD0056EE42 /* ItemDetailsViewController.swift */,
+				FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */,
 				FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFFD1CD11C78CD4A00EBDC6A /* Models */,
@@ -247,6 +252,7 @@
 				FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */,
 				FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */,
 				FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */,
+				FF44BA9E1C9F693300E54877 /* ConstraintEditTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
 				FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */,
 				FF1E977F1C9771C30085C407 /* GearViewController.swift in Sources */,
+				FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */,
 				FFACB21B1C73977C009627E6 /* Location.swift in Sources */,
 				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
 				FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */,
@@ -490,6 +497,7 @@
 				FF762A541C74DA5700B19483 /* Reachability.swift in Sources */,
 				FFFD35C21C96219000A3996B /* GearConstraint+CoreDataProperties.swift in Sources */,
 				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,
+				FF44BA9F1C9F693300E54877 /* ConstraintEditTableViewCell.swift in Sources */,
 				FF640B781C7E759200D9E261 /* WeatherCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

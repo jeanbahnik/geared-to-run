@@ -118,6 +118,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 let cell = tableView.dequeueReusableCellWithIdentifier("ConstraintCell", forIndexPath: indexPath)
                 cell.textLabel?.text = constraintText(indexPath.row)
                 cell.userInteractionEnabled = true
+                cell.accessoryType = .DisclosureIndicator
                 return cell
             }
         case .Actions:
@@ -145,8 +146,26 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
             
             selectedSlot = indexPath
+        } else if indexPath.section == TableSection.Constraints.rawValue {
+            if let item = item {
+                let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath.row]
+                performSegueWithIdentifier("ConstraintDetail", sender: gearConstraint)
+            }
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if (segue.identifier == "ConstraintDetail") {
+            let vc = segue.destinationViewController as! ConstraintDetailsViewController
+            vc.constraint = sender as? GearConstraint
+//            vc.itemCreatedOrUpdatedBlock = { [weak self] in
+//                self?.gearList = GearList.sharedInstance.getGearItems()!
+//                self?.tableView.reloadData()
+//            }
+        }
+    }
+
 
     func constraintText(indexPath: Int) -> String {
         var constraintText = ""

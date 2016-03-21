@@ -12,6 +12,28 @@
 import Foundation
 import CoreData
 
+enum ConstraintList: Int {
+    case MinTemp, MaxTemp, MinRain, MaxRain, MinWind, MaxWind, Count
+
+    var description: String {
+        switch(self) {
+        case .MinTemp: return "Min temp"
+        case .MaxTemp: return "Max temp"
+        case .MinRain: return "Min rain"
+        case .MaxRain: return "Max rain"
+        case .MinWind: return "Min wind"
+        case .MaxWind: return "Max wind"
+        case .Count: return ""
+        }
+    }
+
+    static func numberOfConstraints() -> Int {
+        return ConstraintList.Count.rawValue
+    }
+    
+    
+}
+
 extension GearConstraint {
 
     @NSManaged var maxRain: Float

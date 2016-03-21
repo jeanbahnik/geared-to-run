@@ -14,7 +14,7 @@ class GearConstraint: NSManagedObject {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let entity =  NSEntityDescription.entityForName("GearConstraint", inManagedObjectContext:managedContext)
-        let gearConstraint = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as! GearConstraint
+        let gearConstraint = GearConstraint(entity: entity!, insertIntoManagedObjectContext: managedContext)
 
         gearConstraint.minTemp = minTemp
         gearConstraint.maxTemp = maxTemp
