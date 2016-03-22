@@ -13,7 +13,7 @@ class ConstraintDetailsViewController: UIViewController {
     var item: GearItem?
     var constraint: GearConstraint?
     var constraintCreatedOrUpdatedBlock: (Void -> Void)?
-    
+
     @IBOutlet weak var minTempTextField: UITextField!
     @IBOutlet weak var maxTempTextField: UITextField!
     @IBOutlet weak var minRainTextField: UITextField!
@@ -36,7 +36,7 @@ class ConstraintDetailsViewController: UIViewController {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped")
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
-        
+
         minTempTextField.keyboardType = .DecimalPad
         maxTempTextField.keyboardType = .DecimalPad
         minRainTextField.keyboardType = .DecimalPad

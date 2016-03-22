@@ -57,4 +57,15 @@ class GearItem: NSManagedObject {
         
         completion(item: gearItem)
     }
+    
+    func deleteItem(completion: (Void) -> Void) {
+        self.managedObjectContext?.deleteObject(self)
+        
+        do {
+            try self.managedObjectContext?.save()
+            completion()
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
 }

@@ -12,10 +12,10 @@
     <entity name="GearItem" representedClassName=".GearItem" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="slot" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="constraints" toMany="YES" deletionRule="Nullify" destinationEntity="GearConstraint" inverseName="item" inverseEntity="GearConstraint" syncable="YES"/>
+        <relationship name="constraints" toMany="YES" deletionRule="Cascade" destinationEntity="GearConstraint" inverseName="item" inverseEntity="GearConstraint" syncable="YES"/>
     </entity>
     <elements>
         <element name="GearConstraint" positionX="-56" positionY="15" width="128" height="148"/>
-        <element name="GearItem" positionX="-362" positionY="90" width="128" height="90"/>
+        <element name="GearItem" positionX="-362" positionY="90" width="128" height="88"/>
     </elements>
 </model>

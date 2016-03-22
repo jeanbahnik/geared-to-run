@@ -157,7 +157,12 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             case .AddConstraint:
                 performSegueWithIdentifier("ConstraintDetail", sender: nil)
             case .Delete:
-                print("delete")
+                if let item = item {
+                    item.deleteItem({ [weak self] in
+                        self?.navigationController?.popViewControllerAnimated(true)
+                        if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
+                    })
+                }
             case .Rows: break
             }
         }
