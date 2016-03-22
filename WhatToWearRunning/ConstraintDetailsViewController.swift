@@ -6,88 +6,77 @@
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
-//import SVProgressHUD
+import SVProgressHUD
 
-class ConstraintDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-//    private enum TableSection: Int {
-//        case Slots, Constraints, Actions, Sections
-//        
-//        static func numberOfSections() -> Int {
-//            return TableSection.Sections.rawValue
-//        }
-//    }
-//    
-//    private enum ActionsRows: Int {
-//        case Delete, Rows
-//        
-//        static func numberOfRows() -> Int {
-//            return ActionsRows.Rows.rawValue
-//        }
-//    }
-    
-    @IBOutlet weak var tableView: UITableView!
+class ConstraintDetailsViewController: UIViewController {
+
+    var item: GearItem?
     var constraint: GearConstraint?
-//    @IBOutlet weak var itemNameTextField: UITextField!
-//    var selectedSlot: NSIndexPath?
-//    var itemCreatedOrUpdatedBlock: (Void -> Void)?
+    var constraintCreatedOrUpdatedBlock: (Void -> Void)?
     
+    @IBOutlet weak var minTempTextField: UITextField!
+    @IBOutlet weak var maxTempTextField: UITextField!
+    @IBOutlet weak var minRainTextField: UITextField!
+    @IBOutlet weak var maxRainTextField: UITextField!
+    @IBOutlet weak var minWindTextField: UITextField!
+    @IBOutlet weak var maxWindTextField: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupViews()
+        fillPlaceholders()
     }
-    
+
     func setupViews() {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
-        
-        tableView.backgroundColor = Style.navyBlueColor
-        tableView.separatorStyle = .None
-        
+
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped")
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
         
+        minTempTextField.keyboardType = .DecimalPad
+        maxTempTextField.keyboardType = .DecimalPad
+        minRainTextField.keyboardType = .DecimalPad
+        maxRainTextField.keyboardType = .DecimalPad
+        minWindTextField.keyboardType = .DecimalPad
+        maxWindTextField.keyboardType = .DecimalPad
+
         if let constraint = constraint, item = constraint.item {
             title = item.name
         } else {
-            title = "New Constraint"
+            title = "New rule"
         }
     }
-    
-    func saveButtonTapped() {
-        print("save button tapped")
-//        if let selectedSlot = selectedSlot, name =  itemNameTextField.text where name > "" {
-//            if item == nil {
-//                GearItem.saveNewItem(name, slot: Int16(selectedSlot.row), completion: { [weak self] item in
-//                    if item != nil {
-//                        self?.navigationController?.popViewControllerAnimated(true)
-//                        if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
-//                    }
-//                    })
-//            } else if let item = item {
-//                GearItem.updateItem(name, slot: Int16(selectedSlot.row), item: item, completion: { [weak self] item in
-//                    self?.navigationController?.popViewControllerAnimated(true)
-//                    if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
-//                    })
-//            }
-//            
-//        } else {
-//            SVProgressHUD.showErrorWithStatus("Name or Slot can't be blank")
-//        }
-    }
-    
-    // MARK: - TableView
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ConstraintList.numberOfConstraints()
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ConstraintEditTableViewCell
-        cell.userInteractionEnabled = false
 
-        return cell
+    func fillPlaceholders() {
+        if let constraint = constraint {
+            minTempTextField.text = "\(constraint.minTemp)"
+            maxTempTextField.text = "\(constraint.maxTemp)"
+            minRainTextField.text = "\(constraint.minRain)"
+            maxRainTextField.text = "\(constraint.maxRain)"
+            minWindTextField.text = "\(constraint.minWind)"
+            maxWindTextField.text = "\(constraint.maxWind)"
+        }
+    }
+
+    func saveButtonTapped() {
+        if let minTemp = minTempTextField.text, maxTemp = maxTempTextField.text, minRain = minRainTextField.text, maxRain = maxRainTextField.text, minWind = minWindTextField.text, maxWind = maxWindTextField.text where (minTemp > "" && maxTemp > "" && minRain > "" && maxRain > "" && minWind > "" && maxWind > "") {
+            if let constraint = constraint {
+                constraint.updateConstraint(Float(minTemp)!, maxTemp: Float(maxTemp)!, minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: Float(minRain)!, maxRain: Float(maxRain)!)
+                self.navigationController?.popViewControllerAnimated(true)
+                if let constraintCreatedOrUpdatedBlock = constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
+                
+            } else if let item = item {
+                GearConstraint.saveConstraint(item, minTemp: Float(minTemp)!, maxTemp: Float(maxTemp)!, minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: Float(minRain)!, maxRain: Float(maxRain)!)
+                    self.navigationController?.popViewControllerAnimated(true)
+                    if let constraintCreatedOrUpdatedBlock = constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
+            } else {
+                SVProgressHUD.showErrorWithStatus("Uh oh, There was a problem")
+            }
+        } else {
+            SVProgressHUD.showErrorWithStatus("No slot can be blank")
+        }
     }
 }

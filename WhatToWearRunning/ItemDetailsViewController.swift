@@ -19,7 +19,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     private enum ActionsRows: Int {
-        case Delete, Rows
+        case AddConstraint, Delete, Rows
 
         static func numberOfRows() -> Int {
             return ActionsRows.Rows.rawValue
@@ -59,21 +59,20 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func saveButtonTapped() {
-        if let selectedSlot = selectedSlot, name =  itemNameTextField.text where name > "" {
-            if item == nil {
+        if let selectedSlot = selectedSlot, name = itemNameTextField.text where name > "" {
+            if let item = item {
+                GearItem.updateItem(name, slot: Int16(selectedSlot.row), item: item, completion: { [weak self] item in
+                    self?.navigationController?.popViewControllerAnimated(true)
+                    if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
+                    })
+            } else {
                 GearItem.saveNewItem(name, slot: Int16(selectedSlot.row), completion: { [weak self] item in
                     if item != nil {
                         self?.navigationController?.popViewControllerAnimated(true)
                         if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
                     }
                 })
-            } else if let item = item {
-                GearItem.updateItem(name, slot: Int16(selectedSlot.row), item: item, completion: { [weak self] item in
-                    self?.navigationController?.popViewControllerAnimated(true)
-                    if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
-                })
             }
-
         } else {
             SVProgressHUD.showErrorWithStatus("Name or Slot can't be blank")
         }
@@ -124,6 +123,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         case .Actions:
             let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath)
             switch ActionsRows(rawValue: indexPath.row)! {
+            case .AddConstraint:
+                cell.textLabel?.text = "Add a rule"
             case .Delete:
                 cell.textLabel?.text = "Delete item and constraints"
             case .Rows: break
@@ -144,28 +145,35 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 tableView.cellForRowAtIndexPath(selectedSlot)!.accessoryType = .None
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
-            
+
             selectedSlot = indexPath
         } else if indexPath.section == TableSection.Constraints.rawValue {
             if let item = item {
                 let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath.row]
                 performSegueWithIdentifier("ConstraintDetail", sender: gearConstraint)
             }
+        } else if indexPath.section == TableSection.Actions.rawValue {
+            switch ActionsRows(rawValue: indexPath.row)! {
+            case .AddConstraint:
+                performSegueWithIdentifier("ConstraintDetail", sender: nil)
+            case .Delete:
+                print("delete")
+            case .Rows: break
+            }
         }
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if (segue.identifier == "ConstraintDetail") {
             let vc = segue.destinationViewController as! ConstraintDetailsViewController
             vc.constraint = sender as? GearConstraint
-//            vc.itemCreatedOrUpdatedBlock = { [weak self] in
-//                self?.gearList = GearList.sharedInstance.getGearItems()!
-//                self?.tableView.reloadData()
-//            }
+            vc.item = item
+            vc.constraintCreatedOrUpdatedBlock = { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
     }
-
 
     func constraintText(indexPath: Int) -> String {
         var constraintText = ""

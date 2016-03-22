@@ -30,4 +30,20 @@ class GearConstraint: NSManagedObject {
             print("Could not save \(error), \(error.userInfo)")
         }
     }
+    
+    func updateConstraint(minTemp: Float, maxTemp: Float, minWind: Int16, maxWind: Int16, minRain: Float, maxRain: Float) {
+        
+        self.minTemp = minTemp
+        self.maxTemp = maxTemp
+        self.minWind = minWind
+        self.maxWind = maxWind
+        self.minRain = minRain
+        self.maxRain = maxRain
+        
+        do {
+            try self.managedObjectContext?.save()
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
 }
