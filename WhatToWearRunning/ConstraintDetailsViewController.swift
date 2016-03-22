@@ -20,6 +20,7 @@ class ConstraintDetailsViewController: UIViewController {
     @IBOutlet weak var maxRainTextField: UITextField!
     @IBOutlet weak var minWindTextField: UITextField!
     @IBOutlet weak var maxWindTextField: UITextField!
+    @IBOutlet weak var deleteRuleButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,8 @@ class ConstraintDetailsViewController: UIViewController {
             title = item.name
         } else {
             title = "New rule"
+            deleteRuleButton.enabled = false
+            deleteRuleButton.hidden = true
         }
     }
 
@@ -77,6 +80,15 @@ class ConstraintDetailsViewController: UIViewController {
             }
         } else {
             SVProgressHUD.showErrorWithStatus("No slot can be blank")
+        }
+    }
+
+    @IBAction func deleteRuleButtonTapped(sender: UIButton) {
+        if let constraint = constraint {
+            constraint.deleteConstaint({ [weak self] in
+                self?.navigationController?.popViewControllerAnimated(true)
+                if let constraintCreatedOrUpdatedBlock = self?.constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
+            })
         }
     }
 }

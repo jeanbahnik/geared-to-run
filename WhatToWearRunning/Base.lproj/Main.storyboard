@@ -427,7 +427,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1oz-ZG-GhF">
-                                <rect key="frame" x="119.5" y="81" width="460.5" height="30"/>
+                                <rect key="frame" x="119" y="81" width="460.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jfe-2j-RHk"/>
                                 </constraints>
@@ -444,7 +444,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VSE-Xh-GcQ">
-                                <rect key="frame" x="105.5" y="122" width="474.5" height="30"/>
+                                <rect key="frame" x="105" y="122" width="474.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fg9-0W-5bC"/>
                                 </constraints>
@@ -461,7 +461,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oek-EK-DfE">
-                                <rect key="frame" x="109.5" y="163" width="470.5" height="30"/>
+                                <rect key="frame" x="109" y="163" width="470.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="tut-9g-lct"/>
                                 </constraints>
@@ -502,11 +502,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJc-3U-dvp">
+                                <rect key="frame" x="248" y="305" width="104" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PIx-FE-VJN"/>
+                                </constraints>
+                                <state key="normal" title="Delete this rule"/>
+                                <connections>
+                                    <action selector="deleteRuleButtonTapped:" destination="glF-rQ-X8Y" eventType="touchUpInside" id="dQO-by-XLS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1oz-ZG-GhF" secondAttribute="trailing" constant="20" id="79l-MW-WJa"/>
                             <constraint firstItem="LF7-NO-Wx2" firstAttribute="baseline" secondItem="oek-EK-DfE" secondAttribute="baseline" id="8CF-uC-unq"/>
+                            <constraint firstItem="iJc-3U-dvp" firstAttribute="centerX" secondItem="X6v-Hs-I1O" secondAttribute="centerX" id="A0m-Wk-aw0"/>
                             <constraint firstItem="YOm-cy-dHP" firstAttribute="top" secondItem="LF7-NO-Wx2" secondAttribute="bottom" constant="20" id="AV9-vE-8Tz"/>
                             <constraint firstItem="LF7-NO-Wx2" firstAttribute="leading" secondItem="X6v-Hs-I1O" secondAttribute="leading" constant="20" id="Azo-mX-Lyk"/>
                             <constraint firstItem="IUC-mJ-Rie" firstAttribute="leading" secondItem="X6v-Hs-I1O" secondAttribute="leading" constant="20" id="CPl-L1-Ccx"/>
@@ -528,6 +539,7 @@
                             <constraint firstItem="cA7-Yk-Ycx" firstAttribute="leading" secondItem="YOm-cy-dHP" secondAttribute="trailing" constant="20" id="haX-LY-eII"/>
                             <constraint firstItem="cr6-C1-umQ" firstAttribute="top" secondItem="IUC-mJ-Rie" secondAttribute="bottom" constant="20" id="iAZ-Vv-8Df"/>
                             <constraint firstItem="jgv-Ry-gH0" firstAttribute="leading" secondItem="X6v-Hs-I1O" secondAttribute="leading" constant="20" id="j36-oy-BIh"/>
+                            <constraint firstItem="iJc-3U-dvp" firstAttribute="top" secondItem="J9j-4K-hYE" secondAttribute="bottom" constant="30" id="nR8-uO-zBT"/>
                             <constraint firstItem="LF7-NO-Wx2" firstAttribute="top" secondItem="pHi-aD-DmW" secondAttribute="bottom" constant="20" id="oBI-FY-Ftb"/>
                             <constraint firstAttribute="trailing" secondItem="oek-EK-DfE" secondAttribute="trailing" constant="20" id="oYv-DD-3SE"/>
                             <constraint firstItem="IUC-mJ-Rie" firstAttribute="baseline" secondItem="0BQ-GY-UkI" secondAttribute="baseline" id="rX5-Ou-H4e"/>
@@ -538,6 +550,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteRuleButton" destination="iJc-3U-dvp" id="tB7-bB-kKB"/>
                         <outlet property="maxRainTextField" destination="oek-EK-DfE" id="zaw-km-JdR"/>
                         <outlet property="maxTempTextField" destination="1oz-ZG-GhF" id="pqw-hR-Zce"/>
                         <outlet property="maxWindTextField" destination="J9j-4K-hYE" id="YYw-Dt-696"/>

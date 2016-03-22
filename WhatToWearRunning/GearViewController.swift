@@ -8,12 +8,19 @@
 
 class GearViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var head = [GearItem]()
+    var torso = [GearItem]()
+    var legs = [GearItem]()
+    var feet = [GearItem]()
+    var accessories = [GearItem]()
     var gearList: [GearItem] = GearList.sharedInstance.getGearItems()!
 
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupGearArrays()
 
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
@@ -26,26 +33,84 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.title = "Your gear"
     }
     
+    func setupGearArrays() {
+        head = []
+        torso = []
+        legs = []
+        feet = []
+        accessories = []
+
+        for item in gearList {
+            if Int(item.slot) == GearSlot.Head.rawValue {
+                head.append(item) }
+            if Int(item.slot) == GearSlot.Torso.rawValue {
+                torso.append(item) }
+            if Int(item.slot) == GearSlot.Legs.rawValue {
+                legs.append(item) }
+            if Int(item.slot) == GearSlot.Feet.rawValue {
+                feet.append(item) }
+            if Int(item.slot) == GearSlot.Accessories.rawValue {
+                accessories.append(item) }
+        }
+        tableView.reloadData()
+    }
+
     func addButtonPressed() {
         performSegueWithIdentifier("ItemDetails", sender: nil)
     }
-    
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return GearSlot.Count.rawValue
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gearList.count
+        switch GearSlot(rawValue: section)! {
+        case .Head: return head.count
+        case .Torso: return torso.count
+        case .Legs: return legs.count
+        case .Feet: return feet.count
+        case .Accessories: return accessories.count
+        case .Count: return 0
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
-
         cell.accessoryType = .DisclosureIndicator
-        cell.textLabel?.text = gearList[indexPath.row].name
+
+        switch GearSlot(rawValue: indexPath.section)! {
+        case .Head:
+            cell.textLabel?.text = head[indexPath.row].name
+        case .Torso:
+            cell.textLabel?.text = torso[indexPath.row].name
+        case .Legs:
+            cell.textLabel?.text = legs[indexPath.row].name
+        case .Feet:
+            cell.textLabel?.text = feet[indexPath.row].name
+        case .Accessories:
+            cell.textLabel?.text = accessories[indexPath.row].name
+        case .Count: break
+        }
 
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        performSegueWithIdentifier("ItemDetails", sender: gearList[indexPath.row])
+        
+        switch GearSlot(rawValue: indexPath.section)! {
+        case .Head:
+            performSegueWithIdentifier("ItemDetails", sender: head[indexPath.row])
+        case .Torso:
+            performSegueWithIdentifier("ItemDetails", sender: torso[indexPath.row])
+        case .Legs:
+            performSegueWithIdentifier("ItemDetails", sender: legs[indexPath.row])
+        case .Feet:
+            performSegueWithIdentifier("ItemDetails", sender: feet[indexPath.row])
+        case .Accessories:
+            performSegueWithIdentifier("ItemDetails", sender: accessories[indexPath.row])
+        case .Count: break
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -55,6 +120,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
             vc.item = sender as? GearItem
             vc.itemCreatedOrUpdatedBlock = { [weak self] in
                 self?.gearList = GearList.sharedInstance.getGearItems()!
+                self?.setupGearArrays()
                 self?.tableView.reloadData()
             }
         }
