@@ -61,7 +61,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     func saveButtonTapped() {
         if let selectedSlot = selectedSlot, name = itemNameTextField.text where name > "" {
             if let item = item {
-                GearItem.updateItem(name, slot: Int16(selectedSlot.row), item: item, completion: { [weak self] item in
+                item.updateItem(name, slot: Int16(selectedSlot.row), completion: { [weak self] item in
                     self?.navigationController?.popViewControllerAnimated(true)
                     if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
                     })

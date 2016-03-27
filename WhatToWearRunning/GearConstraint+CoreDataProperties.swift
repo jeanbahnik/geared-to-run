@@ -15,10 +15,10 @@
 extension GearConstraint {
 
     @NSManaged var maxRain: Float
-    @NSManaged var maxTemp: Float
+    @NSManaged var maxTemp: Int16
     @NSManaged var maxWind: Int16
     @NSManaged var minRain: Float
-    @NSManaged var minTemp: Float
+    @NSManaged var minTemp: Int16
     @NSManaged var minWind: Int16
     @NSManaged var item: GearItem?
 

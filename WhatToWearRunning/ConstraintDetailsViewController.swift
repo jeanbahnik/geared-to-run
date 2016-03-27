@@ -7,26 +7,29 @@
 //
 
 import SVProgressHUD
+import TTRangeSlider
 
-class ConstraintDetailsViewController: UIViewController {
+class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
 
     var item: GearItem?
     var constraint: GearConstraint?
     var constraintCreatedOrUpdatedBlock: (Void -> Void)?
 
-    @IBOutlet weak var minTempTextField: UITextField!
-    @IBOutlet weak var maxTempTextField: UITextField!
-    @IBOutlet weak var minRainTextField: UITextField!
-    @IBOutlet weak var maxRainTextField: UITextField!
     @IBOutlet weak var minWindTextField: UITextField!
     @IBOutlet weak var maxWindTextField: UITextField!
     @IBOutlet weak var deleteRuleButton: UIButton!
+    @IBOutlet weak var windRange: TTRangeSlider!
+    @IBOutlet weak var rainRange: TTRangeSlider!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupViews()
         fillPlaceholders()
+    }
+    
+    func rangeSlider(sender: TTRangeSlider!, didChangeSelectedMinimumValue selectedMinimum: Float, andMaximumValue selectedMaximum: Float) {
+        
     }
 
     func setupViews() {
@@ -37,12 +40,23 @@ class ConstraintDetailsViewController: UIViewController {
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
 
-        minTempTextField.keyboardType = .DecimalPad
-        maxTempTextField.keyboardType = .DecimalPad
-        minRainTextField.keyboardType = .DecimalPad
-        maxRainTextField.keyboardType = .DecimalPad
         minWindTextField.keyboardType = .DecimalPad
         maxWindTextField.keyboardType = .DecimalPad
+        
+        windRange.delegate = self
+        windRange.minValue = 0
+        windRange.maxValue = 100
+        windRange.enableStep = true
+        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        
+        rainRange.delegate = self
+        rainRange.minValue = 0.0
+        rainRange.maxValue = 1.0
+        rainRange.enableStep = true
+        rainRange.step = 0.25
+        rainRange.numberFormatterOverride = numberFormatter
 
         if let constraint = constraint, item = constraint.item {
             title = item.name
@@ -55,24 +69,24 @@ class ConstraintDetailsViewController: UIViewController {
 
     func fillPlaceholders() {
         if let constraint = constraint {
-            minTempTextField.text = "\(constraint.minTemp)"
-            maxTempTextField.text = "\(constraint.maxTemp)"
-            minRainTextField.text = "\(constraint.minRain)"
-            maxRainTextField.text = "\(constraint.maxRain)"
+            windRange.selectedMinimum = Float(constraint.minTemp)
+            windRange.selectedMaximum = Float(constraint.maxTemp)
+            rainRange.selectedMinimum = constraint.minRain
+            rainRange.selectedMaximum = constraint.maxRain
             minWindTextField.text = "\(constraint.minWind)"
             maxWindTextField.text = "\(constraint.maxWind)"
         }
     }
 
     func saveButtonTapped() {
-        if let minTemp = minTempTextField.text, maxTemp = maxTempTextField.text, minRain = minRainTextField.text, maxRain = maxRainTextField.text, minWind = minWindTextField.text, maxWind = maxWindTextField.text where (minTemp > "" && maxTemp > "" && minRain > "" && maxRain > "" && minWind > "" && maxWind > "") {
+        if let minWind = minWindTextField.text, maxWind = maxWindTextField.text where (minWind > "" && maxWind > "") {
             if let constraint = constraint {
-                constraint.updateConstraint(Float(minTemp)!, maxTemp: Float(maxTemp)!, minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: Float(minRain)!, maxRain: Float(maxRain)!)
+                constraint.updateConstraint(Int16(windRange.selectedMinimum), maxTemp: Int16(windRange.selectedMaximum), minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: rainRange.selectedMinimum, maxRain: rainRange.selectedMaximum)
                 self.navigationController?.popViewControllerAnimated(true)
                 if let constraintCreatedOrUpdatedBlock = constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
                 
             } else if let item = item {
-                GearConstraint.saveConstraint(item, minTemp: Float(minTemp)!, maxTemp: Float(maxTemp)!, minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: Float(minRain)!, maxRain: Float(maxRain)!)
+                GearConstraint.saveConstraint(item, minTemp: Int16(windRange.selectedMinimum), maxTemp: Int16(windRange.selectedMaximum), minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: rainRange.selectedMinimum, maxRain: rainRange.selectedMaximum)
                     self.navigationController?.popViewControllerAnimated(true)
                     if let constraintCreatedOrUpdatedBlock = constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
             } else {

@@ -43,19 +43,18 @@ class GearItem: NSManagedObject {
         completion(item: gearItem)
     }
     
-    class func updateItem(name: String, slot: Int16, item: GearItem, completion: (item: GearItem?) -> Void) {
+    func updateItem(name: String, slot: Int16, completion: (item: GearItem?) -> Void) {
 
-        let gearItem = item
-        gearItem.name = name
-        gearItem.slot = slot
+        self.name = name
+        self.slot = slot
         
         do {
-            try gearItem.managedObjectContext?.save()
+            try self.managedObjectContext?.save()
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
         
-        completion(item: gearItem)
+        completion(item: self)
     }
     
     func deleteItem(completion: (Void) -> Void) {

@@ -8,3 +8,4 @@ pod 'Crashlytics'
 pod 'Instabug'
 pod "HockeySDK"
 pod 'SVProgressHUD', '~> 1.0'
+pod "TTRangeSlider"

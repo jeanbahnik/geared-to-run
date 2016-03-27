@@ -96,13 +96,13 @@ class GearList: NSObject {
             }
         })
 
-        GearItem.saveNewItem("Light Socks", slot: Int16(GearSlot.Accessories.rawValue), completion: { item in
+        GearItem.saveNewItem("Light Socks", slot: Int16(GearSlot.Feet.rawValue), completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 30, maxTemp: 100, minWind: 0, maxWind: 100, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Heavy Socks", slot: Int16(GearSlot.Accessories.rawValue), completion: { item in
+        GearItem.saveNewItem("Heavy Socks", slot: Int16(GearSlot.Feet.rawValue), completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 30, minWind: 0, maxWind: 100, minRain: 0.0, maxRain: 1.0)
             }

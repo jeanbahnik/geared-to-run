@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="GearConstraint" representedClassName=".GearConstraint" syncable="YES">
         <attribute name="maxRain" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="maxTemp" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxTemp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="maxWind" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="minRain" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="minTemp" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="minTemp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="minWind" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="GearItem" inverseName="constraints" inverseEntity="GearItem" syncable="YES"/>
     </entity>
@@ -15,7 +15,7 @@
         <relationship name="constraints" toMany="YES" deletionRule="Cascade" destinationEntity="GearConstraint" inverseName="item" inverseEntity="GearConstraint" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GearConstraint" positionX="-56" positionY="15" width="128" height="148"/>
+        <element name="GearConstraint" positionX="-56" positionY="15" width="128" height="150"/>
         <element name="GearItem" positionX="-362" positionY="90" width="128" height="88"/>
     </elements>
 </model>

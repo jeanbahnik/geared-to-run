@@ -10,7 +10,7 @@ import CoreData
 
 class GearConstraint: NSManagedObject {
 
-    class func saveConstraint(gearItem: GearItem, minTemp: Float, maxTemp: Float, minWind: Int16, maxWind: Int16, minRain: Float, maxRain: Float) {
+    class func saveConstraint(gearItem: GearItem, minTemp: Int16, maxTemp: Int16, minWind: Int16, maxWind: Int16, minRain: Float, maxRain: Float) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let entity =  NSEntityDescription.entityForName("GearConstraint", inManagedObjectContext:managedContext)
@@ -31,7 +31,7 @@ class GearConstraint: NSManagedObject {
         }
     }
     
-    func updateConstraint(minTemp: Float, maxTemp: Float, minWind: Int16, maxWind: Int16, minRain: Float, maxRain: Float) {
+    func updateConstraint(minTemp: Int16, maxTemp: Int16, minWind: Int16, maxWind: Int16, minRain: Float, maxRain: Float) {
         
         self.minTemp = minTemp
         self.maxTemp = maxTemp

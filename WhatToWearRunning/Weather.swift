@@ -43,7 +43,7 @@ class Weather {
     func constructHourlyWeather(forecast: Forecast, locality: String) -> [HourlyWeather]? {
         var threeHourlyWeather: [HourlyWeather] = []
 
-        for var i = 0; i < 3; ++i {
+        for i in 0 ..< 3 {
             if let hourly = forecast.hourly, hourlyData = hourly.data?[i*6], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.daily {
                 var hourlyWeather = HourlyWeather()
                 hourlyWeather.locality = locality
