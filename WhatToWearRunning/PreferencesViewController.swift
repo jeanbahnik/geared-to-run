@@ -50,7 +50,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     func setupView() {
         navigationItem.setHidesBackButton(true, animated: false)
 
-        let barButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneButtonPressed")
+        let barButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(PreferencesViewController.doneButtonPressed))
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.leftBarButtonItem = barButtonItem
 
@@ -78,7 +78,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = UIColor.whiteColor()
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
         case .Communication, .Gear:
@@ -105,9 +105,13 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        
+        cell.backgroundColor = Style.navyBlueColor
+        cell.textLabel?.textColor = UIColor.whiteColor()
 
         switch TableSection(rawValue: indexPath.section)! {
         case .Communication:
+            cell.accessoryType = .DisclosureIndicator
             switch CommunicationRows(rawValue: indexPath.row)! {
             case .Rate:
                 cell.textLabel?.text = "Rate us in the App Store"

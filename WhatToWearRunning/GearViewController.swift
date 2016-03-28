@@ -73,10 +73,25 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Count: return 0
         }
     }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.maroonColor
+        
+        switch GearSlot(rawValue: section)! {
+        case .Head: return GearSlot.Head.description
+        case .Torso: return GearSlot.Torso.description
+        case .Legs: return GearSlot.Legs.description
+        case .Feet: return GearSlot.Feet.description
+        case .Accessories: return GearSlot.Accessories.description
+        case .Count: return ""
+        }
+    }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GearCell", forIndexPath: indexPath)
         cell.accessoryType = .DisclosureIndicator
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.backgroundColor = Style.navyBlueColor
 
         switch GearSlot(rawValue: indexPath.section)! {
         case .Head:

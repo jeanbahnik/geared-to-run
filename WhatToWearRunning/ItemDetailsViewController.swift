@@ -7,6 +7,7 @@
 //
 
 import SVProgressHUD
+import QuartzCore
 
 class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -31,6 +32,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var itemNameTextField: UITextField!
     var selectedSlot: NSIndexPath?
     var itemCreatedOrUpdatedBlock: (Void -> Void)?
+    @IBOutlet weak var nameView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func setupViews() {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
+        navigationController?.navigationItem.leftBarButtonItem?.title = "Done" // TODO: Does not work
 
         tableView.backgroundColor = Style.navyBlueColor
         tableView.separatorStyle = .None
@@ -48,6 +50,16 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ItemDetailsViewController.saveButtonTapped))
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
+
+        itemNameTextField.backgroundColor = Style.navyBlueColor
+        itemNameTextField.tintColor = UIColor.whiteColor()
+        itemNameTextField.textColor = UIColor.whiteColor()
+        itemNameTextField.layer.borderColor = UIColor.whiteColor().CGColor
+        itemNameTextField.layer.borderWidth = 1
+        itemNameTextField.layer.masksToBounds = true
+        itemNameTextField.layer.cornerRadius = 8
+
+        nameView.backgroundColor = Style.navyBlueColor
 
         if let item = item {
             selectedSlot = NSIndexPath(forRow: Int(item.slot), inSection: TableSection.Slots.rawValue)
@@ -103,11 +115,33 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor //UIColor.whiteColor()
+
+        switch TableSection(rawValue: section)! {
+        case .Slots:
+            return "Slot"
+        case .Constraints:
+            if item != nil {
+                return "Rules"
+            }
+            else {
+                return ""
+            }
+        case .Actions:
+            return ""
+        case .Sections:
+            return ""
+        }
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch TableSection(rawValue: indexPath.section)! {
         case .Slots:
             let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
             cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.backgroundColor = Style.navyBlueColor
             if let item = item {
                 if Int(item.slot) == indexPath.row { cell.accessoryType = .Checkmark }
             }
@@ -116,12 +150,17 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             if item != nil {
                 let cell = tableView.dequeueReusableCellWithIdentifier("ConstraintCell", forIndexPath: indexPath)
                 cell.textLabel?.text = constraintText(indexPath.row)
+                cell.textLabel?.textColor = UIColor.whiteColor()
+                cell.backgroundColor = Style.navyBlueColor
                 cell.userInteractionEnabled = true
                 cell.accessoryType = .DisclosureIndicator
                 return cell
             }
         case .Actions:
             let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath)
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.backgroundColor = Style.navyBlueColor
+
             switch ActionsRows(rawValue: indexPath.row)! {
             case .AddConstraint:
                 cell.textLabel?.text = "Add a rule"
@@ -138,9 +177,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.section == TableSection.Slots.rawValue {
-    //        tableView.becomeFirstResponder()
 
+        if indexPath.section == TableSection.Slots.rawValue {
             if let selectedSlot = selectedSlot {
                 tableView.cellForRowAtIndexPath(selectedSlot)!.accessoryType = .None
             }
