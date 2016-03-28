@@ -47,7 +47,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         customView.frame = refreshControl.bounds
         customView.updatedAtLabel.text = text
 
-        refreshControl.addTarget(self, action: "fetchData", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeViewController.fetchData), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.addSubview(customView)
     }
     
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private func setupView() {
         navigationItem.setHidesBackButton(true, animated: false)
 
-        let barButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: "segueToPreferences")
+        let barButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: #selector(HomeViewController.segueToPreferences))
         barButtonItem.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = barButtonItem
 

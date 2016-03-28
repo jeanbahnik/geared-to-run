@@ -36,7 +36,7 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
 
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped")
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ConstraintDetailsViewController.saveButtonTapped))
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
 

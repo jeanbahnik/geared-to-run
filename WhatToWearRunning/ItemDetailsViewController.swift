@@ -45,7 +45,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.backgroundColor = Style.navyBlueColor
         tableView.separatorStyle = .None
 
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped")
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(ItemDetailsViewController.saveButtonTapped))
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
 
