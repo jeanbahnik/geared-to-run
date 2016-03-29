@@ -116,7 +116,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor //UIColor.whiteColor()
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.iosBlueColor //UIColor.whiteColor()
 
         switch TableSection(rawValue: section)! {
         case .Slots:
@@ -223,7 +223,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         if let item = item {
             let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath]
             let minWind = gearConstraint.minWind, maxWind = gearConstraint.maxWind, minTemp = gearConstraint.minTemp, maxTemp = gearConstraint.maxTemp, minRain = gearConstraint.minRain, maxRain = gearConstraint.maxRain
-            constraintText = "minWind: \(minWind), maxWind: \(maxWind), minTemp: \(minTemp), maxTemp: \(maxTemp), minRain: \(minRain), maxRain: \(maxRain)"
+            constraintText = "Temperature: \(minTemp) - \(maxTemp), Wind: \(minWind) - \(maxWind), Rain: \(minRain) - \(maxRain)"
         }
         return constraintText
     }

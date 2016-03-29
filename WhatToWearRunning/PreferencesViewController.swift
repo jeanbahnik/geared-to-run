@@ -78,7 +78,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.iosBlueColor
 
         switch TableSection(rawValue: section)! {
         case .Communication, .Gear:

@@ -75,7 +75,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.maroonColor
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.iosBlueColor
         
         switch GearSlot(rawValue: section)! {
         case .Head: return GearSlot.Head.description
