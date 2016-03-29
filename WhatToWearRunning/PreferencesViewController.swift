@@ -78,7 +78,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.iosBlueColor
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
         case .Communication, .Gear:
@@ -108,6 +108,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         
         cell.backgroundColor = Style.navyBlueColor
         cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.tintColor = UIColor.whiteColor()
 
         switch TableSection(rawValue: indexPath.section)! {
         case .Communication:
@@ -122,6 +123,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
 
         case .Gender:
+            cell.tintColor = UIColor.whiteColor()
             switch GenderRows(rawValue: indexPath.row)! {
             case .Female:
                 cell.textLabel?.text = "Female"

@@ -27,6 +27,10 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
+    private enum RuleCellLabels: Int {
+        case Temperature, Rain, Wind
+    }
+
     @IBOutlet weak var tableView: UITableView!
     var item: GearItem?
     @IBOutlet weak var itemNameTextField: UITextField!
@@ -60,6 +64,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         itemNameTextField.layer.cornerRadius = 8
 
         nameView.backgroundColor = Style.navyBlueColor
+
+        tableView.registerNib(UINib(nibName: "RuleSummaryCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "RuleSummaryCell")
 
         if let item = item {
             selectedSlot = NSIndexPath(forRow: Int(item.slot), inSection: TableSection.Slots.rawValue)
@@ -116,7 +122,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.iosBlueColor //UIColor.whiteColor()
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
         case .Slots:
@@ -135,6 +141,14 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == TableSection.Constraints.rawValue {
+            return 63.0
+        } else {
+            return 44.0
+        }
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch TableSection(rawValue: indexPath.section)! {
         case .Slots:
@@ -142,15 +156,18 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
             cell.textLabel?.textColor = UIColor.whiteColor()
             cell.backgroundColor = Style.navyBlueColor
+            cell.tintColor = UIColor.whiteColor()
             if let item = item {
                 if Int(item.slot) == indexPath.row { cell.accessoryType = .Checkmark }
             }
             return cell
         case .Constraints:
             if item != nil {
-                let cell = tableView.dequeueReusableCellWithIdentifier("ConstraintCell", forIndexPath: indexPath)
-                cell.textLabel?.text = constraintText(indexPath.row)
-                cell.textLabel?.textColor = UIColor.whiteColor()
+                let cell = tableView.dequeueReusableCellWithIdentifier("RuleSummaryCell", forIndexPath: indexPath) as! RuleSummaryCell
+
+                cell.temperatureLabel.text = constraintText(indexPath, label: .Temperature)
+                cell.rainLabel.text = constraintText(indexPath, label: .Rain)
+                cell.windLabel.text = constraintText(indexPath, label: .Wind)
                 cell.backgroundColor = Style.navyBlueColor
                 cell.userInteractionEnabled = true
                 cell.accessoryType = .DisclosureIndicator
@@ -218,12 +235,16 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
-    func constraintText(indexPath: Int) -> String {
+    private func constraintText(indexPath: NSIndexPath, label: RuleCellLabels) -> String {
         var constraintText = ""
         if let item = item {
-            let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath]
+            let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath.row]
             let minWind = gearConstraint.minWind, maxWind = gearConstraint.maxWind, minTemp = gearConstraint.minTemp, maxTemp = gearConstraint.maxTemp, minRain = gearConstraint.minRain, maxRain = gearConstraint.maxRain
-            constraintText = "Temperature: \(minTemp) - \(maxTemp), Wind: \(minWind) - \(maxWind), Rain: \(minRain) - \(maxRain)"
+            switch RuleCellLabels(rawValue: label.rawValue)! {
+            case .Temperature: constraintText = "Temperature: \(minTemp) - \(maxTemp) \u{00B0}F"
+            case .Rain: constraintText = "Rain: \(minRain) - \(maxRain)"
+            case .Wind: constraintText = "Wind: \(minWind) mph - \(maxWind) mph"
+            }
         }
         return constraintText
     }

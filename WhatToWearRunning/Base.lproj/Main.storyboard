@@ -444,7 +444,7 @@
                                     <action selector="deleteRuleButtonTapped:" destination="glF-rQ-X8Y" eventType="touchUpInside" id="dQO-by-XLS"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="747" translatesAutoresizingMaskIntoConstraints="NO" id="q8S-oZ-Ve6" customClass="TTRangeSlider">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="747" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8S-oZ-Ve6" customClass="TTRangeSlider">
                                 <rect key="frame" x="20" y="49" width="560" height="97"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -457,11 +457,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="ObZ-il-7Pp" customClass="TTRangeSlider">
+                            <view contentMode="scaleToFill" verticalHuggingPriority="252" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ObZ-il-7Pp" customClass="TTRangeSlider">
                                 <rect key="frame" x="20" y="199" width="560" height="65"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHi-aD-DmW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Rain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHi-aD-DmW">
                                 <rect key="frame" x="283" y="167" width="34" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6ia-Vx-kd0"/>

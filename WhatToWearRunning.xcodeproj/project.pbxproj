@@ -14,6 +14,8 @@
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */; };
 		FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */; };
+		FF48A02A1CAB10900059FBF7 /* RuleSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF48A0291CAB10900059FBF7 /* RuleSummaryCell.xib */; };
+		FF48A02C1CAB140C0059FBF7 /* RuleSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF48A02B1CAB140C0059FBF7 /* RuleSummaryCell.swift */; };
 		FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56B3101C4E8D7700C30BA3 /* Weather.swift */; };
 		FF640B781C7E759200D9E261 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */; };
 		FF762A541C74DA5700B19483 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF762A531C74DA5700B19483 /* Reachability.swift */; };
@@ -74,6 +76,8 @@
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintDetailsViewController.swift; sourceTree = "<group>"; };
 		FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		FF48A0291CAB10900059FBF7 /* RuleSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleSummaryCell.xib; sourceTree = "<group>"; };
+		FF48A02B1CAB140C0059FBF7 /* RuleSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleSummaryCell.swift; sourceTree = "<group>"; };
 		FF56B3101C4E8D7700C30BA3 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF762A531C74DA5700B19483 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 				FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */,
 				FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */,
 				FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */,
+				FF48A0291CAB10900059FBF7 /* RuleSummaryCell.xib */,
+				FF48A02B1CAB140C0059FBF7 /* RuleSummaryCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 			files = (
 				FF8A568A1C906487009E5869 /* QuoteTableViewCell.xib in Resources */,
 				FF7C1E781C7675E4000F3329 /* WeatherCollectionViewCell.xib in Resources */,
+				FF48A02A1CAB10900059FBF7 /* RuleSummaryCell.xib in Resources */,
 				FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */,
 				FF855C3F1C79216800B9D4C8 /* GearListTableViewCell.xib in Resources */,
 				FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */,
@@ -477,6 +484,7 @@
 				FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */,
 				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
 				FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */,
+				FF48A02C1CAB140C0059FBF7 /* RuleSummaryCell.swift in Sources */,
 				FF1E977F1C9771C30085C407 /* GearViewController.swift in Sources */,
 				FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */,
 				FFACB21B1C73977C009627E6 /* Location.swift in Sources */,

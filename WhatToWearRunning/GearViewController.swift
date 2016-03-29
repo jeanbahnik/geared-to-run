@@ -24,7 +24,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed")
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(GearViewController.addButtonPressed))
         self.navigationItem.rightBarButtonItem = barButtonItem
 
         tableView.backgroundColor = Style.navyBlueColor
@@ -75,7 +75,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.iosBlueColor
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
         
         switch GearSlot(rawValue: section)! {
         case .Head: return GearSlot.Head.description
@@ -92,6 +92,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.accessoryType = .DisclosureIndicator
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.backgroundColor = Style.navyBlueColor
+        cell.tintColor = Style.aquaColor
 
         switch GearSlot(rawValue: indexPath.section)! {
         case .Head:
