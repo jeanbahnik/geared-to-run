@@ -41,14 +41,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ItemDetailsViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-
         setupViews()
-    }
-
-    func dismissKeyboard() {
-        view.endEditing(true)
     }
 
     func setupViews() {
@@ -232,6 +225,12 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             case .Rows: break
             }
+        }
+    }
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if itemNameTextField.isFirstResponder() {
+            itemNameTextField.resignFirstResponder()
         }
     }
 
