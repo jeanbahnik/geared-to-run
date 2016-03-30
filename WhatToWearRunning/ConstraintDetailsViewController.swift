@@ -15,11 +15,10 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
     var constraint: GearConstraint?
     var constraintCreatedOrUpdatedBlock: (Void -> Void)?
 
-    @IBOutlet weak var minWindTextField: UITextField!
-    @IBOutlet weak var maxWindTextField: UITextField!
     @IBOutlet weak var deleteRuleButton: UIButton!
     @IBOutlet weak var windRange: TTRangeSlider!
     @IBOutlet weak var rainRange: TTRangeSlider!
+    @IBOutlet weak var temperatureRange: TTRangeSlider!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +32,8 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
     }
 
     func setupViews() {
+        view.backgroundColor = Style.navyBlueColor
+
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
 
@@ -40,26 +41,35 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
         barButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = barButtonItem
 
-        minWindTextField.keyboardType = .DecimalPad
-        maxWindTextField.keyboardType = .DecimalPad
-        
-        windRange.delegate = self
-        windRange.minValue = 0
-        windRange.maxValue = 100
-        windRange.enableStep = true
-        
+        // temperatureRange
+        temperatureRange.backgroundColor = Style.navyBlueColor
+        temperatureRange.tintColor = UIColor.whiteColor()
+        temperatureRange.selectedMinimum = 0.0
+        temperatureRange.selectedMaximum = 100.0
+
+        // rainRange
         let numberFormatter = NSNumberFormatter()
-        numberFormatter.numberStyle = .DecimalStyle
-        
+        numberFormatter.numberStyle = .PercentStyle
         rainRange.delegate = self
+        rainRange.backgroundColor = Style.navyBlueColor
+        rainRange.tintColor = UIColor.whiteColor()
         rainRange.minValue = 0.0
         rainRange.maxValue = 1.0
         rainRange.enableStep = true
         rainRange.step = 0.25
         rainRange.numberFormatterOverride = numberFormatter
 
+        // windRange
+        windRange.delegate = self
+        windRange.tintColor = UIColor.whiteColor()
+        windRange.minValue = 0
+        windRange.maxValue = 100
+        windRange.enableStep = true
+        windRange.backgroundColor = Style.navyBlueColor
+
         if let constraint = constraint, item = constraint.item {
             title = item.name
+            deleteRuleButton.tintColor = Style.silverColor
         } else {
             title = "New rule"
             deleteRuleButton.enabled = false
@@ -69,31 +79,27 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
 
     func fillPlaceholders() {
         if let constraint = constraint {
+            temperatureRange.selectedMinimum = Float(constraint.minWind)
+            temperatureRange.selectedMaximum = Float(constraint.maxWind)
             windRange.selectedMinimum = Float(constraint.minTemp)
             windRange.selectedMaximum = Float(constraint.maxTemp)
             rainRange.selectedMinimum = constraint.minRain
             rainRange.selectedMaximum = constraint.maxRain
-            minWindTextField.text = "\(constraint.minWind)"
-            maxWindTextField.text = "\(constraint.maxWind)"
         }
     }
 
     func saveButtonTapped() {
-        if let minWind = minWindTextField.text, maxWind = maxWindTextField.text where (minWind > "" && maxWind > "") {
-            if let constraint = constraint {
-                constraint.updateConstraint(Int16(windRange.selectedMinimum), maxTemp: Int16(windRange.selectedMaximum), minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: rainRange.selectedMinimum, maxRain: rainRange.selectedMaximum)
+        if let constraint = constraint {
+            constraint.updateConstraint(Int16(temperatureRange.selectedMinimum), maxTemp: Int16(temperatureRange.selectedMaximum), minWind: Int16(windRange.selectedMinimum), maxWind: Int16(windRange.selectedMaximum), minRain: rainRange.selectedMinimum, maxRain: rainRange.selectedMaximum)
+            self.navigationController?.popViewControllerAnimated(true)
+            if let constraintCreatedOrUpdatedBlock = constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
+            
+        } else if let item = item {
+            GearConstraint.saveConstraint(item, minTemp: Int16(temperatureRange.selectedMinimum), maxTemp: Int16(temperatureRange.selectedMaximum), minWind: Int16(windRange.selectedMinimum), maxWind: Int16(windRange.selectedMaximum), minRain: rainRange.selectedMinimum, maxRain: rainRange.selectedMaximum)
                 self.navigationController?.popViewControllerAnimated(true)
                 if let constraintCreatedOrUpdatedBlock = constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
-                
-            } else if let item = item {
-                GearConstraint.saveConstraint(item, minTemp: Int16(windRange.selectedMinimum), maxTemp: Int16(windRange.selectedMaximum), minWind: Int16(minWind)!, maxWind: Int16(maxWind)!, minRain: rainRange.selectedMinimum, maxRain: rainRange.selectedMaximum)
-                    self.navigationController?.popViewControllerAnimated(true)
-                    if let constraintCreatedOrUpdatedBlock = constraintCreatedOrUpdatedBlock { constraintCreatedOrUpdatedBlock() }
-            } else {
-                SVProgressHUD.showErrorWithStatus("Uh oh, There was a problem")
-            }
         } else {
-            SVProgressHUD.showErrorWithStatus("No slot can be blank")
+            SVProgressHUD.showErrorWithStatus("Uh oh, There was a problem")
         }
     }
 
