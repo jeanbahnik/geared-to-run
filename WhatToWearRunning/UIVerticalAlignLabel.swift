@@ -34,8 +34,6 @@ class UIVerticalAlignLabel: UILabel {
             return CGRectMake(bounds.origin.x, bounds.origin.y + (bounds.size.height - rect.size.height) / 2, rect.size.width, rect.size.height)
         case .VerticalAlignmentBottom:
             return CGRectMake(bounds.origin.x, bounds.origin.y + (bounds.size.height - rect.size.height), rect.size.width, rect.size.height)
-        default:
-            return bounds
         }
     }
     

@@ -108,8 +108,6 @@ class Weather {
             return "partly-cloudy-day"
         case .PartlyCloudyNight:
             return "partly-cloudy-night"
-        default:
-            return ""
         }
     }
 
