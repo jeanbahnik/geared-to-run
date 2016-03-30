@@ -48,6 +48,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationItem.leftBarButtonItem?.title = "Done" // TODO: Does not work
 
+        view.backgroundColor = Style.navyBlueColor
         tableView.backgroundColor = Style.navyBlueColor
         tableView.separatorStyle = .None
 
@@ -135,7 +136,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 return ""
             }
         case .Actions:
-            return ""
+            return "Actions"
         case .Sections:
             return ""
         }
