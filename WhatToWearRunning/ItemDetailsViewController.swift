@@ -246,7 +246,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath.row]
             let minWind = gearConstraint.minWind, maxWind = gearConstraint.maxWind, minTemp = gearConstraint.minTemp, maxTemp = gearConstraint.maxTemp, minRain = gearConstraint.minRain, maxRain = gearConstraint.maxRain
             switch RuleCellLabels(rawValue: label.rawValue)! {
-            case .Temperature: constraintText = "Temperature: \(minTemp) - \(maxTemp) \u{00B0}F"
+            case .Temperature: constraintText = "Temperature: \(minTemp) - \(maxTemp)\u{00B0} F"
             case .Rain: constraintText = "Rain: \(minRain) - \(maxRain)"
             case .Wind: constraintText = "Wind: \(minWind) mph - \(maxWind) mph"
             }
