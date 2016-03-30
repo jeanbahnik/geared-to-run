@@ -117,7 +117,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rate:
                 cell.textLabel?.text = "Rate us in the App Store"
             case .SendFeedback:
-                cell.textLabel?.text = "Send us feedback/Report an issue"
+                cell.textLabel?.text = "Send us feedback/report an issue"
             case .Rows: break
             }
 

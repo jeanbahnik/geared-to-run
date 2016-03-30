@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RuleSummaryCell" customModule="WhatToWearRunning" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="73"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pDl-n9-dak">
@@ -25,12 +25,12 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqK-4e-tKL">
-                                    <rect key="frame" x="24" y="0.0" width="88.5" height="21"/>
+                                    <rect key="frame" x="24" y="0.0" width="89" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="6K7-k7-h7p"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -52,19 +52,19 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBS-tX-weg">
-                                    <rect key="frame" x="24" y="0.0" width="30.5" height="21"/>
+                                    <rect key="frame" x="24" y="0.0" width="31" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="MwM-T0-dHw"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="IBS-tX-weg" firstAttribute="top" secondItem="2Xd-Ob-D5S" secondAttribute="top" id="7yR-gw-rgX"/>
-                                <constraint firstItem="sCO-KR-0PE" firstAttribute="leading" secondItem="2Xd-Ob-D5S" secondAttribute="leading" id="FhM-Av-Wgj"/>
-                                <constraint firstItem="sCO-KR-0PE" firstAttribute="top" secondItem="2Xd-Ob-D5S" secondAttribute="top" id="JH8-XV-hl2"/>
+                                <constraint firstItem="sCO-KR-0PE" firstAttribute="leading" secondItem="2Xd-Ob-D5S" secondAttribute="leading" id="HNK-ta-gha"/>
+                                <constraint firstItem="sCO-KR-0PE" firstAttribute="top" secondItem="IBS-tX-weg" secondAttribute="top" id="P2D-Cf-FWh"/>
+                                <constraint firstItem="sCO-KR-0PE" firstAttribute="top" secondItem="2Xd-Ob-D5S" secondAttribute="top" id="V2K-EX-9hq"/>
                                 <constraint firstItem="IBS-tX-weg" firstAttribute="leading" secondItem="sCO-KR-0PE" secondAttribute="trailing" constant="3" id="pqK-OX-KzG"/>
                             </constraints>
                         </view>
@@ -79,12 +79,12 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aer-wc-qIh">
-                                    <rect key="frame" x="24" y="0.0" width="37.5" height="21"/>
+                                    <rect key="frame" x="24" y="0.0" width="38" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="Z1n-g6-eiJ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -103,7 +103,7 @@
                 <constraint firstItem="pDl-n9-dak" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MC3-YY-ECC"/>
                 <constraint firstAttribute="trailing" secondItem="pDl-n9-dak" secondAttribute="trailing" id="MK7-yy-R2M"/>
                 <constraint firstItem="pDl-n9-dak" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="NFm-0N-uYQ"/>
-                <constraint firstAttribute="bottom" secondItem="pDl-n9-dak" secondAttribute="bottom" id="o7Z-3p-Fby"/>
+                <constraint firstAttribute="bottom" secondItem="pDl-n9-dak" secondAttribute="bottom" constant="10" id="o7Z-3p-Fby"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
