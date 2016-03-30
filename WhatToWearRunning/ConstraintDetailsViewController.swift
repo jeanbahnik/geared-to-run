@@ -42,30 +42,46 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
         navigationItem.rightBarButtonItem = barButtonItem
 
         // temperatureRange
+        let temperatureNumberFormatter = NSNumberFormatter()
+        temperatureNumberFormatter.positiveFormat = "#\u{00B0} F"
+        temperatureRange.delegate = self
         temperatureRange.backgroundColor = Style.navyBlueColor
         temperatureRange.tintColor = UIColor.whiteColor()
+        temperatureRange.minValue = 0
+        temperatureRange.maxValue = 100
         temperatureRange.selectedMinimum = 0.0
         temperatureRange.selectedMaximum = 100.0
+        temperatureRange.enableStep = true
+        temperatureRange.step = 5
+        temperatureRange.numberFormatterOverride = temperatureNumberFormatter
 
         // rainRange
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.numberStyle = .PercentStyle
+        let rainNumberFormatter = NSNumberFormatter()
+        rainNumberFormatter.numberStyle = .PercentStyle
         rainRange.delegate = self
         rainRange.backgroundColor = Style.navyBlueColor
         rainRange.tintColor = UIColor.whiteColor()
         rainRange.minValue = 0.0
         rainRange.maxValue = 1.0
+        rainRange.selectedMinimum = 0.0
+        rainRange.selectedMaximum = 1.0
         rainRange.enableStep = true
         rainRange.step = 0.25
-        rainRange.numberFormatterOverride = numberFormatter
+        rainRange.numberFormatterOverride = rainNumberFormatter
 
         // windRange
+        let windNumberFormatter = NSNumberFormatter()
+        windNumberFormatter.positiveFormat = "# mph"
         windRange.delegate = self
+        windRange.backgroundColor = Style.navyBlueColor
         windRange.tintColor = UIColor.whiteColor()
         windRange.minValue = 0
-        windRange.maxValue = 100
+        windRange.maxValue = 50
+        windRange.selectedMinimum = 0
+        windRange.selectedMaximum = 50
         windRange.enableStep = true
-        windRange.backgroundColor = Style.navyBlueColor
+        windRange.step = 5
+        windRange.numberFormatterOverride = windNumberFormatter
 
         if let constraint = constraint, item = constraint.item {
             title = item.name

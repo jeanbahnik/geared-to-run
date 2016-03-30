@@ -32,16 +32,23 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     @IBOutlet weak var tableView: UITableView!
-    var item: GearItem?
     @IBOutlet weak var itemNameTextField: UITextField!
+    @IBOutlet weak var nameView: UIView!
+    var item: GearItem?
     var selectedSlot: NSIndexPath?
     var itemCreatedOrUpdatedBlock: (Void -> Void)?
-    @IBOutlet weak var nameView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ItemDetailsViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
         setupViews()
+    }
+
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     func setupViews() {
