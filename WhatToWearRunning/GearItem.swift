@@ -21,6 +21,17 @@ enum GearSlot: Int {
         case .Count: return ""
         }
     }
+
+    var detailedDescription: String {
+        switch (self) {
+        case .Head: return "e.g., cap, hat\u{2026}"
+        case .Torso: return "e.g., t-shirt, sweater\u{2026}"
+        case .Legs: return "e.g., shorts, pants\u{2026}"
+        case .Feet: return "e.g., socks, shoes\u{2026}"
+        case .Accessories: return "e.g., watch, sunglasses\u{2026}"
+        case .Count: return ""
+        }
+    }
 }
 
 class GearItem: NSManagedObject {

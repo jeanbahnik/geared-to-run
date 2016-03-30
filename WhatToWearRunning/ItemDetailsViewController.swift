@@ -154,10 +154,14 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         switch TableSection(rawValue: indexPath.section)! {
         case .Slots:
             let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
-            cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
-            cell.textLabel?.textColor = UIColor.whiteColor()
             cell.backgroundColor = Style.navyBlueColor
             cell.tintColor = UIColor.whiteColor()
+
+            cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.detailTextLabel?.text = GearSlot(rawValue: indexPath.row)?.detailedDescription
+            cell.detailTextLabel?.textColor = Style.silverColor
+
             if let item = item {
                 if Int(item.slot) == indexPath.row { cell.accessoryType = .Checkmark }
             }
