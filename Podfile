@@ -3,9 +3,6 @@ use_frameworks!
 
 platform :ios, '8.0'
 pod 'ForecastIO', '~> 1.3'
-pod 'Fabric'
-pod 'Crashlytics'
 pod 'Instabug'
-pod "HockeySDK"
 pod 'SVProgressHUD', '~> 1.0'
 pod "TTRangeSlider"
