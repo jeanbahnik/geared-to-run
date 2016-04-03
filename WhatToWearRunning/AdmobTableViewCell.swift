@@ -1,19 +1,21 @@
 //
-//  QuoteTableViewCell.swift
+//  AdmobTableViewCell.swift
 //  WhatToWearRunning
 //
-//  Created by Jean Bahnik on 3/9/16.
+//  Created by Jean Bahnik on 4/3/16.
 //  Copyright © 2016 Jean Bahnik. All rights reserved.
 //
 
-class QuoteTableViewCell: UITableViewCell {
+import UIKit
+import GoogleMobileAds
 
-    @IBOutlet weak var quoteLabel: UILabel!
+class AdmobTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var bannerView: GADBannerView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        userInteractionEnabled = false
         backgroundColor = UIColor.clearColor()
     }
 }

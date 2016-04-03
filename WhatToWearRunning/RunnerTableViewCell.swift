@@ -10,18 +10,20 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var runnerImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var outfit: [GearItem]?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         tableView.dataSource = self
         tableView.delegate = self
-        
-        self.backgroundColor = UIColor.clearColor()
+
+        userInteractionEnabled = false
+
+        backgroundColor = UIColor.clearColor()
         tableView.backgroundColor = UIColor.clearColor()
-        
+
         tableView.registerNib(UINib(nibName: "GearListTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "GearListTableViewCell")
     }
     
@@ -64,7 +66,7 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
 
         return cell
     }
-    
+
     func gearListForSlot(slot: GearSlot) -> String {
         var text = ""
         var itemCount = 0
@@ -84,7 +86,8 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
         if itemCount == 0 {
             text = " -"
         } else {
-            text = text.substringWithRange(Range<String.Index>(start: text.startIndex.advancedBy(0), end: text.endIndex.advancedBy(-2)))
+            let range = text.startIndex.advancedBy(0) ..< text.endIndex.advancedBy(-2)
+            text = text.substringWithRange(range)
         }
 
         return text

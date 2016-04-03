@@ -16,6 +16,8 @@ class WeatherTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         collectionView.registerNib(UINib(nibName: "WeatherCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "WeatherCollectionViewCell")
+
+        backgroundColor = UIColor.clearColor()
     }
 }
 

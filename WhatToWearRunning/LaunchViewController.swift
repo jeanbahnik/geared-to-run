@@ -18,12 +18,6 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBarHidden = true
-        view.backgroundColor = Style.navyBlueColor
-
-        SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
-        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
-        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: view.frame.height / 4))
         
         LocationManager.sharedInstance.requestPermission() {
             [weak self] status in
@@ -38,6 +32,16 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
                 self?.fetchData(location)
             }
         }
+
+        setupViews()
+    }
+
+    func setupViews() {
+        navigationController?.navigationBarHidden = true
+        view.backgroundColor = Style.navyBlueColor
+        SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
+        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
+        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: view.frame.height / 4))
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

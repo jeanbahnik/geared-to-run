@@ -13,4 +13,9 @@ class Style {
     static let aquaColor = UIColor(red: 127.0/255.0, green: 219.0/255.0, blue: 255.0/255.0, alpha: 1)
     static let silverColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1)
 //    static let iosBlueColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+
+    // FIXME: Delete when 4s support drops
+    static func isHeightLessThan960() -> Bool {
+        return UIScreen.mainScreen().nativeBounds.height <= 960
+    }
 }

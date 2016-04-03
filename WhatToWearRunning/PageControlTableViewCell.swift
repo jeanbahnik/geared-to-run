@@ -15,6 +15,7 @@ class PageControlTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clearColor()
+        userInteractionEnabled = false
     }
 }

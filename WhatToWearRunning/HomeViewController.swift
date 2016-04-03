@@ -7,11 +7,12 @@
 //
 
 import SVProgressHUD
+import GoogleMobileAds
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private enum TableSection: Int {
-        case Weather, PageControl, Runner, Quote, Sections
+        case Weather, PageControl, Runner, Quote, BannerAd, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -37,7 +38,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         loadCustomRefreshContents("")
         setupView()
     }
-    
+
     func loadCustomRefreshContents(text: String) {
         if refreshControl.subviews.count > 0 {
             refreshControl.subviews.first?.removeFromSuperview()
@@ -98,6 +99,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
         tableView.registerNib(UINib(nibName: "QuoteTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "QuoteTableViewCell")
+        tableView.registerNib(UINib(nibName: "AdmobTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "AdmobTableViewCell")
 
         // Can call first on this one since locality is the same for all HourlyWeather objects
         if let weather = weather?.first, locality = weather.locality {
@@ -113,25 +115,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .PageControl, .Quote, .Runner:
-            return 1
-        case .Sections:
-            return 0
+        case .Weather, .PageControl, .Quote, .BannerAd, .Runner: return 1
+        case .Sections: return 0
         }
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch TableSection(rawValue: indexPath.section)! {
-        case .Weather:
-            return 115.0
-        case .PageControl:
-            return 37.0
-        case .Runner:
-            return 322.0
-        case .Quote:
-            return 60.0
-        case .Sections:
-            return 0
+        case .Weather: return 115.0
+        case .PageControl: return 37.0
+        case .Runner: return 322.0
+        case .Quote: return 60.0
+        case .BannerAd: return 280.0
+        case .Sections: return 0
         }
     }
 
@@ -139,7 +135,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather:
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
-            cell.backgroundColor = UIColor.clearColor()
             return cell
 
         case .PageControl:
@@ -147,12 +142,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             cell.pageControl.numberOfPages = kHourlyWeatherCount
             cell.pageControl.currentPage = collectionViewItem
-            cell.userInteractionEnabled = false
             return cell
 
         case .Runner:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
-            cell.userInteractionEnabled = false
+
             if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
                 cell.runnerImageView.image = UIImage(named: "runner-w")
             } else {
@@ -164,15 +158,43 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         case .Quote:
             let cell = tableView.dequeueReusableCellWithIdentifier("QuoteTableViewCell", forIndexPath: indexPath) as! QuoteTableViewCell
-            cell.userInteractionEnabled = false
-            cell.backgroundColor = UIColor.clearColor()
 
             cell.quoteLabel.attributedText = Quote.sharedInstance.randomQuote()
 
             return cell
 
+        case .BannerAd:
+            let cell = tableView.dequeueReusableCellWithIdentifier("AdmobTableViewCell", forIndexPath: indexPath) as! AdmobTableViewCell
+
+            cell.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            cell.bannerView.rootViewController = self
+            cell.bannerView.loadRequest(setupBannerAdRequest())
+
+            return cell
+
         default: return UITableViewCell()
         }
+    }
+
+    func setupBannerAdRequest() -> GADRequest {
+        let request = GADRequest()
+        if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
+            request.gender = .Male
+        } else {
+            request.gender = .Female
+        }
+        LocationManager.sharedInstance.getLocation()
+        LocationManager.sharedInstance.locationUpdatedBlock = { location in
+            LocationManager.sharedInstance.stopUpdatingLocation()
+            if let currentLocation = location {
+                request.setLocationWithLatitude(CGFloat(currentLocation.coordinate.latitude),
+                                                longitude: CGFloat(currentLocation.coordinate.longitude),
+                                                accuracy: CGFloat(currentLocation.horizontalAccuracy))
+            }
+        }
+        request.testDevices = [kGADSimulatorID]
+
+        return request
     }
 
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -238,8 +260,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func fetchData() {
         if handleRefresh() == true {
             LocationManager.sharedInstance.getLocation()
-            LocationManager.sharedInstance.locationUpdatedBlock = {
-                [weak self] location in
+            LocationManager.sharedInstance.locationUpdatedBlock = { [weak self] location in
                 if let location = location {
                     if Reachability.isConnectedToNetwork() == false {
     //                    returns to previous screen and display an error message
