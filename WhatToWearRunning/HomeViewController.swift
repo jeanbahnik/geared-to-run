@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     tableView.reloadSections(indexSet, withRowAnimation: .None)
                 }
             } else if Float(scrollView.bounds.width) * Float(collectionViewItem) < Float(scrollView.contentOffset.x) {
-                if collectionViewItem < 2 {
+                if collectionViewItem < kHourlyWeatherCount - 1 {
                     collectionViewItem += 1
                     tableView.reloadSections(indexSet, withRowAnimation: .None)
                 }
@@ -145,7 +145,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .PageControl:
             let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
 
-            cell.pageControl.numberOfPages = 3
+            cell.pageControl.numberOfPages = kHourlyWeatherCount
             cell.pageControl.currentPage = collectionViewItem
             cell.userInteractionEnabled = false
             return cell
@@ -281,7 +281,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return kHourlyWeatherCount
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

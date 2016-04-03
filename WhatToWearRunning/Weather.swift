@@ -23,6 +23,8 @@ struct HourlyWeather {
     var isDaytime: Bool?
 }
 
+let kHourlyWeatherCount = 10
+
 class Weather {
 
     let forecastIOClient = APIClient(apiKey: forecastIOClientApiKey)
@@ -43,7 +45,7 @@ class Weather {
     func constructHourlyWeather(forecast: Forecast, locality: String) -> [HourlyWeather]? {
         var threeHourlyWeather: [HourlyWeather] = []
 
-        for i in 0 ..< 3 {
+        for i in 0 ..< kHourlyWeatherCount {
             if let hourly = forecast.hourly, hourlyData = hourly.data?[i], summary = hourlyData.summary, summaryIcon = hourlyData.icon, temperature = hourlyData.temperature, apparentTemperature = hourlyData.apparentTemperature, windSpeed = hourlyData.windSpeed, windBearing = hourlyData.windBearing, precipitationProbability = hourlyData.precipProbability, daily = forecast.daily {
                 var hourlyWeather = HourlyWeather()
                 hourlyWeather.locality = locality
