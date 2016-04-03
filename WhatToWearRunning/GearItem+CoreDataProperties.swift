@@ -14,7 +14,7 @@ import CoreData
 
 extension GearItem {
 
-    @NSManaged var name: String
+    @NSManaged var name: String?
     @NSManaged var slot: Int16
     @NSManaged var notes: String?
     @NSManaged var image: String?

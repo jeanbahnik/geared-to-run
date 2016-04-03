@@ -14,16 +14,15 @@ import CoreData
 
 extension GearConstraint {
 
-    @NSManaged var maxPrecipProbability: NSNumber?
-    @NSManaged var maxTemperature: NSNumber?
-    @NSManaged var maxWindSpeed: NSNumber?
-    @NSManaged var minPrecipProbability: NSNumber?
-    @NSManaged var minTemperature: NSNumber?
-    @NSManaged var minWindSpeed: NSNumber?
+    @NSManaged var maxPrecipProbability: Float
+    @NSManaged var maxTemperature: Int16
+    @NSManaged var maxWindSpeed: Int16
+    @NSManaged var minPrecipProbability: Float
+    @NSManaged var minTemperature: Int16
+    @NSManaged var minWindSpeed: Int16
     @NSManaged var minPrecipIntensity: NSNumber?
     @NSManaged var maxPrecipIntensity: NSNumber?
     @NSManaged var minCloudCover: NSNumber?
     @NSManaged var maxCloudCover: NSNumber?
     @NSManaged var item: GearItem?
-
 }

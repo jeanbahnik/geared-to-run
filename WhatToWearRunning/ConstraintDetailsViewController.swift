@@ -95,12 +95,12 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
 
     func fillPlaceholders() {
         if let constraint = constraint {
-            temperatureRange.selectedMinimum = Float(constraint.minWind)
-            temperatureRange.selectedMaximum = Float(constraint.maxWind)
-            windRange.selectedMinimum = Float(constraint.minTemp)
-            windRange.selectedMaximum = Float(constraint.maxTemp)
-            rainRange.selectedMinimum = constraint.minRain
-            rainRange.selectedMaximum = constraint.maxRain
+            temperatureRange.selectedMinimum = Float(constraint.minWindSpeed)
+            temperatureRange.selectedMaximum = Float(constraint.maxWindSpeed)
+            windRange.selectedMinimum = Float(constraint.minWindSpeed)
+            windRange.selectedMaximum = Float(constraint.maxWindSpeed)
+            rainRange.selectedMinimum = constraint.minPrecipProbability
+            rainRange.selectedMaximum = constraint.maxPrecipProbability
         }
     }
 

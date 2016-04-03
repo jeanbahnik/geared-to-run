@@ -30,7 +30,7 @@ class Recommendation {
     func getGear(gear: GearConstraint, currentForecast: HourlyWeather) -> Bool {
         if let temperature = currentForecast.temperature, windSpeed = currentForecast.windSpeed, precipitationProbability = currentForecast.precipitationProbability {
             // TODO: that +1 and that +0.001 are gross, and just a hack, because you can't have a range where end is less than (or equal) to start.
-            if (Int(gear.minTemp) ..< Int(gear.maxTemp)+1 ~= Int(temperature)) && (Int(windSpeed) >= Int(gear.minWind)) && (gear.minRain ..< gear.maxRain+0.001 ~= precipitationProbability) { return true }
+            if (Int(gear.minTemperature) ..< Int(gear.maxTemperature)+1 ~= Int(temperature)) && (Int(windSpeed) >= Int(gear.minWindSpeed)) && (gear.minPrecipProbability ..< gear.maxPrecipProbability+0.001 ~= precipitationProbability) { return true }
         }
         return false
     }
