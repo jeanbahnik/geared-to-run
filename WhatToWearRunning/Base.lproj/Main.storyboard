@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -525,11 +526,31 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aLI-Do-cHD">
+                                <rect key="frame" x="150" y="114" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aLI-Do-cHD" secondAttribute="height" multiplier="1:1" id="3pv-Ga-2XH"/>
+                                    <constraint firstAttribute="width" constant="300" id="wEy-3y-yMt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geared to Run" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiK-nl-bN2">
+                                <rect key="frame" x="216.5" y="414" width="167" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bin-HH-cmx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="aLI-Do-cHD" firstAttribute="centerX" secondItem="1pL-Je-KHB" secondAttribute="centerX" id="BDC-6a-Nnb"/>
+                            <constraint firstItem="aiK-nl-bN2" firstAttribute="centerX" secondItem="1pL-Je-KHB" secondAttribute="centerX" id="UFQ-Bo-fYF"/>
                             <constraint firstItem="J8i-mf-pUU" firstAttribute="leading" secondItem="1pL-Je-KHB" secondAttribute="leading" constant="20" id="YhI-xY-851"/>
                             <constraint firstAttribute="trailing" secondItem="J8i-mf-pUU" secondAttribute="trailing" constant="20" id="boP-g9-vtC"/>
+                            <constraint firstItem="aiK-nl-bN2" firstAttribute="top" secondItem="aLI-Do-cHD" secondAttribute="bottom" id="exB-PY-rxY"/>
+                            <constraint firstItem="aLI-Do-cHD" firstAttribute="top" secondItem="SyI-bH-2Ls" secondAttribute="bottom" constant="50" id="ha0-YI-cEF"/>
                             <constraint firstItem="J8i-mf-pUU" firstAttribute="centerY" secondItem="1pL-Je-KHB" secondAttribute="centerY" multiplier="1.5" id="jzq-9F-5yB"/>
                             <constraint firstItem="J8i-mf-pUU" firstAttribute="centerX" secondItem="1pL-Je-KHB" secondAttribute="centerX" id="oea-YU-QYH"/>
                         </constraints>
@@ -564,6 +585,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LaunchScreenIcon" width="900" height="900"/>
         <image name="dotted-line" width="511" height="1"/>
     </resources>
 </document>
