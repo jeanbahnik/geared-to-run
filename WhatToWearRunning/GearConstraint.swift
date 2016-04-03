@@ -16,12 +16,12 @@ class GearConstraint: NSManagedObject {
         let entity =  NSEntityDescription.entityForName("GearConstraint", inManagedObjectContext:managedContext)
         let gearConstraint = GearConstraint(entity: entity!, insertIntoManagedObjectContext: managedContext)
 
-        gearConstraint.minTemp = minTemp
-        gearConstraint.maxTemp = maxTemp
-        gearConstraint.minWind = minWind
-        gearConstraint.maxWind = maxWind
-        gearConstraint.minRain = minRain
-        gearConstraint.maxRain = maxRain
+        gearConstraint.minTemperature = minTemp
+        gearConstraint.maxTemperature = maxTemp
+        gearConstraint.minWindSpeed = minWind
+        gearConstraint.maxWindSpeed = maxWind
+        gearConstraint.minPrecipProbability = minRain
+        gearConstraint.maxPrecipProbability = maxRain
         gearConstraint.item = gearItem
 
         do {
@@ -33,12 +33,12 @@ class GearConstraint: NSManagedObject {
     
     func updateConstraint(minTemp: Int16, maxTemp: Int16, minWind: Int16, maxWind: Int16, minRain: Float, maxRain: Float) {
         
-        self.minTemp = minTemp
-        self.maxTemp = maxTemp
-        self.minWind = minWind
-        self.maxWind = maxWind
-        self.minRain = minRain
-        self.maxRain = maxRain
+        self.minTemperature = minTemp
+        self.maxTemperature = maxTemp
+        self.minWindSpeed = minWind
+        self.maxWindSpeed = maxWind
+        self.minPrecipProbability = minRain
+        self.maxPrecipProbability = maxRain
         
         do {
             try self.managedObjectContext?.save()

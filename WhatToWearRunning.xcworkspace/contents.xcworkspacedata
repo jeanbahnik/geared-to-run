@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:WhatToWearRunning/GearConstraint+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:WhatToWearRunning/GearItem+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:WhatToWearRunning.xcodeproj">
    </FileRef>
    <FileRef

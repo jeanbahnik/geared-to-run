@@ -1,25 +1,29 @@
 //
 //  GearConstraint+CoreDataProperties.swift
-//  WhatToWearRunning
+//  
 //
-//  Created by Jean Bahnik on 3/13/16.
-//  Copyright © 2016 Jean Bahnik. All rights reserved.
+//  Created by Jean Bahnik on 4/3/16.
+//
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
 //
 
-//import Foundation
-//import CoreData
+import Foundation
+import CoreData
 
 extension GearConstraint {
 
-    @NSManaged var maxRain: Float
-    @NSManaged var maxTemp: Int16
-    @NSManaged var maxWind: Int16
-    @NSManaged var minRain: Float
-    @NSManaged var minTemp: Int16
-    @NSManaged var minWind: Int16
+    @NSManaged var maxPrecipProbability: NSNumber?
+    @NSManaged var maxTemperature: NSNumber?
+    @NSManaged var maxWindSpeed: NSNumber?
+    @NSManaged var minPrecipProbability: NSNumber?
+    @NSManaged var minTemperature: NSNumber?
+    @NSManaged var minWindSpeed: NSNumber?
+    @NSManaged var minPrecipIntensity: NSNumber?
+    @NSManaged var maxPrecipIntensity: NSNumber?
+    @NSManaged var minCloudCover: NSNumber?
+    @NSManaged var maxCloudCover: NSNumber?
     @NSManaged var item: GearItem?
 
 }
