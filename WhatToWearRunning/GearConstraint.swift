@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import Ensembles
 
 class GearConstraint: NSManagedObject {
 

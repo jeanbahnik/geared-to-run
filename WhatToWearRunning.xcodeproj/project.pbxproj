@@ -38,6 +38,7 @@
 		FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */; };
 		FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */; };
 		FFD619451C7FBA8D0035119B /* PageControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */; };
+		FFD63F0B1CB1CBB500FD685B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD63F0A1CB1CBB500FD685B /* StoreKit.framework */; };
 		FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */; };
 		FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED11C4834D5006EF28A /* Main.storyboard */; };
 		FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED41C4834D5006EF28A /* Assets.xcassets */; };
@@ -103,6 +104,8 @@
 		FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlTableViewCell.swift; sourceTree = "<group>"; };
 		FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageControlTableViewCell.xib; sourceTree = "<group>"; };
+		FFD63F091CB1CA2600FD685B /* WhatToWearRunning.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WhatToWearRunning.entitlements; sourceTree = "<group>"; };
+		FFD63F0A1CB1CBB500FD685B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FFE02ECA1C4834D5006EF28A /* WhatToWearRunning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWearRunning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE02ED21C4834D5006EF28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */,
+				FFD63F0B1CB1CBB500FD685B /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +164,7 @@
 		CDADC74DCF672649202F165D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFD63F0A1CB1CBB500FD685B /* StoreKit.framework */,
 				719878DD5F3A324EAFBEF830 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -190,6 +195,7 @@
 		FFE02ECC1C4834D5006EF28A /* WhatToWearRunning */ = {
 			isa = PBXGroup;
 			children = (
+				FFD63F091CB1CA2600FD685B /* WhatToWearRunning.entitlements */,
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
 				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
@@ -350,6 +356,14 @@
 					FFE02EC91C4834D5006EF28A = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = BHAVC2B76G;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					FFE02EDD1C4834D5006EF28A = {
 						CreatedOnToolsVersion = 7.2;
@@ -650,6 +664,7 @@
 			baseConfigurationReference = 7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WhatToWearRunning/WhatToWearRunning.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -667,6 +682,7 @@
 			baseConfigurationReference = 4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WhatToWearRunning/WhatToWearRunning.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
 				DEFINES_MODULE = NO;
@@ -674,7 +690,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65d97465-fbcd-4060-bdef-569c9b962769";
+				PROVISIONING_PROFILE = "6e1042c6-0e26-4c31-bec4-836bdd56b2b7";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhatToWearRunning/Bridging-Header.h";
 			};
 			name = Release;
