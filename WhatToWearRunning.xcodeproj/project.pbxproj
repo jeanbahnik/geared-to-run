@@ -32,6 +32,7 @@
 		FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */; };
 		FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA91C950E54007BF174 /* GearItem.swift */; };
 		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
+		FFACB8521CB2F689002C7946 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFACB8511CB2F689002C7946 /* CloudKit.framework */; };
 		FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0921C1C681EA800308EDB /* Recommendation.swift */; };
 		FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */; };
 		FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */; };
@@ -98,6 +99,7 @@
 		FFA61DA71C94AD33007BF174 /* WhatToWearRunning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToWearRunning.xcdatamodel; sourceTree = "<group>"; };
 		FFA61DA91C950E54007BF174 /* GearItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearItem.swift; sourceTree = "<group>"; };
 		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FFACB8511CB2F689002C7946 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FFB0921C1C681EA800308EDB /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVerticalAlignLabel.swift; sourceTree = "<group>"; };
 		FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFACB8521CB2F689002C7946 /* CloudKit.framework in Frameworks */,
 				7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */,
 				FFD63F0B1CB1CBB500FD685B /* StoreKit.framework in Frameworks */,
 			);
@@ -164,6 +167,7 @@
 		CDADC74DCF672649202F165D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFACB8511CB2F689002C7946 /* CloudKit.framework */,
 				FFD63F0A1CB1CBB500FD685B /* StoreKit.framework */,
 				719878DD5F3A324EAFBEF830 /* Pods.framework */,
 			);
@@ -359,6 +363,9 @@
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 1;
@@ -665,7 +672,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WhatToWearRunning/WhatToWearRunning.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jean Bahnik (VAWLRE883E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jean Bahnik (VAWLRE883E)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WhatToWearRunning/Info.plist;
@@ -690,7 +698,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6e1042c6-0e26-4c31-bec4-836bdd56b2b7";
+				PROVISIONING_PROFILE = "f29a3610-005b-4b6d-ac24-2279001bdf21";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhatToWearRunning/Bridging-Header.h";
 			};
 			name = Release;

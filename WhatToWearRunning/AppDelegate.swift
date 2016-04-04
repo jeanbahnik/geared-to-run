@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Instabug
         Instabug.startWithToken(instabugToken, captureSource: IBGCaptureSourceUIKit, invocationEvent: IBGInvocationEventShake)
+
+        registerForiCloudNotifications()
 
         return true
     }
@@ -43,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
+
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let storeOptions = [ NSPersistentStoreUbiquitousContentNameKey: "WhatToWearRunningCloudStore"]
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("WhatToWearRunning.sqlite")
@@ -65,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return coordinator
     }()
-    
+
     lazy var managedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
@@ -73,9 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
-    
+
     // MARK: - Core Data Saving support
-    
+
     func saveContext () {
         if managedObjectContext.hasChanges {
             do {
@@ -88,6 +92,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+
+//    #pragma mark - Notification Observers
+    func registerForiCloudNotifications() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+
+        notificationCenter.addObserver(self, selector: #selector(AppDelegate.storesWillChange(_:)), name: NSPersistentStoreCoordinatorStoresWillChangeNotification, object: persistentStoreCoordinator)
+        notificationCenter.addObserver(self, selector: #selector(AppDelegate.storesDidChange(_:)), name: NSPersistentStoreCoordinatorStoresDidChangeNotification, object: persistentStoreCoordinator)
+        notificationCenter.addObserver(self, selector: #selector(AppDelegate.persistentStoreDidImportUbiquitousContentChanges(_:)), name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: persistentStoreCoordinator)
+    }
+
+    func persistentStoreDidImportUbiquitousContentChanges(changeNotification: NSNotification) {
+        let context = managedObjectContext
+
+        context.performBlock {
+            context.mergeChangesFromContextDidSaveNotification(changeNotification)
+            SVProgressHUD.showWithStatus("persistentStoreDidImportUbiquitousContentChanges")
+        }
+    }
+
+    func storesWillChange(notification: NSNotification) {
+        let context = managedObjectContext
+
+        if context.hasChanges {
+            do {
+                try context.save()
+                SVProgressHUD.showWithStatus("storesWillChange")
+            } catch let error as NSError {
+                NSLog("Unresolved error \(error.localizedDescription)")
+//                abort()
+            }
+        }
+
+        context.reset()
+    }
+
+    func storesDidChange(notification: NSNotification) {
+//        Refresh your User Interface.
+        SVProgressHUD.showWithStatus("storesDidChange")
     }
 }
 

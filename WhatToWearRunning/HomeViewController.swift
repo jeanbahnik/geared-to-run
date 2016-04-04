@@ -192,7 +192,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                 accuracy: CGFloat(currentLocation.horizontalAccuracy))
             }
         }
-        request.testDevices = [kGADSimulatorID]
+        request.testDevices = [kGADSimulatorID, "baa701bcf71eaf89dd9f1255c0435d7d"]
 
         return request
     }
