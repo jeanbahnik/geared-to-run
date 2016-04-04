@@ -166,8 +166,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .BannerAd:
             let cell = tableView.dequeueReusableCellWithIdentifier("AdmobTableViewCell", forIndexPath: indexPath) as! AdmobTableViewCell
 
-            cell.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            cell.bannerView.adUnitID = "ca-app-pub-8751298084412936/7088781805"
             cell.bannerView.rootViewController = self
+            cell.bannerView.adSize = kGADAdSizeMediumRectangle
             cell.bannerView.loadRequest(setupBannerAdRequest())
 
             return cell
