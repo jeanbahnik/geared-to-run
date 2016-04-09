@@ -38,6 +38,7 @@
 		FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */; };
 		FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */; };
 		FFD619451C7FBA8D0035119B /* PageControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */; };
+		FFD676401CB9AC0F009B465B /* GoProViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6763F1CB9AC0F009B465B /* GoProViewController.swift */; };
 		FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */; };
 		FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED11C4834D5006EF28A /* Main.storyboard */; };
 		FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED41C4834D5006EF28A /* Assets.xcassets */; };
@@ -103,6 +104,7 @@
 		FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlTableViewCell.swift; sourceTree = "<group>"; };
 		FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageControlTableViewCell.xib; sourceTree = "<group>"; };
+		FFD6763F1CB9AC0F009B465B /* GoProViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoProViewController.swift; sourceTree = "<group>"; };
 		FFE02ECA1C4834D5006EF28A /* WhatToWearRunning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWearRunning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE02ED21C4834D5006EF28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				FF1E977E1C9771C30085C407 /* GearViewController.swift */,
 				FF866D451C978DFD0056EE42 /* ItemDetailsViewController.swift */,
 				FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */,
+				FFD6763F1CB9AC0F009B465B /* GoProViewController.swift */,
 				FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
 				FFFD1CD11C78CD4A00EBDC6A /* Models */,
@@ -504,6 +507,7 @@
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
 				FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */,
 				FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */,
+				FFD676401CB9AC0F009B465B /* GoProViewController.swift in Sources */,
 				FFFD35BE1C96001F00A3996B /* GearConstraint.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
 				FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */,

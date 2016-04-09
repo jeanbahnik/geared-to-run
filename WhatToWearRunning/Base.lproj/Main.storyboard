@@ -169,11 +169,55 @@
                     <connections>
                         <outlet property="tableView" destination="kjZ-Ha-pzQ" id="8k1-Nm-7Ox"/>
                         <segue destination="BWs-3D-ZUF" kind="show" identifier="Preferences" id="JUr-h9-V7d"/>
+                        <segue destination="9B4-5I-S3c" kind="presentation" identifier="GoPro" id="lOo-jv-lyn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1302" y="242"/>
+        </scene>
+        <!--Go Pro View Controller-->
+        <scene sceneID="uPt-Ni-H5x">
+            <objects>
+                <viewController id="9B4-5I-S3c" customClass="GoProViewController" customModule="WhatToWearRunning" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3yp-W8-GOf"/>
+                        <viewControllerLayoutGuide type="bottom" id="o15-nj-GJs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bUE-ht-xi3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-jy-nh3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="0Da-Ye-E7R"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem id="qZ2-Od-E3F">
+                                        <barButtonItem key="leftBarButtonItem" image="Close" id="DnT-wW-lBJ" userLabel="Back Button">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="dismissButtonTapped:" destination="9B4-5I-S3c" id="4Td-rN-omR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7pl-jy-nh3" firstAttribute="leading" secondItem="bUE-ht-xi3" secondAttribute="leading" id="QbA-qD-E5H"/>
+                            <constraint firstItem="7pl-jy-nh3" firstAttribute="top" secondItem="bUE-ht-xi3" secondAttribute="top" id="U0K-2l-r2W"/>
+                            <constraint firstAttribute="trailing" secondItem="7pl-jy-nh3" secondAttribute="trailing" id="cIF-aU-Dkb"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="juC-3U-xib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1971" y="-502"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="lRz-1g-qIN">
@@ -226,6 +270,7 @@
                     <connections>
                         <outlet property="tableView" destination="7eA-2B-9Em" id="JBa-9y-7FB"/>
                         <segue destination="6dK-Jn-4Gr" kind="show" identifier="Gear" id="F2F-UW-d8U"/>
+                        <segue destination="9B4-5I-S3c" kind="presentation" identifier="GoPro" id="bFp-b5-MAM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mm-go-l0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -584,7 +629,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Close" width="14" height="14"/>
         <image name="LaunchScreenIcon" width="900" height="900"/>
         <image name="dotted-line" width="511" height="1"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lOo-jv-lyn"/>
+    </inferredMetricsTieBreakers>
 </document>

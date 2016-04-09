@@ -13,7 +13,7 @@ let kTCAppReviewLink = NSURL(string: "itms-apps://itunes.apple.com/app/id1075193
 class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
     private enum TableSection: Int {
-        case Communication, Gender, Gear, Sections
+        case Pro, Communication, Gender, Gear, Sections
 
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -81,12 +81,10 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
-        case .Communication, .Gear:
+        case .Pro, .Communication, .Gear, .Sections:
             return ""
         case .Gender:
             return "Gender preference"
-        case .Sections:
-            return ""
         }
     }
 
@@ -96,7 +94,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             return CommunicationRows.numberOfRows()
         case .Gender:
             return GenderRows.numberOfRows()
-        case .Gear:
+        case .Pro, .Gear:
             return 1
         case .Sections:
             return 0
@@ -111,6 +109,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         cell.tintColor = UIColor.whiteColor()
 
         switch TableSection(rawValue: indexPath.section)! {
+        case .Pro:
+            cell.textLabel?.text = "Upgrade to Pro"
+
         case .Communication:
             cell.accessoryType = .DisclosureIndicator
             switch CommunicationRows(rawValue: indexPath.row)! {
@@ -120,7 +121,6 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.textLabel?.text = "Send us feedback/report an issue"
             case .Rows: break
             }
-
 
         case .Gender:
             cell.tintColor = UIColor.whiteColor()
@@ -147,6 +147,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         switch TableSection(rawValue: indexPath.section)! {
+        case .Pro:
+            performSegueWithIdentifier("GoPro", sender: nil)
+            
         case .Communication:
             switch CommunicationRows(rawValue: indexPath.row)! {
             case .Rate:
