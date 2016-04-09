@@ -10,6 +10,12 @@ import UIKit
 import CoreData
 import SVProgressHUD
 
+let kMergeChangesFromContextDidSaveNotification = "mergeChangesFromContextDidSaveNotification"
+let kStoresWillChange = "storesWillChange"
+let kStoresWillChangeError = "storesWillChangeError"
+let kStoresDidChange = "storesDidChange"
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -108,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         context.performBlock {
             context.mergeChangesFromContextDidSaveNotification(changeNotification)
-            SVProgressHUD.showWithStatus("persistentStoreDidImportUbiquitousContentChanges")
+            NSNotificationCenter.defaultCenter().postNotificationName(kMergeChangesFromContextDidSaveNotification, object: nil)
         }
     }
 
@@ -118,9 +124,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if context.hasChanges {
             do {
                 try context.save()
-                SVProgressHUD.showWithStatus("storesWillChange")
+                NSNotificationCenter.defaultCenter().postNotificationName(kStoresWillChange, object: nil)
             } catch let error as NSError {
                 NSLog("Unresolved error \(error.localizedDescription)")
+                NSNotificationCenter.defaultCenter().postNotificationName(kStoresWillChangeError, object: nil)
 //                abort()
             }
         }
@@ -130,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func storesDidChange(notification: NSNotification) {
 //        Refresh your User Interface.
-        SVProgressHUD.showWithStatus("storesDidChange")
+        NSNotificationCenter.defaultCenter().postNotificationName(kStoresDidChange, object: nil)
     }
 }
 

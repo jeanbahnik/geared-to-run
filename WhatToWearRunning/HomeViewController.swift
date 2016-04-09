@@ -34,7 +34,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.backgroundColor = UIColor.clearColor()
         refreshControl.tintColor = UIColor.clearColor()
         tableView.addSubview(refreshControl)
-        
+
         loadCustomRefreshContents("")
         setupView()
     }
@@ -51,9 +51,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.addTarget(self, action: #selector(HomeViewController.fetchData), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.addSubview(customView)
     }
-    
+
     // MARK: UIScrollView delegate method implementation
-    
 
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         if handleRefresh() == true {
@@ -282,6 +281,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             }
+        } else if let weather = weather {
+            Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
+                self.outfit = recommendation
+                SVProgressHUD.dismiss()
+                self.tableView.reloadData()
+            })
         }
     }
     
