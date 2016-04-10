@@ -204,6 +204,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO2-Va-vW3">
+                                <rect key="frame" x="277" y="518" width="47" height="30"/>
+                                <state key="normal" title="Go Pro"/>
+                                <connections>
+                                    <action selector="goProButtonTapped:" destination="9B4-5I-S3c" eventType="touchUpInside" id="NlO-5Y-bmw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
