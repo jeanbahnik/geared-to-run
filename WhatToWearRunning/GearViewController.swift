@@ -13,7 +13,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var legs = [GearItem]()
     var feet = [GearItem]()
     var accessories = [GearItem]()
-    var gearList: [GearItem] = GearList.sharedInstance.getGearItems()!
+    var gearList: [GearItem]?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -34,13 +34,15 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setupGearArrays() {
+        gearList = GearList.sharedInstance.getGearItems()!
+        
         head = []
         torso = []
         legs = []
         feet = []
         accessories = []
 
-        for item in gearList {
+        for item in gearList! {
             if Int(item.slot) == GearSlot.Head.rawValue {
                 head.append(item) }
             if Int(item.slot) == GearSlot.Torso.rawValue {
@@ -60,7 +62,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return GearSlot.Count.rawValue
+        return GearSlot.Count.rawValue + 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,7 +72,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Legs: return legs.count
         case .Feet: return feet.count
         case .Accessories: return accessories.count
-        case .Count: return 0
+        case .Count: return 1
         }
     }
     
@@ -105,7 +107,8 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.textLabel?.text = feet[indexPath.row].name
         case .Accessories:
             cell.textLabel?.text = accessories[indexPath.row].name
-        case .Count: break
+        case .Count:
+            cell.textLabel?.text = "Delete default gear"
         }
 
         return cell
@@ -125,7 +128,11 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
             performSegueWithIdentifier("ItemDetails", sender: feet[indexPath.row])
         case .Accessories:
             performSegueWithIdentifier("ItemDetails", sender: accessories[indexPath.row])
-        case .Count: break
+        case .Count:
+            GearItem.deleteSeedData({ [weak self] in
+                self?.setupGearArrays()
+                self?.tableView.reloadData()
+            })
         }
     }
 

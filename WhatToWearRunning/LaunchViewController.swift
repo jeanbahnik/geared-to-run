@@ -79,7 +79,7 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
         if (segue.identifier == "Home") {
             let vc = segue.destinationViewController as! HomeViewController
             vc.weather = self.weather
-            vc.outfit = self.recommendation
+//            vc.outfit = self.recommendation
         }
     }
 }

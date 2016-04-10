@@ -36,7 +36,7 @@ enum GearSlot: Int {
 
 class GearItem: NSManagedObject {
 
-    class func saveNewItem(name: String, slot: Int16, completion: (item: GearItem?) -> Void) {
+    class func saveNewItem(name: String, slot: Int16, seedData: Bool, completion: (item: GearItem?) -> Void) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let entity =  NSEntityDescription.entityForName("GearItem", inManagedObjectContext:managedContext)
@@ -44,6 +44,7 @@ class GearItem: NSManagedObject {
 
         gearItem.name = name
         gearItem.slot = slot
+        gearItem.seedData = seedData
 
         do {
             try gearItem.managedObjectContext?.save()
@@ -58,6 +59,7 @@ class GearItem: NSManagedObject {
 
         self.name = name
         self.slot = slot
+        self.seedData = false
         
         do {
             try self.managedObjectContext?.save()
@@ -77,5 +79,15 @@ class GearItem: NSManagedObject {
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
+    }
+    
+    class func deleteSeedData(completion: (Void) -> Void) {
+        let gearList: [GearItem] = GearList.sharedInstance.getGearItems()!
+        for item in gearList {
+            if item.seedData == true {
+                item.deleteItem({ (Void) in })
+            }
+        }
+        completion()
     }
 }

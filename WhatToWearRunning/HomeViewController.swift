@@ -38,6 +38,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         loadCustomRefreshContents("")
         setupView()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        fetchRecommendation()
+    }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        fetchRecommendation()
+//    }
 
     func loadCustomRefreshContents(text: String) {
         if refreshControl.subviews.count > 0 {
@@ -48,7 +60,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         customView.frame = refreshControl.bounds
         customView.updatedAtLabel.text = text
 
-        refreshControl.addTarget(self, action: #selector(HomeViewController.fetchData), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeViewController.fetchWeatherAndRecommendation), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.addSubview(customView)
     }
 
@@ -151,7 +163,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 cell.runnerImageView.image = UIImage(named: "runner-m")
             }
-            cell.outfit = outfit?[collectionViewItem]
+            if let outfit = outfit {
+                cell.outfit = outfit[collectionViewItem]
+            }
             cell.reloadView()
             return cell
 
@@ -257,7 +271,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return false
     }
     
-    func fetchData() {
+    func fetchWeatherAndRecommendation() {
         if handleRefresh() == true {
             LocationManager.sharedInstance.getLocation()
             LocationManager.sharedInstance.locationUpdatedBlock = { [weak self] location in
@@ -281,11 +295,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             }
-        } else if let weather = weather {
-            Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
-                self.outfit = recommendation
-                SVProgressHUD.dismiss()
-                self.tableView.reloadData()
+        }
+    }
+    
+    func fetchRecommendation() {
+        if let weather = weather {
+            Recommendation().getRecommendedOutfit(weather, completion: { [weak self] recommendation in
+                self?.outfit = recommendation
+                self?.tableView.reloadData()
             })
         }
     }

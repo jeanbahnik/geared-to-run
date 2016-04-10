@@ -18,6 +18,7 @@ extension GearItem {
     @NSManaged var slot: Int16
     @NSManaged var notes: String?
     @NSManaged var image: String?
+    @NSManaged var seedData: Bool
     @NSManaged var constraints: NSSet?
 
 }

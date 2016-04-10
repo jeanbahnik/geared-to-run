@@ -40,6 +40,7 @@ class GearConstraint: NSManagedObject {
         self.maxWindSpeed = maxWind
         self.minPrecipProbability = minRain
         self.maxPrecipProbability = maxRain
+        self.item?.seedData = false
         
         do {
             try self.managedObjectContext?.save()
