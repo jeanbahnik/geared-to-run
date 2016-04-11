@@ -10,7 +10,7 @@ import MessageUI
 
 let kTCAppReviewLink = NSURL(string: "itms-apps://itunes.apple.com/app/id1075193930")
 
-class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private enum TableSection: Int {
         case Communication, Gender, Gear, Sections
@@ -117,7 +117,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rate:
                 cell.textLabel?.text = "Rate us in the App Store"
             case .SendFeedback:
-                cell.textLabel?.text = "Send us feedback/report an issue"
+                cell.textLabel?.text = "Report a bug/Send Feedback"
             case .Rows: break
             }
 
@@ -152,7 +152,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rate:
                 UIApplication.sharedApplication().openURL(kTCAppReviewLink!)
             case .SendFeedback:
-                sendEmail()
+                Instabug.invoke()
             case .Rows: break
             }
 
@@ -173,22 +173,5 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
         case .Sections: break
         }
-    }
-    
-    func sendEmail() {
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients(["support@beebuzz.com"])
-            mail.setMessageBody("<p>Feedback for What To Wear: Running</p>", isHTML: true)
-            
-            presentViewController(mail, animated: true, completion: nil)
-        } else {
-            // show failure alert
-        }
-    }
-    
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
