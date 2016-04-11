@@ -109,6 +109,8 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.textLabel?.text = accessories[indexPath.row].name
         case .Count:
             cell.textLabel?.text = "Delete default gear"
+            cell.textLabel?.textColor = Style.maroonColor
+            cell.accessoryType = .None
         }
 
         return cell

@@ -152,7 +152,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Runner:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
 
-            if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
+            if User.sharedInstance.prefersFemale() {
                 cell.runnerImageView.image = UIImage(named: "runner-w")
             } else {
                 cell.runnerImageView.image = UIImage(named: "runner-m")
@@ -186,7 +186,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func setupBannerAdRequest() -> GADRequest {
         let request = GADRequest()
-        if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
+        if User.sharedInstance.prefersFemale() {
             request.gender = .Male
         } else {
             request.gender = .Female

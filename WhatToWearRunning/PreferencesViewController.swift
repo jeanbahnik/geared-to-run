@@ -36,7 +36,6 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
 
-    let preferences = NSUserDefaults.standardUserDefaults()
     var preferencesUpdatedBlock: (Void -> Void)?
 
     @IBOutlet weak var tableView: UITableView!
@@ -127,11 +126,10 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             switch GenderRows(rawValue: indexPath.row)! {
             case .Female:
                 cell.textLabel?.text = "Female"
-                if preferences.boolForKey("prefersFemale") == true { cell.accessoryType = .Checkmark }
+                if User.sharedInstance.prefersFemale() { cell.accessoryType = .Checkmark }
             case .Male:
                 cell.textLabel?.text = "Male"
-                // TODO: replace prefersFemale with constant, move those constants to Constant or User class.
-                if preferences.boolForKey("prefersFemale") == false { cell.accessoryType = .Checkmark }
+                if !User.sharedInstance.prefersFemale() { cell.accessoryType = .Checkmark }
             case .Rows: break
             }
             
@@ -161,10 +159,10 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             switch GenderRows(rawValue: indexPath.row)! {
             case .Female:
                 tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: TableSection.Gender.rawValue))!.accessoryType = .None
-                preferences.setBool(true, forKey: "prefersFemale")
+                User.sharedInstance.setGenderPreference(true)
             case .Male:
                 tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: TableSection.Gender.rawValue))!.accessoryType = .None
-                preferences.setBool(false, forKey: "prefersFemale")
+                User.sharedInstance.setGenderPreference(false)
             case .Rows: break
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
@@ -175,20 +173,20 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         case .Sections: break
         }
     }
-    
+
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["support@beebuzz.com"])
             mail.setMessageBody("<p>Feedback for What To Wear: Running</p>", isHTML: true)
-            
+
             presentViewController(mail, animated: true, completion: nil)
         } else {
             // show failure alert
         }
     }
-    
+
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }

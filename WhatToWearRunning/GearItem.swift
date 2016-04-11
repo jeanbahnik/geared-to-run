@@ -90,6 +90,7 @@ class GearItem: NSManagedObject {
                 item.deleteItem({ (Void) in })
             }
         }
+        User.sharedInstance.setDeletedSeedData()
         completion()
     }
 }

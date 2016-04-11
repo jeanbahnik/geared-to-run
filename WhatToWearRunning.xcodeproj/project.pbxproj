@@ -13,6 +13,7 @@
 		FF3EE1CD1CB1638E00E5209B /* GearItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */; };
 		FF3EE1D01CB1781100E5209B /* AdmobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3EE1CE1CB1781100E5209B /* AdmobTableViewCell.swift */; };
 		FF3EE1D11CB1781100E5209B /* AdmobTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3EE1CF1CB1781100E5209B /* AdmobTableViewCell.xib */; };
+		FF42AAF41CBC2442001762F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF42AAF31CBC2442001762F9 /* User.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */; };
@@ -79,6 +80,7 @@
 		FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FF3EE1CE1CB1781100E5209B /* AdmobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobTableViewCell.swift; sourceTree = "<group>"; };
 		FF3EE1CF1CB1781100E5209B /* AdmobTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdmobTableViewCell.xib; sourceTree = "<group>"; };
+		FF42AAF31CBC2442001762F9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintDetailsViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				FFFD35BB1C96001F00A3996B /* GearConstraint.swift */,
 				FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */,
 				FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */,
+				FF42AAF31CBC2442001762F9 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				FFEC0A1C1C83C47700A1B760 /* RunnerTableViewCell.swift in Sources */,
 				FF866D461C978DFD0056EE42 /* ItemDetailsViewController.swift in Sources */,
 				FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */,
+				FF42AAF41CBC2442001762F9 /* User.swift in Sources */,
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
 				FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */,
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,

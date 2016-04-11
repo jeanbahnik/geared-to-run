@@ -17,7 +17,7 @@ class GearList: NSObject {
     private override init() {
         super.init()
 
-        if isDataStoreEmpty() == true {
+        if isDataStoreEmpty() == true && !User.sharedInstance.deletedSeedData() {
             createDefaultGearList()
         } else {
             if let gearList = getGearConstraints() as [GearConstraint]! {
