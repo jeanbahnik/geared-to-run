@@ -19,11 +19,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-    var outfit: [[GearItem]]?
+    var outfit: [[GearItem]]?// = Array(count: kHourlyWeatherCount, repeatedValue: [])
     var weather: [HourlyWeather]?
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
     var collectionViewItem = 0
+    let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 2))
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -44,12 +45,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         fetchRecommendation()
     }
-    
-//    override func viewDidAppear(animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        fetchRecommendation()
-//    }
 
     func loadCustomRefreshContents(text: String) {
         if refreshControl.subviews.count > 0 {
@@ -78,7 +73,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if refreshControl.refreshing { refreshControl.endRefreshing() }
 
         if scrollView.isKindOfClass(UICollectionView) {
-            let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 2))
             if Float(scrollView.bounds.width) * Float(collectionViewItem) > Float(scrollView.contentOffset.x) {
                 if collectionViewItem > 0 {
                     collectionViewItem -= 1
@@ -173,7 +167,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCellWithIdentifier("QuoteTableViewCell", forIndexPath: indexPath) as! QuoteTableViewCell
 
             cell.quoteLabel.attributedText = Quote.sharedInstance.randomQuote()
-
+            print("quote")
             return cell
 
         case .BannerAd:
@@ -288,7 +282,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                 Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
                                     self?.outfit = recommendation
                                     SVProgressHUD.dismiss()
-                                    self?.tableView.reloadData()
+                                    self?.tableView.reloadSections((self?.indexSet)!, withRowAnimation: .None)
                                 })
                             }
                         }
@@ -302,7 +296,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let weather = weather {
             Recommendation().getRecommendedOutfit(weather, completion: { [weak self] recommendation in
                 self?.outfit = recommendation
-                self?.tableView.reloadData()
+                self?.tableView.reloadSections((self?.indexSet)!, withRowAnimation: .None)
             })
         }
     }

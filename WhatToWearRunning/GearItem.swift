@@ -36,6 +36,8 @@ enum GearSlot: Int {
 
 class GearItem: NSManagedObject {
 
+    
+//    bool if seed + date stored in nsuserdefault
     class func saveNewItem(name: String, slot: Int16, seedData: Bool, completion: (item: GearItem?) -> Void) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext

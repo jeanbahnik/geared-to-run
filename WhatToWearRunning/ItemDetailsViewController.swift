@@ -46,7 +46,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func setupViews() {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController?.navigationItem.leftBarButtonItem?.title = "Done" // TODO: Does not work
+        // TODO: Does not work
+        navigationController?.navigationItem.leftBarButtonItem?.title = "Done"
 
         view.backgroundColor = Style.navyBlueColor
         tableView.backgroundColor = Style.navyBlueColor

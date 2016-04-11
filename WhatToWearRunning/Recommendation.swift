@@ -22,7 +22,9 @@ class Recommendation {
             }
 
             hourlyItemSet = hourlyItemSet.flatMap{$0}
-            if !hourlyItemSet.isEmpty { recommendedOutfit.append(hourlyItemSet) }
+//            if !hourlyItemSet.isEmpty {
+                recommendedOutfit.append(hourlyItemSet)
+//            }
         }
         completion(recommendation: recommendedOutfit)
     }

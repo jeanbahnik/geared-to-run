@@ -130,6 +130,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
                 if preferences.boolForKey("prefersFemale") == true { cell.accessoryType = .Checkmark }
             case .Male:
                 cell.textLabel?.text = "Male"
+                // TODO: replace prefersFemale with constant, move those constants to Constant or User class.
                 if preferences.boolForKey("prefersFemale") == false { cell.accessoryType = .Checkmark }
             case .Rows: break
             }
