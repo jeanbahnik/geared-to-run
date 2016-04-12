@@ -36,9 +36,7 @@ enum GearSlot: Int {
 
 class GearItem: NSManagedObject {
 
-    
-//    bool if seed + date stored in nsuserdefault
-    class func saveNewItem(name: String, slot: Int16, seedData: Bool, completion: (item: GearItem?) -> Void) {
+    class func saveNewItem(name: String, slot: Int16, seedData: Bool, seedDate: NSDate, completion: (item: GearItem?) -> Void) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let entity =  NSEntityDescription.entityForName("GearItem", inManagedObjectContext:managedContext)
@@ -47,6 +45,7 @@ class GearItem: NSManagedObject {
         gearItem.name = name
         gearItem.slot = slot
         gearItem.seedData = seedData
+        gearItem.seedDate = seedDate
 
         do {
             try gearItem.managedObjectContext?.save()
@@ -90,7 +89,7 @@ class GearItem: NSManagedObject {
                 item.deleteItem({ (Void) in })
             }
         }
-        User.sharedInstance.setDeletedSeedData()
+        User.sharedInstance.setDeletedSeedData(true)
         completion()
     }
 }

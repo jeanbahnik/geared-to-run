@@ -8,6 +8,7 @@
 
 let kPrefersFemale = "prefersFemale"
 let kDeletedSeedData = "deletedSeedData"
+let kSeedDataDate = "seedDataDate"
 
 class User: NSObject {
     static let sharedInstance = User()
@@ -29,7 +30,19 @@ class User: NSObject {
         return userPreferences.boolForKey(kDeletedSeedData)
     }
 
-    func setDeletedSeedData() {
-        userPreferences.setBool(true, forKey: kDeletedSeedData)
+    func setDeletedSeedData(bool: Bool) {
+        userPreferences.setBool(bool, forKey: kDeletedSeedData)
+    }
+
+    // MARK: - Seed data date
+
+    func getSeedDataDate() -> NSDate {
+        return userPreferences.objectForKey(kSeedDataDate) as! NSDate
+    }
+
+    func setSeedDataDate() -> NSDate {
+        let date = NSDate()
+        userPreferences.setObject(date, forKey: kSeedDataDate)
+        return date
     }
 }

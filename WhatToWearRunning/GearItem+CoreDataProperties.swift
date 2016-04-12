@@ -19,6 +19,7 @@ extension GearItem {
     @NSManaged var notes: String?
     @NSManaged var image: String?
     @NSManaged var seedData: Bool
+    @NSManaged var seedDate: NSDate?
     @NSManaged var constraints: NSSet?
 
 }
