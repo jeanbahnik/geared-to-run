@@ -36,7 +36,7 @@ enum GearSlot: Int {
 
 class GearItem: NSManagedObject {
 
-    class func saveNewItem(name: String, slot: Int16, seedData: Bool, seedDate: NSDate, completion: (item: GearItem?) -> Void) {
+    class func saveNewItem(name: String, slot: Int16, seedData: Bool, seedDate: NSDate?, completion: (item: GearItem?) -> Void) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let entity =  NSEntityDescription.entityForName("GearItem", inManagedObjectContext:managedContext)

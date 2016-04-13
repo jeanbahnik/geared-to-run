@@ -8,6 +8,10 @@
 
 class GearViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    private enum Actions: Int {
+        case Delete, Reset
+    }
+
     var head = [GearItem]()
     var torso = [GearItem]()
     var legs = [GearItem]()
@@ -72,7 +76,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Legs: return legs.count
         case .Feet: return feet.count
         case .Accessories: return accessories.count
-        case .Count: return 1
+        case .Count: return 2
         }
     }
     
@@ -108,9 +112,15 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Accessories:
             cell.textLabel?.text = accessories[indexPath.row].name
         case .Count:
-            cell.textLabel?.text = "Delete default gear"
             cell.textLabel?.textColor = Style.maroonColor
             cell.accessoryType = .None
+
+            switch Actions(rawValue: indexPath.row)! {
+            case .Delete:
+                cell.textLabel?.text = "Delete default gear"
+            case .Reset:
+                cell.textLabel?.text = "Restore default gear"
+            }
         }
 
         return cell
@@ -130,11 +140,34 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
             performSegueWithIdentifier("ItemDetails", sender: feet[indexPath.row])
         case .Accessories:
             performSegueWithIdentifier("ItemDetails", sender: accessories[indexPath.row])
+        // TODO: alert views to confirm actions
         case .Count:
-            GearItem.deleteSeedData({ [weak self] in
-                self?.setupGearArrays()
-                self?.tableView.reloadData()
-            })
+            switch Actions(rawValue: indexPath.row)! {
+            case .Delete:
+                let alert = UIAlertController(title: "Are you sure you want to delete all?", message: "This cannot be reversed", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { alertAction in
+                    GearItem.deleteSeedData({ [weak self] in
+                        self?.setupGearArrays()
+                        self?.tableView.reloadData()
+                        })
+                    })
+                )
+                self.presentViewController(alert, animated: true, completion: nil)
+
+            case .Reset:
+                let alert = UIAlertController(title: "Are you sure you want to reset?", message: "This cannot be reversed", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { alertAction in
+                    GearItem.deleteSeedData({ [weak self] in
+                        GearList.sharedInstance.createDefaultGearList()
+                        self?.setupGearArrays()
+                        self?.tableView.reloadData()
+                        })
+                    })
+                )
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
 

@@ -86,7 +86,7 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
                     })
             } else {
-                GearItem.saveNewItem(name, slot: Int16(selectedSlot.row), seedData: false, completion: { [weak self] item in
+                GearItem.saveNewItem(name, slot: Int16(selectedSlot.row), seedData: false, seedDate: nil, completion: { [weak self] item in
                     if item != nil {
                         self?.navigationController?.popViewControllerAnimated(true)
                         if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
