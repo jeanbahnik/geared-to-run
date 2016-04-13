@@ -116,7 +116,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rate:
                 cell.textLabel?.text = "Rate us in the App Store"
             case .SendFeedback:
-                cell.textLabel?.text = "Send us feedback/report an issue"
+                cell.textLabel?.text = "Report a bug/Send Feedback"
             case .Rows: break
             }
 
@@ -151,7 +151,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rate:
                 UIApplication.sharedApplication().openURL(kTCAppReviewLink!)
             case .SendFeedback:
-                sendEmail()
+                Instabug.invoke()
             case .Rows: break
             }
 
