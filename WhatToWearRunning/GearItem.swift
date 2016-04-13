@@ -82,10 +82,12 @@ class GearItem: NSManagedObject {
         }
     }
     
-    class func deleteSeedData(completion: (Void) -> Void) {
+    class func deleteData(seedOnly: Bool, completion: (Void) -> Void) {
         let gearList: [GearItem] = GearList.sharedInstance.getGearItems()!
         for item in gearList {
-            if item.seedData == true {
+            if seedOnly == true {
+                if item.seedData == true { item.deleteItem({ (Void) in }) }
+            } else {
                 item.deleteItem({ (Void) in })
             }
         }

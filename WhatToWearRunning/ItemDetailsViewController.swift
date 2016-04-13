@@ -78,6 +78,12 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        itemNameTextField.resignFirstResponder()
+    }
+
     func saveButtonTapped() {
         if let selectedSlot = selectedSlot, name = itemNameTextField.text where name > "" {
             if let item = item {
@@ -88,7 +94,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             } else {
                 GearItem.saveNewItem(name, slot: Int16(selectedSlot.row), seedData: false, seedDate: nil, completion: { [weak self] item in
                     if item != nil {
-                        self?.navigationController?.popViewControllerAnimated(true)
+                        self?.item = item
+                        self?.performSegueWithIdentifier("ConstraintDetail", sender: nil)
                         if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
                     }
                 })
@@ -181,8 +188,9 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
         case .Actions:
             let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath)
-            cell.textLabel?.textColor = UIColor.whiteColor()
             cell.backgroundColor = Style.navyBlueColor
+            cell.textLabel?.textColor = Style.maroonColor
+            cell.accessoryType = .None
 
             switch ActionsRows(rawValue: indexPath.row)! {
             case .AddConstraint:
@@ -218,12 +226,18 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             case .AddConstraint:
                 performSegueWithIdentifier("ConstraintDetail", sender: nil)
             case .Delete:
-                if let item = item {
-                    item.deleteItem({ [weak self] in
-                        self?.navigationController?.popViewControllerAnimated(true)
-                        if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
-                    })
-                }
+                let alert = UIAlertController(title: "Are you sure you want to delete this item?", message: "This cannot be reversed", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { [weak self] alertAction in
+                    if let item = self?.item {
+                        item.deleteItem({ [weak self] in
+                            self?.navigationController?.popViewControllerAnimated(true)
+                            if let itemCreatedOrUpdatedBlock = self?.itemCreatedOrUpdatedBlock { itemCreatedOrUpdatedBlock() }
+                        })
+                    }
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+
             case .Rows: break
             }
         }

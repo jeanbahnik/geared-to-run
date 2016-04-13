@@ -178,8 +178,8 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["support@beebuzz.com"])
-            mail.setMessageBody("<p>Feedback for What To Wear: Running</p>", isHTML: true)
+            mail.setSubject("Check out this app: Geared to run")
+            mail.setMessageBody("<p>Check out this app: Geared to Run</p>", isHTML: true)
 
             presentViewController(mail, animated: true, completion: nil)
         } else {
