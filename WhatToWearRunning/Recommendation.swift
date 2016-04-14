@@ -9,10 +9,14 @@
 import ForecastIO
 
 class Recommendation {
-    private let gearList: [GearConstraint]
+    private var gearList: [GearConstraint] = []
     private var recommendedOutfit: [[GearItem]] = []
 
-    init() { gearList = GearList.sharedInstance.gearList }
+    init() {
+        if let gearList = GearList.sharedInstance.getGearConstraints() {
+            self.gearList = gearList
+        }
+    }
 
     func getRecommendedOutfit(weather: [HourlyWeather], completion: (recommendation: [[GearItem]]) -> Void) {
         for hourlyWeather in weather {

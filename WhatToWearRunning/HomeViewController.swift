@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-    var outfit: [[GearItem]]?// = Array(count: kHourlyWeatherCount, repeatedValue: [])
+    var outfit: [[GearItem]]?
     var weather: [HourlyWeather]?
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
