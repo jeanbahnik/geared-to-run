@@ -22,13 +22,14 @@ class Recommendation {
         for hourlyWeather in weather {
             var hourlyItemSet: [GearItem] = []
             for item in gearList {
-                if (self.getGear(item, currentForecast: hourlyWeather) == true) { hourlyItemSet.append(item.item!) }
+                if (self.getGear(item, currentForecast: hourlyWeather) == true) {
+                    if !hourlyItemSet.contains(item.item!) {
+                        hourlyItemSet.append(item.item!)
+                    }
+                }
             }
 
-            hourlyItemSet = hourlyItemSet.flatMap{$0}
-//            if !hourlyItemSet.isEmpty {
-                recommendedOutfit.append(hourlyItemSet)
-//            }
+            recommendedOutfit.append(hourlyItemSet)
         }
         completion(recommendation: recommendedOutfit)
     }

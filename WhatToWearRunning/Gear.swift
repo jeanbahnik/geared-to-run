@@ -36,7 +36,7 @@ class GearList: NSObject {
         GearItem.saveNewItem("T-Shirt", slot: Int16(GearSlot.Torso.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
-                GearConstraint.saveConstraint(item, minTemp: 60, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
+                GearConstraint.saveConstraint(item, minTemp: 50, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
