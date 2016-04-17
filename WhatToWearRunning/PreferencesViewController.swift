@@ -9,20 +9,21 @@
 import MessageUI
 
 let kTCAppReviewLink = NSURL(string: "itms-apps://itunes.apple.com/app/id1075193930")
+let kTCAppStoreUrl = "https://itunes.apple.com/us/app/geared-to-run/id1075193930"
 
 class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
     private enum TableSection: Int {
-        case Communication, Gender, Gear, Sections
+        case Communication, Pro, Gender, Gear, Who, Sections
 
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
         }
     }
-    
+
     private enum CommunicationRows: Int {
-        case Rate, SendFeedback, Rows
-        
+        case Rate, SendFeedback, TellFriend, Rows
+
         static func numberOfRows() -> Int {
             return CommunicationRows.Rows.rawValue
         }
@@ -30,9 +31,17 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
     private enum GenderRows: Int {
         case Female, Male, Rows
-        
+
         static func numberOfRows() -> Int {
             return GenderRows.Rows.rawValue
+        }
+    }
+
+    private enum WhoRows: Int {
+        case Jean, Brian, Rows
+
+        static func numberOfRows() -> Int {
+            return WhoRows.Rows.rawValue
         }
     }
 
@@ -80,10 +89,12 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
-        case .Communication, .Gear:
+        case .Communication, .Gear, .Pro:
             return ""
         case .Gender:
-            return "Gender preference"
+            return "Icon preference"
+        case .Who:
+            return "Who made this"
         case .Sections:
             return ""
         }
@@ -95,7 +106,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             return CommunicationRows.numberOfRows()
         case .Gender:
             return GenderRows.numberOfRows()
-        case .Gear:
+        case .Who:
+            return WhoRows.numberOfRows()
+        case .Gear, .Pro:
             return 1
         case .Sections:
             return 0
@@ -117,9 +130,10 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.textLabel?.text = "Rate us in the App Store"
             case .SendFeedback:
                 cell.textLabel?.text = "Report a bug/Send Feedback"
+            case .TellFriend:
+                cell.textLabel?.text = "Tell a friend about this app"
             case .Rows: break
             }
-
 
         case .Gender:
             cell.tintColor = UIColor.whiteColor()
@@ -132,7 +146,19 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
                 if !User.sharedInstance.prefersFemale() { cell.accessoryType = .Checkmark }
             case .Rows: break
             }
-            
+
+        case .Pro:
+            cell.textLabel?.text = "GO PRO"
+
+        case .Who:
+            switch WhoRows(rawValue: indexPath.row)! {
+            case .Jean:
+                cell.textLabel?.text = "Jean Bahnik"
+            case .Brian:
+                cell.textLabel?.text = "Brian Drum"
+            case .Rows: break
+            }
+
         case .Gear:
             cell.accessoryType = .DisclosureIndicator
             cell.textLabel?.text = "My gear"
@@ -152,6 +178,8 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
                 UIApplication.sharedApplication().openURL(kTCAppReviewLink!)
             case .SendFeedback:
                 Instabug.invoke()
+            case .TellFriend:
+                sendEmail()
             case .Rows: break
             }
 
@@ -166,7 +194,19 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rows: break
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
-            
+
+        case .Pro:
+            break
+
+        case .Who:
+            switch WhoRows(rawValue: indexPath.row)! {
+            case .Jean:
+                UIApplication.sharedApplication().openURL(NSURL(string: "twitter:///user?screen_name=jeanbahnik")!)
+            case .Brian:
+                UIApplication.sharedApplication().openURL(NSURL(string: "twitter:///user?screen_name=briandrum")!)
+            case .Rows: break
+            }
+
         case .Gear:
             performSegueWithIdentifier("Gear", sender: nil)
 
@@ -179,7 +219,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setSubject("Check out this app: Geared to run")
-            mail.setMessageBody("<p>Check out this app: Geared to Run</p>", isHTML: true)
+            mail.setMessageBody("<p>Check out this app: <a href=\"\(kTCAppStoreUrl)\">Geared to Run</a></p>", isHTML: true)
 
             presentViewController(mail, animated: true, completion: nil)
         } else {
