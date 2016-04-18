@@ -9,6 +9,7 @@
 let kPrefersFemale = "prefersFemale"
 let kDeletedSeedData = "deletedSeedData"
 let kSeedDataDate = "seedDataDate"
+let kIsPro = "isPro"
 
 class User: NSObject {
     static let sharedInstance = User()
@@ -44,5 +45,14 @@ class User: NSObject {
         let date = NSDate()
         userPreferences.setObject(date, forKey: kSeedDataDate)
         return date
+    }
+
+    // MARK: - Is pro
+    func isPro() -> Bool {
+        return userPreferences.boolForKey(kIsPro)
+    }
+
+    func setIsPro() {
+        userPreferences.setBool(true, forKey: kIsPro)
     }
 }
