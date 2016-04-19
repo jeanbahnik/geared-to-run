@@ -96,7 +96,7 @@
                                                     <rect key="frame" x="0.0" y="26" width="97" height="37"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-be-x3i">
-                                                            <rect key="frame" x="-503" y="-57" width="35" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>

@@ -2,26 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>application-identifier</key>
-	<string>BHAVC2B76G.com.jeanbahnik.whattowearrunning</string>
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
-		<string>iCloud.com.jeanbahnik.whattowearrunning</string>
+		<string>iCloud.$(CFBundleIdentifier)</string>
 	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>
 		<string>CloudDocuments</string>
 		<string>CloudKit</string>
 	</array>
-	<key>com.apple.developer.team-identifier</key>
-	<string>BHAVC2B76G</string>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>iCloud.com.jeanbahnik.whattowearrunning</string>
+		<string>iCloud.$(CFBundleIdentifier)</string>
 	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
 	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
-	<key>get-task-allow</key>
-	<true/>
 </dict>
 </plist>
