@@ -102,7 +102,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Style.navyBlueColor
         tableView.alwaysBounceVertical = true
 
-        tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
+        if User.sharedInstance.isPro() {
+            tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
+        }
         tableView.registerNib(UINib(nibName: "QuoteTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "QuoteTableViewCell")
         tableView.registerNib(UINib(nibName: "AdmobTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "AdmobTableViewCell")
 
@@ -127,7 +129,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch TableSection(rawValue: indexPath.section)! {
-        case .Weather: return 115.0
+        case .Weather: return 120.0
         case .PageControl: return 37.0
         case .Runner: return 322.0
         case .Quote: return 60.0
@@ -143,11 +145,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return cell
 
         case .PageControl:
-            let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
+            if User.sharedInstance.isPro() {
+                let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
 
-            cell.pageControl.numberOfPages = kHourlyWeatherCount
-            cell.pageControl.currentPage = collectionViewItem
-            return cell
+                cell.pageControl.numberOfPages = kHourlyWeatherCount
+                cell.pageControl.currentPage = collectionViewItem
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath)
+                let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
+                let text = NSMutableAttributedString(string: "Go Pro to see the next 10 hours, and more!", attributes: attribute1)
+                cell.textLabel?.attributedText = text
+                cell.textLabel?.textAlignment = .Center
+                cell.backgroundColor = Style.maroonColor
+                return cell
+            }
 
         case .Runner:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
@@ -262,6 +274,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let elapsedTime = -Int(updatedAtDate.timeIntervalSinceNow)
             if elapsedTime > 3600 { return true }
         }
+        if User.sharedInstance.isPro() { return true }
         return false
     }
     

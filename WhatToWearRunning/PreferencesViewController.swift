@@ -82,7 +82,26 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
+        switch TableSection(rawValue: section)! {
+        case .Communication, .Who, .Gender:
+            return 30.0
+        case .Gear:
+            if User.sharedInstance.isPro() {
+                return 30.0
+            } else {
+                return 0.1
+            }
+        case .Sections, .Pro:
+            return 0.1
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -108,10 +127,19 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             return GenderRows.numberOfRows()
         case .Who:
             return WhoRows.numberOfRows()
-        case .Gear, .Pro:
-            return 1
-        case .Sections:
-            return 0
+        case .Gear:
+            if User.sharedInstance.isPro() {
+                return 1
+            } else {
+                return 0
+            }
+        case .Pro:
+            if User.sharedInstance.isPro() {
+                return 0
+            } else {
+                return 1
+            }
+        default: return 0
         }
     }
 
@@ -128,10 +156,13 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             switch CommunicationRows(rawValue: indexPath.row)! {
             case .Rate:
                 cell.textLabel?.text = "Rate us in the App Store"
+                return cell
             case .SendFeedback:
                 cell.textLabel?.text = "Report a bug/Send Feedback"
+                return cell
             case .TellFriend:
                 cell.textLabel?.text = "Tell a friend about this app"
+                return cell
             case .Rows: break
             }
 
@@ -141,30 +172,49 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Female:
                 cell.textLabel?.text = "Female"
                 if User.sharedInstance.prefersFemale() { cell.accessoryType = .Checkmark }
+                return cell
             case .Male:
                 cell.textLabel?.text = "Male"
                 if !User.sharedInstance.prefersFemale() { cell.accessoryType = .Checkmark }
+                return cell
             case .Rows: break
             }
 
         case .Pro:
-            cell.textLabel?.text = "GO PRO"
+            if !User.sharedInstance.isPro() {
+                cell.textLabel?.text = "GO PRO"
+                cell.textLabel?.textAlignment = .Center
+                return cell
+            } else {
+                break
+            }
 
         case .Who:
             switch WhoRows(rawValue: indexPath.row)! {
             case .Jean:
                 cell.textLabel?.text = "Jean Bahnik"
+                return cell
             case .Brian:
                 cell.textLabel?.text = "Brian Drum"
+                return cell
             case .Rows: break
             }
 
         case .Gear:
-            cell.accessoryType = .DisclosureIndicator
-            cell.textLabel?.text = "My gear"
+            cell.userInteractionEnabled = false
+            if User.sharedInstance.isPro() {
+                cell.userInteractionEnabled = true
+                cell.accessoryType = .DisclosureIndicator
+                cell.textLabel?.text = "My gear"
+                return cell
+            } else {
+                break
+            }
 
         case .Sections: break
         }
+
+        cell.textLabel?.text = ""
         return cell
     }
 
@@ -201,9 +251,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         case .Who:
             switch WhoRows(rawValue: indexPath.row)! {
             case .Jean:
-                UIApplication.sharedApplication().openURL(NSURL(string: "twitter:///user?screen_name=jeanbahnik")!)
+                UIApplication.sharedApplication().openURL(NSURL(string: "http://jeanbahnik.com")!)
             case .Brian:
-                UIApplication.sharedApplication().openURL(NSURL(string: "twitter:///user?screen_name=briandrum")!)
+                UIApplication.sharedApplication().openURL(NSURL(string: "http://briandrum.net")!)
             case .Rows: break
             }
 
