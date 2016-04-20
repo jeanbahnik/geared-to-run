@@ -156,6 +156,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath)
                 let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
                 let text = NSMutableAttributedString(string: "Go Pro to see the next 10 hours, and more!", attributes: attribute1)
+                cell.userInteractionEnabled = true
                 cell.textLabel?.attributedText = text
                 cell.textLabel?.textAlignment = .Center
                 cell.backgroundColor = Style.maroonColor
@@ -194,6 +195,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return cell
 
         default: return UITableViewCell()
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == TableSection.PageControl.rawValue {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+            performSegueWithIdentifier("GoPro", sender: nil)
         }
     }
 
