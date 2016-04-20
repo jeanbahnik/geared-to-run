@@ -17,7 +17,11 @@ class GearList: NSObject {
     private override init() {
         super.init()
 
-        if isDataStoreEmpty() == true {
+        getGearList()
+    }
+
+    func getGearList() {
+        if isDataStoreEmpty() == true && !User.sharedInstance.deletedSeedData() {
             createDefaultGearList()
         } else {
             if let gearList = getGearConstraints() as [GearConstraint]! {
@@ -27,82 +31,84 @@ class GearList: NSObject {
     }
 
     func createDefaultGearList() {
-        GearItem.saveNewItem("T-Shirt", slot: Int16(GearSlot.Torso.rawValue), completion: { item in
+        let date = User.sharedInstance.setSeedDataDate()
+
+        GearItem.saveNewItem("T-Shirt", slot: Int16(GearSlot.Torso.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
-                GearConstraint.saveConstraint(item, minTemp: 60, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
+                GearConstraint.saveConstraint(item, minTemp: 50, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Face Mask", slot: Int16(GearSlot.Head.rawValue), completion: { item in
+        GearItem.saveNewItem("Face Mask", slot: Int16(GearSlot.Head.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 20, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 30, minWind: 15, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Light Hat", slot: Int16(GearSlot.Head.rawValue), completion: { item in
+        GearItem.saveNewItem("Light Hat", slot: Int16(GearSlot.Head.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 20, maxTemp: 40, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Long sleeve shirt", slot: Int16(GearSlot.Torso.rawValue), completion: { item in
+        GearItem.saveNewItem("Long sleeve shirt", slot: Int16(GearSlot.Torso.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 60, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Heavy Jacket", slot: Int16(GearSlot.Torso.rawValue), completion: { item in
+        GearItem.saveNewItem("Heavy Jacket", slot: Int16(GearSlot.Torso.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 35, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Wind Jacket", slot: Int16(GearSlot.Torso.rawValue), completion: { item in
+        GearItem.saveNewItem("Wind Jacket", slot: Int16(GearSlot.Torso.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 40, minWind: 20, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Pants", slot: Int16(GearSlot.Legs.rawValue), completion: { item in
+        GearItem.saveNewItem("Pants", slot: Int16(GearSlot.Legs.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 40, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Shorts", slot: Int16(GearSlot.Legs.rawValue), completion: { item in
+        GearItem.saveNewItem("Shorts", slot: Int16(GearSlot.Legs.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 40, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Light Gloves", slot: Int16(GearSlot.Accessories.rawValue), completion: { item in
+        GearItem.saveNewItem("Light Gloves", slot: Int16(GearSlot.Accessories.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 30, maxTemp: 50, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 30, minWind: 15, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Heavy Gloves", slot: Int16(GearSlot.Accessories.rawValue), completion: { item in
+        GearItem.saveNewItem("Heavy Gloves", slot: Int16(GearSlot.Accessories.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 30, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Cap or Sunglasses", slot: Int16(GearSlot.Accessories.rawValue), completion: { item in
+        GearItem.saveNewItem("Cap or Sunglasses", slot: Int16(GearSlot.Accessories.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 55, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Light Socks", slot: Int16(GearSlot.Feet.rawValue), completion: { item in
+        GearItem.saveNewItem("Light Socks", slot: Int16(GearSlot.Feet.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 30, maxTemp: 100, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
         })
 
-        GearItem.saveNewItem("Heavy Socks", slot: Int16(GearSlot.Feet.rawValue), completion: { item in
+        GearItem.saveNewItem("Heavy Socks", slot: Int16(GearSlot.Feet.rawValue), seedData: true, seedDate: date, completion: { item in
             if let item = item {
                 GearConstraint.saveConstraint(item, minTemp: 0, maxTemp: 30, minWind: 0, maxWind: 50, minRain: 0.0, maxRain: 1.0)
             }
@@ -111,6 +117,8 @@ class GearList: NSObject {
         if let gearList = getGearConstraints() as [GearConstraint]! {
             self.gearList = gearList
         }
+        
+        User.sharedInstance.setDeletedSeedData(false)
     }
 
     func getGearConstraints() -> [GearConstraint]? {

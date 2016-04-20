@@ -8,39 +8,48 @@
 
 class GearViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    private enum Actions: Int {
+        case Delete, Reset
+    }
+
     var head = [GearItem]()
     var torso = [GearItem]()
     var legs = [GearItem]()
     var feet = [GearItem]()
     var accessories = [GearItem]()
-    var gearList: [GearItem] = GearList.sharedInstance.getGearItems()!
+    var gearList: [GearItem]?
 
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupGearArrays()
 
+        setupGearArrays()
+        setupViews()
+    }
+
+    func setupViews() {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(GearViewController.addButtonPressed))
-        self.navigationItem.rightBarButtonItem = barButtonItem
+        navigationItem.rightBarButtonItem = barButtonItem
 
         tableView.backgroundColor = Style.navyBlueColor
         tableView.separatorStyle = .None
 
-        self.title = "Your gear"
+        title = "Your gear"
     }
-    
+
     func setupGearArrays() {
+        gearList = GearList.sharedInstance.getGearItems()!
+        
         head = []
         torso = []
         legs = []
         feet = []
         accessories = []
 
-        for item in gearList {
+        for item in gearList! {
             if Int(item.slot) == GearSlot.Head.rawValue {
                 head.append(item) }
             if Int(item.slot) == GearSlot.Torso.rawValue {
@@ -60,7 +69,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return GearSlot.Count.rawValue
+        return GearSlot.Count.rawValue + 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,7 +79,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Legs: return legs.count
         case .Feet: return feet.count
         case .Accessories: return accessories.count
-        case .Count: return 0
+        case .Count: return 2
         }
     }
     
@@ -105,7 +114,16 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.textLabel?.text = feet[indexPath.row].name
         case .Accessories:
             cell.textLabel?.text = accessories[indexPath.row].name
-        case .Count: break
+        case .Count:
+            cell.textLabel?.textColor = Style.maroonColor
+            cell.accessoryType = .None
+
+            switch Actions(rawValue: indexPath.row)! {
+            case .Delete:
+                cell.textLabel?.text = "Delete all gear"
+            case .Reset:
+                cell.textLabel?.text = "Restore default gear"
+            }
         }
 
         return cell
@@ -125,7 +143,32 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
             performSegueWithIdentifier("ItemDetails", sender: feet[indexPath.row])
         case .Accessories:
             performSegueWithIdentifier("ItemDetails", sender: accessories[indexPath.row])
-        case .Count: break
+        // TODO: alert views to confirm actions
+        case .Count:
+            switch Actions(rawValue: indexPath.row)! {
+            case .Delete:
+                let alert = UIAlertController(title: "Are you sure you want to delete all?", message: "This cannot be reversed", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { alertAction in
+                    GearItem.deleteData(false, completion: { [weak self] in
+                        self?.setupGearArrays()
+                        self?.tableView.reloadData()
+                    })
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+
+            case .Reset:
+                let alert = UIAlertController(title: "Are you sure you want to reset?", message: "This cannot be reversed", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { alertAction in
+                    GearItem.deleteData(false, completion: { [weak self] in
+                        GearList.sharedInstance.createDefaultGearList()
+                        self?.setupGearArrays()
+                        self?.tableView.reloadData()
+                        })
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
 

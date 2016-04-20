@@ -9,20 +9,27 @@
 import ForecastIO
 
 class Recommendation {
-    private let gearList: [GearConstraint]
+    private var gearList: [GearConstraint] = []
     private var recommendedOutfit: [[GearItem]] = []
 
-    init() { gearList = GearList.sharedInstance.gearList }
+    init() {
+        if let gearList = GearList.sharedInstance.getGearConstraints() {
+            self.gearList = gearList
+        }
+    }
 
     func getRecommendedOutfit(weather: [HourlyWeather], completion: (recommendation: [[GearItem]]) -> Void) {
         for hourlyWeather in weather {
             var hourlyItemSet: [GearItem] = []
             for item in gearList {
-                if (self.getGear(item, currentForecast: hourlyWeather) == true) { hourlyItemSet.append(item.item!) }
+                if (self.getGear(item, currentForecast: hourlyWeather) == true) {
+                    if !hourlyItemSet.contains(item.item!) {
+                        hourlyItemSet.append(item.item!)
+                    }
+                }
             }
 
-            hourlyItemSet = hourlyItemSet.flatMap{$0}
-            if !hourlyItemSet.isEmpty { recommendedOutfit.append(hourlyItemSet) }
+            recommendedOutfit.append(hourlyItemSet)
         }
         completion(recommendation: recommendedOutfit)
     }

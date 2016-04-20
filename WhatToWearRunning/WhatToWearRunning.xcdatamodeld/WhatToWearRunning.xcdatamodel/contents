@@ -17,11 +17,13 @@
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seedData" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="seedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="slot" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="constraints" toMany="YES" deletionRule="Cascade" destinationEntity="GearConstraint" inverseName="item" inverseEntity="GearConstraint" syncable="YES"/>
     </entity>
     <elements>
         <element name="GearConstraint" positionX="-56" positionY="15" width="128" height="210"/>
-        <element name="GearItem" positionX="-362" positionY="90" width="128" height="120"/>
+        <element name="GearItem" positionX="-362" positionY="90" width="128" height="150"/>
     </elements>
 </model>

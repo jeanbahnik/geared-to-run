@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
     var collectionViewItem = 0
+    let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 2))
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -34,9 +35,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.backgroundColor = UIColor.clearColor()
         refreshControl.tintColor = UIColor.clearColor()
         tableView.addSubview(refreshControl)
-        
+
         loadCustomRefreshContents("")
         setupView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        fetchRecommendation()
     }
 
     func loadCustomRefreshContents(text: String) {
@@ -48,12 +55,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         customView.frame = refreshControl.bounds
         customView.updatedAtLabel.text = text
 
-        refreshControl.addTarget(self, action: #selector(HomeViewController.fetchData), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeViewController.fetchWeatherAndRecommendation), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.addSubview(customView)
     }
-    
+
     // MARK: UIScrollView delegate method implementation
-    
 
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         if handleRefresh() == true {
@@ -67,7 +73,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if refreshControl.refreshing { refreshControl.endRefreshing() }
 
         if scrollView.isKindOfClass(UICollectionView) {
-            let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 2))
             if Float(scrollView.bounds.width) * Float(collectionViewItem) > Float(scrollView.contentOffset.x) {
                 if collectionViewItem > 0 {
                     collectionViewItem -= 1
@@ -97,7 +102,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Style.navyBlueColor
         tableView.alwaysBounceVertical = true
 
-        tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
+        if User.sharedInstance.isPro() {
+            tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
+        }
         tableView.registerNib(UINib(nibName: "QuoteTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "QuoteTableViewCell")
         tableView.registerNib(UINib(nibName: "AdmobTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "AdmobTableViewCell")
 
@@ -122,7 +129,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch TableSection(rawValue: indexPath.section)! {
-        case .Weather: return 115.0
+        case .Weather: return 120.0
         case .PageControl: return 37.0
         case .Runner: return 322.0
         case .Quote: return 60.0
@@ -135,24 +142,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather:
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
+            cell.selectionStyle = .None
             return cell
 
         case .PageControl:
-            let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
+            if User.sharedInstance.isPro() {
+                let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
 
-            cell.pageControl.numberOfPages = kHourlyWeatherCount
-            cell.pageControl.currentPage = collectionViewItem
-            return cell
+                cell.pageControl.numberOfPages = kHourlyWeatherCount
+                cell.pageControl.currentPage = collectionViewItem
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath)
+                let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
+                let text = NSMutableAttributedString(string: "Go Pro to see the next 10 hours, and more!", attributes: attribute1)
+                cell.textLabel?.attributedText = text
+                cell.textLabel?.textAlignment = .Center
+                cell.backgroundColor = Style.maroonColor
+                return cell
+            }
 
         case .Runner:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
 
-            if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
+            if User.sharedInstance.prefersFemale() {
                 cell.runnerImageView.image = UIImage(named: "runner-w")
             } else {
                 cell.runnerImageView.image = UIImage(named: "runner-m")
             }
-            cell.outfit = outfit?[collectionViewItem]
+            if let outfit = outfit {
+                cell.outfit = outfit[collectionViewItem]
+            }
             cell.reloadView()
             return cell
 
@@ -160,7 +180,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCellWithIdentifier("QuoteTableViewCell", forIndexPath: indexPath) as! QuoteTableViewCell
 
             cell.quoteLabel.attributedText = Quote.sharedInstance.randomQuote()
-
+            print("quote")
             return cell
 
         case .BannerAd:
@@ -179,7 +199,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func setupBannerAdRequest() -> GADRequest {
         let request = GADRequest()
-        if NSUserDefaults.standardUserDefaults().boolForKey("prefersFemale") == true {
+        if User.sharedInstance.prefersFemale() {
             request.gender = .Male
         } else {
             request.gender = .Female
@@ -193,7 +213,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                 accuracy: CGFloat(currentLocation.horizontalAccuracy))
             }
         }
-        request.testDevices = [kGADSimulatorID]
+        request.testDevices = [kGADSimulatorID, "baa701bcf71eaf89dd9f1255c0435d7d"]
 
         return request
     }
@@ -255,10 +275,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let elapsedTime = -Int(updatedAtDate.timeIntervalSinceNow)
             if elapsedTime > 3600 { return true }
         }
+        if User.sharedInstance.isPro() { return true }
         return false
     }
     
-    func fetchData() {
+    func fetchWeatherAndRecommendation() {
         if handleRefresh() == true {
             LocationManager.sharedInstance.getLocation()
             LocationManager.sharedInstance.locationUpdatedBlock = { [weak self] location in
@@ -275,13 +296,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                 Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
                                     self?.outfit = recommendation
                                     SVProgressHUD.dismiss()
-                                    self?.tableView.reloadData()
+                                    self?.tableView.reloadSections((self?.indexSet)!, withRowAnimation: .None)
                                 })
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    func fetchRecommendation() {
+        if let weather = weather {
+            Recommendation().getRecommendedOutfit(weather, completion: { [weak self] recommendation in
+                self?.outfit = recommendation
+                self?.tableView.reloadSections((self?.indexSet)!, withRowAnimation: .None)
+            })
         }
     }
     
@@ -303,7 +333,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return kHourlyWeatherCount
+        if User.sharedInstance.isPro() {
+            return kHourlyWeatherCount
+        } else {
+            return 1
+        }
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

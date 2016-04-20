@@ -16,6 +16,10 @@ class RunnerTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDe
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        setupViews()
+    }
+    
+    func setupViews() {
         tableView.dataSource = self
         tableView.delegate = self
 

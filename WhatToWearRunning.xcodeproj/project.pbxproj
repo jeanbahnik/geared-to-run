@@ -13,6 +13,7 @@
 		FF3EE1CD1CB1638E00E5209B /* GearItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */; };
 		FF3EE1D01CB1781100E5209B /* AdmobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3EE1CE1CB1781100E5209B /* AdmobTableViewCell.swift */; };
 		FF3EE1D11CB1781100E5209B /* AdmobTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3EE1CF1CB1781100E5209B /* AdmobTableViewCell.xib */; };
+		FF42AAF41CBC2442001762F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF42AAF31CBC2442001762F9 /* User.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */; };
@@ -47,6 +48,8 @@
 		FFEC6FB81C61082B0010D994 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC6FB71C61082B0010D994 /* Style.swift */; };
 		FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */; };
 		FFF6A9221C703FA700B34CF7 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */; };
+		FFF717331CC6ADB100049FE7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF717321CC6ADB100049FE7 /* StoreKit.framework */; };
+		FFF717381CC6B05900049FE7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF717371CC6B05900049FE7 /* CloudKit.framework */; };
 		FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF9757E1C4F190400B624F4 /* Gear.swift */; };
 		FFFD35BE1C96001F00A3996B /* GearConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35BB1C96001F00A3996B /* GearConstraint.swift */; };
 		FFFD35C21C96219000A3996B /* GearConstraint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */; };
@@ -78,6 +81,7 @@
 		FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FF3EE1CE1CB1781100E5209B /* AdmobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobTableViewCell.swift; sourceTree = "<group>"; };
 		FF3EE1CF1CB1781100E5209B /* AdmobTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdmobTableViewCell.xib; sourceTree = "<group>"; };
+		FF42AAF31CBC2442001762F9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintDetailsViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +123,9 @@
 		FFEC6FB71C61082B0010D994 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateSettings.swift; sourceTree = "<group>"; };
 		FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
+		FFF717321CC6ADB100049FE7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		FFF717361CC6B04800049FE7 /* WhatToWearRunning.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WhatToWearRunning.entitlements; sourceTree = "<group>"; };
+		FFF717371CC6B05900049FE7 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FFF9757E1C4F190400B624F4 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gear.swift; sourceTree = "<group>"; };
 		FFFD35BB1C96001F00A3996B /* GearConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearConstraint.swift; sourceTree = "<group>"; };
 		FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearConstraint+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -129,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFF717381CC6B05900049FE7 /* CloudKit.framework in Frameworks */,
+				FFF717331CC6ADB100049FE7 /* StoreKit.framework in Frameworks */,
 				7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +171,8 @@
 		CDADC74DCF672649202F165D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFF717371CC6B05900049FE7 /* CloudKit.framework */,
+				FFF717321CC6ADB100049FE7 /* StoreKit.framework */,
 				719878DD5F3A324EAFBEF830 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -192,6 +203,7 @@
 		FFE02ECC1C4834D5006EF28A /* WhatToWearRunning */ = {
 			isa = PBXGroup;
 			children = (
+				FFF717361CC6B04800049FE7 /* WhatToWearRunning.entitlements */,
 				FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */,
 				FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */,
 				FF4368BF1C60139C00081FA8 /* HomeViewController.swift */,
@@ -241,6 +253,7 @@
 				FFFD35BB1C96001F00A3996B /* GearConstraint.swift */,
 				FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */,
 				FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */,
+				FF42AAF31CBC2442001762F9 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -353,6 +366,17 @@
 					FFE02EC91C4834D5006EF28A = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = BHAVC2B76G;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					FFE02EDD1C4834D5006EF28A = {
 						CreatedOnToolsVersion = 7.2;
@@ -488,6 +512,7 @@
 				FFEC0A1C1C83C47700A1B760 /* RunnerTableViewCell.swift in Sources */,
 				FF866D461C978DFD0056EE42 /* ItemDetailsViewController.swift in Sources */,
 				FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */,
+				FF42AAF41CBC2442001762F9 /* User.swift in Sources */,
 				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
 				FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */,
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
@@ -654,14 +679,16 @@
 			baseConfigurationReference = 7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = WhatToWearRunning/WhatToWearRunning.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jean Bahnik (VAWLRE883E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jean Bahnik (VAWLRE883E)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WhatToWearRunning/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "700ccf19-eb2f-470a-ade8-63e1879b809d";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhatToWearRunning/Bridging-Header.h";
 			};
 			name = Debug;
@@ -671,6 +698,7 @@
 			baseConfigurationReference = 4061DA9228B7D6116A65B740 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WhatToWearRunning/WhatToWearRunning.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
 				DEFINES_MODULE = NO;
@@ -678,7 +706,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65d97465-fbcd-4060-bdef-569c9b962769";
+				PROVISIONING_PROFILE = "12c2d005-a413-4169-b0eb-ae6e8d06bb5f";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhatToWearRunning/Bridging-Header.h";
 			};
 			name = Release;

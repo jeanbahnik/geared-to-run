@@ -9,20 +9,21 @@
 import MessageUI
 
 let kTCAppReviewLink = NSURL(string: "itms-apps://itunes.apple.com/app/id1075193930")
+let kTCAppStoreUrl = "https://itunes.apple.com/us/app/geared-to-run/id1075193930"
 
 class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
     private enum TableSection: Int {
-        case Pro, Communication, Gender, Gear, Sections
+        case Communication, Pro, Gender, Gear, Who, Sections
 
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
         }
     }
-    
+
     private enum CommunicationRows: Int {
-        case Rate, SendFeedback, Rows
-        
+        case Rate, SendFeedback, TellFriend, Rows
+
         static func numberOfRows() -> Int {
             return CommunicationRows.Rows.rawValue
         }
@@ -30,13 +31,20 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
     private enum GenderRows: Int {
         case Female, Male, Rows
-        
+
         static func numberOfRows() -> Int {
             return GenderRows.Rows.rawValue
         }
     }
 
-    let preferences = NSUserDefaults.standardUserDefaults()
+    private enum WhoRows: Int {
+        case Jean, Brian, Rows
+
+        static func numberOfRows() -> Int {
+            return WhoRows.Rows.rawValue
+        }
+    }
+
     var preferencesUpdatedBlock: (Void -> Void)?
 
     @IBOutlet weak var tableView: UITableView!
@@ -74,17 +82,40 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
+        switch TableSection(rawValue: section)! {
+        case .Communication, .Who, .Gender:
+            return 30.0
+        case .Gear:
+            if User.sharedInstance.isPro() {
+                return 30.0
+            } else {
+                return 0.1
+            }
+        case .Sections, .Pro:
+            return 0.1
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
-        case .Pro, .Communication, .Gear, .Sections:
+        case .Communication, .Gear, .Pro:
             return ""
         case .Gender:
-            return "Gender preference"
+            return "Icon preference"
+        case .Who:
+            return "Who made this"
+        case .Sections:
+            return ""
         }
     }
 
@@ -94,16 +125,27 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             return CommunicationRows.numberOfRows()
         case .Gender:
             return GenderRows.numberOfRows()
-        case .Pro, .Gear:
-            return 1
-        case .Sections:
-            return 0
+        case .Who:
+            return WhoRows.numberOfRows()
+        case .Gear:
+            if User.sharedInstance.isPro() {
+                return 1
+            } else {
+                return 0
+            }
+        case .Pro:
+            if User.sharedInstance.isPro() {
+                return 0
+            } else {
+                return 1
+            }
+        default: return 0
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
+
         cell.backgroundColor = Style.navyBlueColor
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.tintColor = UIColor.whiteColor()
@@ -117,8 +159,13 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             switch CommunicationRows(rawValue: indexPath.row)! {
             case .Rate:
                 cell.textLabel?.text = "Rate us in the App Store"
+                return cell
             case .SendFeedback:
-                cell.textLabel?.text = "Send us feedback/report an issue"
+                cell.textLabel?.text = "Report a bug/Send Feedback"
+                return cell
+            case .TellFriend:
+                cell.textLabel?.text = "Tell a friend about this app"
+                return cell
             case .Rows: break
             }
 
@@ -127,19 +174,50 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             switch GenderRows(rawValue: indexPath.row)! {
             case .Female:
                 cell.textLabel?.text = "Female"
-                if preferences.boolForKey("prefersFemale") == true { cell.accessoryType = .Checkmark }
+                if User.sharedInstance.prefersFemale() { cell.accessoryType = .Checkmark }
+                return cell
             case .Male:
                 cell.textLabel?.text = "Male"
-                if preferences.boolForKey("prefersFemale") == false { cell.accessoryType = .Checkmark }
+                if !User.sharedInstance.prefersFemale() { cell.accessoryType = .Checkmark }
+                return cell
             case .Rows: break
             }
-            
+
+        case .Pro:
+            if !User.sharedInstance.isPro() {
+                cell.textLabel?.text = "GO PRO"
+                cell.textLabel?.textAlignment = .Center
+                return cell
+            } else {
+                break
+            }
+
+        case .Who:
+            switch WhoRows(rawValue: indexPath.row)! {
+            case .Jean:
+                cell.textLabel?.text = "Jean Bahnik"
+                return cell
+            case .Brian:
+                cell.textLabel?.text = "Brian Drum"
+                return cell
+            case .Rows: break
+            }
+
         case .Gear:
-            cell.accessoryType = .DisclosureIndicator
-            cell.textLabel?.text = "My gear"
+            cell.userInteractionEnabled = false
+            if User.sharedInstance.isPro() {
+                cell.userInteractionEnabled = true
+                cell.accessoryType = .DisclosureIndicator
+                cell.textLabel?.text = "My gear"
+                return cell
+            } else {
+                break
+            }
 
         case .Sections: break
         }
+
+        cell.textLabel?.text = ""
         return cell
     }
 
@@ -149,12 +227,14 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         switch TableSection(rawValue: indexPath.section)! {
         case .Pro:
             performSegueWithIdentifier("GoPro", sender: nil)
-            
+
         case .Communication:
             switch CommunicationRows(rawValue: indexPath.row)! {
             case .Rate:
                 UIApplication.sharedApplication().openURL(kTCAppReviewLink!)
             case .SendFeedback:
+                Instabug.invoke()
+            case .TellFriend:
                 sendEmail()
             case .Rows: break
             }
@@ -163,34 +243,46 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             switch GenderRows(rawValue: indexPath.row)! {
             case .Female:
                 tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: TableSection.Gender.rawValue))!.accessoryType = .None
-                preferences.setBool(true, forKey: "prefersFemale")
+                User.sharedInstance.setGenderPreference(true)
             case .Male:
                 tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: TableSection.Gender.rawValue))!.accessoryType = .None
-                preferences.setBool(false, forKey: "prefersFemale")
+                User.sharedInstance.setGenderPreference(false)
             case .Rows: break
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
-            
+
+        case .Pro:
+            break
+
+        case .Who:
+            switch WhoRows(rawValue: indexPath.row)! {
+            case .Jean:
+                UIApplication.sharedApplication().openURL(NSURL(string: "http://jeanbahnik.com")!)
+            case .Brian:
+                UIApplication.sharedApplication().openURL(NSURL(string: "http://briandrum.net")!)
+            case .Rows: break
+            }
+
         case .Gear:
             performSegueWithIdentifier("Gear", sender: nil)
 
         case .Sections: break
         }
     }
-    
+
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["support@beebuzz.com"])
-            mail.setMessageBody("<p>Feedback for What To Wear: Running</p>", isHTML: true)
-            
+            mail.setSubject("Check out this app: Geared to run")
+            mail.setMessageBody("<p>Check out this app: <a href=\"\(kTCAppStoreUrl)\">Geared to Run</a></p>", isHTML: true)
+
             presentViewController(mail, animated: true, completion: nil)
         } else {
             // show failure alert
         }
     }
-    
+
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
