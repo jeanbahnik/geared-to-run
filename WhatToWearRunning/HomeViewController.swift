@@ -142,6 +142,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather:
             let cell = tableView.dequeueReusableCellWithIdentifier("WeatherTableViewCell", forIndexPath: indexPath) as! WeatherTableViewCell
+            cell.selectionStyle = .None
             return cell
 
         case .PageControl:
@@ -332,7 +333,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return kHourlyWeatherCount
+        if User.sharedInstance.isPro() {
+            return kHourlyWeatherCount
+        } else {
+            return 1
+        }
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
