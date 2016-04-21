@@ -122,7 +122,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .PageControl, .Quote, .BannerAd, .Runner: return 1
+        case .Weather, .PageControl, .Quote, .Runner: return 1
+        case .BannerAd:
+            if User.sharedInstance.isPro() {
+                return 0
+            } else {
+                return 1
+            }
         case .Sections: return 0
         }
     }
