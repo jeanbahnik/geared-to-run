@@ -12,12 +12,28 @@ class GoProViewController: UIViewController {
     
     let kProductID = "com.jeanbahnik.whattowearrunning.gopro"
 
+    @IBOutlet weak var navigationBar: UINavigationBar!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        retrieveProductInto()
+        setupViews()
+    }
+
+    func setupViews() {
+        view.backgroundColor = Style.navyBlueColor
+        navigationBar.barStyle = .Black
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        navigationBar.barTintColor = Style.navyBlueColor
+    }
+
     @IBAction func dismissButtonTapped(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func goProButtonTapped(sender: UIButton) {
-        purchaseProduct()
+//        purchaseProduct()
     }
     
     func retrieveProductInto() {

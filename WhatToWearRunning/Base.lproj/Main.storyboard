@@ -188,7 +188,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-jy-nh3">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-jy-nh3">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="0Da-Ye-E7R"/>
@@ -196,7 +196,7 @@
                                 <items>
                                     <navigationItem id="qZ2-Od-E3F">
                                         <barButtonItem key="leftBarButtonItem" image="Close" id="DnT-wW-lBJ" userLabel="Back Button">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="dismissButtonTapped:" destination="9B4-5I-S3c" id="4Td-rN-omR"/>
                                             </connections>
@@ -223,6 +223,9 @@
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="7pl-jy-nh3" id="U0n-jo-tiG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="juC-3U-xib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
