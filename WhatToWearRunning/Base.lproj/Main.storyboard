@@ -188,48 +188,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-jy-nh3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remove advertisements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8x-yX-gKb">
+                                <rect key="frame" x="202" y="85" width="197" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="0Da-Ye-E7R"/>
+                                    <constraint firstAttribute="height" constant="25" id="XLs-cq-rBv"/>
                                 </constraints>
-                                <items>
-                                    <navigationItem id="qZ2-Od-E3F">
-                                        <barButtonItem key="leftBarButtonItem" image="Close" id="DnT-wW-lBJ" userLabel="Back Button">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="dismissButtonTapped:" destination="9B4-5I-S3c" id="4Td-rN-omR"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See the next ten hours of weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hor-gE-TVc">
+                                <rect key="frame" x="163" y="120" width="275" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="8xf-ra-fUj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your gear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiD-Ix-Uel">
+                                <rect key="frame" x="215" y="155" width="170.5" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="n4r-fp-cBs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save your custom gear to iCloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pz-S2-B6w">
+                                <rect key="frame" x="167" y="190" width="267.5" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="vKY-9S-b1d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support the development of this app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsi-Cz-22e">
+                                <rect key="frame" x="149" y="225" width="303.5" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="wom-Ue-9wK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO2-Va-vW3">
-                                <rect key="frame" x="277" y="285" width="47" height="30"/>
+                                <rect key="frame" x="268" y="260" width="64" height="40"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                 <state key="normal" title="Go Pro"/>
                                 <connections>
                                     <action selector="goProButtonTapped:" destination="9B4-5I-S3c" eventType="touchUpInside" id="NlO-5Y-bmw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V53-ZK-aT9">
+                                <rect key="frame" x="0.0" y="0.0" width="14" height="22"/>
+                                <state key="normal" image="Close"/>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="9B4-5I-S3c" eventType="touchUpInside" id="aSh-2d-zCN"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What you get by going Pro:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67b-zC-5ee">
+                                <rect key="frame" x="186" y="40" width="228" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="AOx-3X-tmh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="aO2-Va-vW3" firstAttribute="centerY" secondItem="bUE-ht-xi3" secondAttribute="centerY" id="0G0-T1-DHG"/>
-                            <constraint firstItem="7pl-jy-nh3" firstAttribute="leading" secondItem="bUE-ht-xi3" secondAttribute="leading" id="QbA-qD-E5H"/>
-                            <constraint firstItem="7pl-jy-nh3" firstAttribute="top" secondItem="bUE-ht-xi3" secondAttribute="top" id="U0K-2l-r2W"/>
-                            <constraint firstAttribute="trailing" secondItem="7pl-jy-nh3" secondAttribute="trailing" id="cIF-aU-Dkb"/>
-                            <constraint firstItem="aO2-Va-vW3" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="kL4-dR-hAc"/>
+                            <constraint firstItem="ZiD-Ix-Uel" firstAttribute="top" secondItem="hor-gE-TVc" secondAttribute="bottom" constant="10" id="3a2-aK-xom"/>
+                            <constraint firstItem="0Pz-S2-B6w" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="7eg-kZ-IvV"/>
+                            <constraint firstItem="67b-zC-5ee" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="8cI-de-Z7a"/>
+                            <constraint firstItem="dsi-Cz-22e" firstAttribute="top" secondItem="0Pz-S2-B6w" secondAttribute="bottom" constant="10" id="8ja-bB-ybu"/>
+                            <constraint firstItem="0Pz-S2-B6w" firstAttribute="top" secondItem="ZiD-Ix-Uel" secondAttribute="bottom" constant="10" id="API-HV-bjd"/>
+                            <constraint firstItem="hor-gE-TVc" firstAttribute="top" secondItem="m8x-yX-gKb" secondAttribute="bottom" constant="10" id="HHW-Mh-Kpb"/>
+                            <constraint firstItem="ZiD-Ix-Uel" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="LDe-3l-zRL"/>
+                            <constraint firstItem="hor-gE-TVc" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="NXz-U4-dRQ"/>
+                            <constraint firstItem="m8x-yX-gKb" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="R5M-DD-Pk9"/>
+                            <constraint firstItem="m8x-yX-gKb" firstAttribute="top" secondItem="67b-zC-5ee" secondAttribute="bottom" constant="20" id="bPO-Eo-FYa"/>
+                            <constraint firstItem="aO2-Va-vW3" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="buv-js-Vr3"/>
+                            <constraint firstItem="dsi-Cz-22e" firstAttribute="centerX" secondItem="bUE-ht-xi3" secondAttribute="centerX" id="kDD-lw-GVo"/>
+                            <constraint firstItem="67b-zC-5ee" firstAttribute="top" secondItem="3yp-W8-GOf" secondAttribute="bottom" constant="20" id="ppY-qj-mjj"/>
+                            <constraint firstItem="aO2-Va-vW3" firstAttribute="top" secondItem="dsi-Cz-22e" secondAttribute="bottom" constant="10" id="sM2-G0-Sq1"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="navigationBar" destination="7pl-jy-nh3" id="U0n-jo-tiG"/>
+                        <outlet property="closeButtonTapped" destination="V53-ZK-aT9" id="Z6A-vG-9H2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="juC-3U-xib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971" y="-502"/>
+            <point key="canvasLocation" x="1988" y="-530"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="lRz-1g-qIN">
