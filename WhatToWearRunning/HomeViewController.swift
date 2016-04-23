@@ -12,7 +12,7 @@ import GoogleMobileAds
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private enum TableSection: Int {
-        case Weather, PageControl, Runner, Quote, BannerAd, Sections
+        case Weather, PageControl, Pro, Runner, Quote, BannerAd, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -102,9 +102,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Style.navyBlueColor
         tableView.alwaysBounceVertical = true
 
-        if User.sharedInstance.isPro() {
-            tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
-        }
+        tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
         tableView.registerNib(UINib(nibName: "QuoteTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "QuoteTableViewCell")
         tableView.registerNib(UINib(nibName: "AdmobTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "AdmobTableViewCell")
 
@@ -117,13 +115,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - TableView
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        print(TableSection.numberOfSections())
         return TableSection.numberOfSections()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .PageControl, .Quote, .Runner: return 1
-        case .BannerAd:
+        case .Weather, .Quote, .Runner: return 1
+        case .PageControl:
+            if User.sharedInstance.isPro() {
+                return 1
+            } else {
+                return 0
+            }
+        case .BannerAd, .Pro:
             if User.sharedInstance.isPro() {
                 return 0
             } else {
@@ -136,7 +141,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather: return 120.0
-        case .PageControl: return 37.0
+        case .PageControl, .Pro: return 37.0
         case .Runner: return 322.0
         case .Quote: return 60.0
         case .BannerAd: return 280.0
@@ -152,22 +157,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return cell
 
         case .PageControl:
-            if User.sharedInstance.isPro() {
-                let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
+            cell.pageControl.numberOfPages = kHourlyWeatherCount
+            cell.pageControl.currentPage = collectionViewItem
+            return cell
 
-                cell.pageControl.numberOfPages = kHourlyWeatherCount
-                cell.pageControl.currentPage = collectionViewItem
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath)
-                let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
-                let text = NSMutableAttributedString(string: "Go Pro to see the next 10 hours, and more!", attributes: attribute1)
-                cell.userInteractionEnabled = true
-                cell.textLabel?.attributedText = text
-                cell.textLabel?.textAlignment = .Center
-                cell.backgroundColor = Style.maroonColor
-                return cell
-            }
+        case .Pro:
+            let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath)
+            let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
+            let text = NSMutableAttributedString(string: "Go Pro to see the next 10 hours, and more!", attributes: attribute1)
+            cell.userInteractionEnabled = true
+            cell.textLabel?.attributedText = text
+            cell.textLabel?.textAlignment = .Center
+            cell.backgroundColor = Style.maroonColor
+            return cell
 
         case .Runner:
             let cell = tableView.dequeueReusableCellWithIdentifier("RunnerTableViewCell", forIndexPath: indexPath) as! RunnerTableViewCell
@@ -205,7 +208,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == TableSection.PageControl.rawValue {
+        if indexPath.section == TableSection.Pro.rawValue {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
             performSegueWithIdentifier("GoPro", sender: nil)
@@ -338,8 +341,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.prepareForSegue(segue, sender: sender)
         if (segue.identifier == "Preferences") {
             let vc = segue.destinationViewController as! PreferencesViewController
-            vc.preferencesUpdatedBlock = { Void in
-                self.tableView.reloadData()
+            vc.preferencesUpdatedBlock = { [weak self] Void in
+                self?.tableView.reloadData()
+            }
+        }
+        if (segue.identifier == "GoPro") {
+            let vc = segue.destinationViewController as! GoProViewController
+            vc.isProBlock = { [weak self] Void in
+                let indexPathForBannerAd = NSIndexPath(forRow: 0, inSection: TableSection.BannerAd.rawValue)
+                let indexPathForPro = NSIndexPath(forRow: 0, inSection: TableSection.Pro.rawValue)
+                let indexPathForPageControl = NSIndexPath(forRow: 0, inSection: TableSection.PageControl.rawValue)
+
+                self?.tableView.beginUpdates()
+                self?.tableView.insertRowsAtIndexPaths([indexPathForPageControl], withRowAnimation: .Automatic)
+                self?.tableView.deleteRowsAtIndexPaths([indexPathForBannerAd, indexPathForPro], withRowAnimation: .Automatic)
+                self?.tableView.endUpdates()
+                self?.tableView.reloadData()
             }
         }
     }

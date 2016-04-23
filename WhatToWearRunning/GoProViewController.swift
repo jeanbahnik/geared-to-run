@@ -9,10 +9,12 @@
 import SwiftyStoreKit
 
 class GoProViewController: UIViewController {
-    
+
     let kProductID = "com.jeanbahnik.whattowearrunning.gopro"
 
-    @IBOutlet weak var closeButtonTapped: UIButton!
+    @IBOutlet weak var goProButton: UIButton!
+    
+    var isProBlock: (Void -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +22,30 @@ class GoProViewController: UIViewController {
         retrieveProductInto()
         setupViews()
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 
     func setupViews() {
         view.backgroundColor = Style.navyBlueColor
+
+        goProButton.setTitleColor(Style.navyBlueColor, forState: .Normal)
+    }
+    
+    func dismissView() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func closeButtonTapped(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismissView()
     }
 
     @IBAction func goProButtonTapped(sender: UIButton) {
 //        purchaseProduct()
+        User.sharedInstance.setIsPro()
+        if let isProBlock = isProBlock { isProBlock() }
+        dismissView()
     }
     
     func retrieveProductInto() {

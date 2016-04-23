@@ -71,9 +71,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func doneButtonPressed() {
-        if let preferencesUpdatedBlock = preferencesUpdatedBlock {
-            preferencesUpdatedBlock()
-        }
+        if let preferencesUpdatedBlock = preferencesUpdatedBlock { preferencesUpdatedBlock() }
         navigationController?.popViewControllerAnimated(true)
     }
 
@@ -108,8 +106,10 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
-        case .Communication, .Gear, .Pro:
+        case .Communication, .Pro:
             return ""
+        case .Gear:
+            return "Customize your gear"
         case .Gender:
             return "Icon preference"
         case .Who:
@@ -151,9 +151,6 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         cell.tintColor = UIColor.whiteColor()
 
         switch TableSection(rawValue: indexPath.section)! {
-        case .Pro:
-            cell.textLabel?.text = "Upgrade to Pro"
-
         case .Communication:
             cell.accessoryType = .DisclosureIndicator
             switch CommunicationRows(rawValue: indexPath.row)! {
@@ -185,8 +182,12 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
         case .Pro:
             if !User.sharedInstance.isPro() {
-                cell.textLabel?.text = "GO PRO"
+                let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
+                let text = NSMutableAttributedString(string: "Go Pro to customize your gear, and more!", attributes: attribute1)
+                cell.userInteractionEnabled = true
+                cell.textLabel?.attributedText = text
                 cell.textLabel?.textAlignment = .Center
+                cell.backgroundColor = Style.maroonColor
                 return cell
             } else {
                 break
@@ -251,9 +252,6 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
 
-        case .Pro:
-            break
-
         case .Who:
             switch WhoRows(rawValue: indexPath.row)! {
             case .Jean:
@@ -267,6 +265,24 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             performSegueWithIdentifier("Gear", sender: nil)
 
         case .Sections: break
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+
+        if (segue.identifier == "GoPro") {
+            let vc = segue.destinationViewController as! GoProViewController
+            vc.isProBlock = { [weak self] Void in
+                let indexPathForGear = NSIndexPath(forRow: 0, inSection: TableSection.Gear.rawValue)
+                let indexPathForPro = NSIndexPath(forRow: 0, inSection: TableSection.Pro.rawValue)
+
+                self?.tableView.beginUpdates()
+                self?.tableView.insertRowsAtIndexPaths([indexPathForGear], withRowAnimation: .Automatic)
+                self?.tableView.deleteRowsAtIndexPaths([indexPathForPro], withRowAnimation: .Automatic)
+                self?.tableView.endUpdates()
+                self?.tableView.reloadData()
+            }
         }
     }
 
