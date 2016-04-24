@@ -110,6 +110,11 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             return ""
         case .Gear:
             return "Customize your gear"
+//            if User.sharedInstance.isPro() {
+//                return "Customize your gear"
+//            } else {
+//                return ""
+//            }
         case .Gender:
             return "Icon preference"
         case .Who:
