@@ -42,10 +42,10 @@ class GoProViewController: UIViewController {
     }
 
     @IBAction func goProButtonTapped(sender: UIButton) {
-        purchaseProduct()
-//        User.sharedInstance.setIsPro()
-//        if let isProBlock = isProBlock { isProBlock() }
-//        dismissView()
+//        purchaseProduct()
+        User.sharedInstance.setIsPro()
+        if let isProBlock = isProBlock { isProBlock() }
+        dismissView()
     }
     
     func retrieveProductInto() {

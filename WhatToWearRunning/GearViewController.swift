@@ -9,7 +9,11 @@
 class GearViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     private enum Actions: Int {
-        case Delete, Reset
+        case Delete, Reset, RemoveDuplicates, Count
+        
+        static func rowCount() -> Int {
+            return Actions.Count.rawValue
+        }
     }
 
     var head = [GearItem]()
@@ -79,7 +83,7 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Legs: return legs.count
         case .Feet: return feet.count
         case .Accessories: return accessories.count
-        case .Count: return 2
+        case .Count: return Actions.rowCount()
         }
     }
     
@@ -123,6 +127,10 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.textLabel?.text = "Delete all gear"
             case .Reset:
                 cell.textLabel?.text = "Restore default gear"
+            case .RemoveDuplicates:
+                cell.textLabel?.text = "Remove duplicate gear"
+                cell.detailTextLabel?.text = "If you have duplicates after installing app on a second device"
+            case .Count: break
             }
         }
 
@@ -168,6 +176,19 @@ class GearViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         })
                 }))
                 self.presentViewController(alert, animated: true, completion: nil)
+                
+            case .RemoveDuplicates:
+                let alert = UIAlertController(title: "Are you sure you want remove duplicates?", message: "This cannot be reversed", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { alertAction in
+                    GearItem.deleteData(true, completion: { [weak self] in
+                        self?.setupGearArrays()
+                        self?.tableView.reloadData()
+                        })
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            case .Count: break
             }
         }
     }

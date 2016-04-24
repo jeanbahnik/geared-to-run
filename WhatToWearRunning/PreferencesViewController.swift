@@ -109,12 +109,13 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         case .Communication, .Pro:
             return ""
         case .Gear:
-            return "Customize your gear"
-//            if User.sharedInstance.isPro() {
-//                return "Customize your gear"
-//            } else {
-//                return ""
-//            }
+            // TODO: change it to insert/delete sections instead of hack
+            // just return "Customize your gear" to see
+            if User.sharedInstance.isPro() {
+                return "Customize your gear"
+            } else {
+                return ""
+            }
         case .Gender:
             return "Icon preference"
         case .Who:

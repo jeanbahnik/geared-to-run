@@ -86,7 +86,7 @@ class GearItem: NSManagedObject {
         let gearList: [GearItem] = GearList.sharedInstance.getGearItems()!
         for item in gearList {
             if seedOnly == true {
-                if item.seedData == true { item.deleteItem({ (Void) in }) }
+                if item.seedData == true && item.seedDate == User.sharedInstance.getSeedDataDate() { item.deleteItem({ (Void) in }) }
             } else {
                 item.deleteItem({ (Void) in })
             }
