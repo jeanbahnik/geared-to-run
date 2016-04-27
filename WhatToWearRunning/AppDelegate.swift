@@ -1,4 +1,4 @@
-    //
+//
 //  AppDelegate.swift
 //  WhatToWearRunning
 //
@@ -14,7 +14,6 @@ let kMergeChangesFromContextDidSaveNotification = "mergeChangesFromContextDidSav
 let kStoresWillChange = "storesWillChange"
 let kStoresWillChangeError = "storesWillChangeError"
 let kStoresDidChange = "storesDidChange"
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -106,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-//    #pragma mark - Notification Observers
+    // MARK: - Notification Observers
     func registerForiCloudNotifications() {
         let notificationCenter = NSNotificationCenter.defaultCenter()
 
@@ -144,6 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func storesDidChange(notification: NSNotification) {
 //        Refresh your User Interface.
         NSNotificationCenter.defaultCenter().postNotificationName(kStoresDidChange, object: nil)
+        print("storesDidChange")
     }
 }
 
