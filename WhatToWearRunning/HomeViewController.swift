@@ -115,7 +115,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - TableView
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        print(TableSection.numberOfSections())
         return TableSection.numberOfSections()
     }
 
@@ -190,7 +189,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCellWithIdentifier("QuoteTableViewCell", forIndexPath: indexPath) as! QuoteTableViewCell
 
             cell.quoteLabel.attributedText = Quote.sharedInstance.randomQuote()
-            print("quote")
             return cell
 
         case .BannerAd:

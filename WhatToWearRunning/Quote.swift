@@ -22,16 +22,18 @@ class Quote: NSObject {
         "Nothing will work unless you do., Maya Angelou",
         "There are no shortcuts to any place worth going., Beverly Sills",
         "With self-discipline, all things are possible., Theodore Roosevelt",
-        "The long run puts the tiger in the cat., Bill Squires",
+        "To give anything less than your best, is to sacrifice the gift., Steve Prefontaine",
         "Go fast enough to get there, but slow enough to see., Jimmy Buffett",
-        "If you want to win something, run 100 meters... If you want to experience something, run a marathon., Emil Zapotek",
-        "Somebody may beat me, but they are going to have to bleed to do it., Steve Prefontaine",
-        "To give anything less than your best, is to sacrifice the gift., Steve Prefontaine"
+        "If you want to win something, run 100 meters... If you want to experience something, run a marathon., Emil Zapotek"
     ]
 
     func randomQuote() -> NSMutableAttributedString {
-        let randomIndex = Int(arc4random_uniform(UInt32(quotes.count)))
-        let quoteWithAuthor = quotes[randomIndex]
+        let now = NSDate()
+        let cal = NSCalendar.currentCalendar()
+        let currentMonth = cal.component(.Month, fromDate: now)
+
+//        let randomIndex = Int(arc4random_uniform(UInt32(quotes.count)))
+        let quoteWithAuthor = quotes[currentMonth - 1]
         let quoteAndAuthor = quoteWithAuthor.componentsSeparatedByString("., ")
 
         let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 18.0)! ]
