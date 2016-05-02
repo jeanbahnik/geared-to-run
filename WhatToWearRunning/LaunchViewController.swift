@@ -41,7 +41,7 @@ class LaunchViewController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = Style.navyBlueColor
         SVProgressHUD.setBackgroundColor(Style.navyBlueColor)
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
-        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: view.frame.height / 4))
+        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0.0, vertical: view.frame.height / 2.2))
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
