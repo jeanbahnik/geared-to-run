@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
     var collectionViewItem = 0
-    let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 2))
+    let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 1))
     
     @IBOutlet weak var tableView: UITableView!
 

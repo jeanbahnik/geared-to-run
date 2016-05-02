@@ -14,7 +14,8 @@ class GoProViewController: UIViewController {
     let kProductID = "com.jeanbahnik.whattowearrunning.gopro"
 
     @IBOutlet weak var goProButton: UIButton!
-    
+    @IBOutlet weak var restoreButton: UIButton!
+
     var isProBlock: (Void -> Void)?
 
     override func viewDidLoad() {
@@ -23,7 +24,7 @@ class GoProViewController: UIViewController {
         retrieveProductInto()
         setupViews()
     }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
@@ -33,7 +34,7 @@ class GoProViewController: UIViewController {
 
         goProButton.setTitleColor(Style.navyBlueColor, forState: .Normal)
     }
-    
+
     func dismissView() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -42,10 +43,18 @@ class GoProViewController: UIViewController {
         dismissView()
     }
 
+    @IBAction func restorePurchaseButtonTapped(sender: UIButton) {
+        goProSuccess()
+    }
+
     @IBAction func goProButtonTapped(sender: UIButton) {
-//        purchaseProduct()
+        goProSuccess()
+    }
+
+    func goProSuccess() {
+        //        purchaseProduct()
         User.sharedInstance.setIsPro()
-//        migrateLocalStoreToiCloudStore()
+        //        migrateLocalStoreToiCloudStore()
         reloadStore(nil)
         if let isProBlock = isProBlock { isProBlock() }
         dismissView()
@@ -70,6 +79,19 @@ class GoProViewController: UIViewController {
                 print("Purchase Success: \(productId)")
             case .Error(let error):
                 print("Purchase Failed: \(error)")
+            }
+        }
+    }
+
+    func restoreProduct() {
+        SwiftyStoreKit.restorePurchases { result in
+            switch result {
+            case .Error(let error):
+                print("Restore Failed:\(error)")
+            case .Success(let productId):
+                print("Restore succeeded for product id: \(productId)")
+            case .NothingToRestore:
+                print("Nothing to restore")
             }
         }
     }

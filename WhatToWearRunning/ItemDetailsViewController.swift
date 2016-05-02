@@ -12,7 +12,7 @@ import QuartzCore
 class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     private enum TableSection: Int {
-        case Slots, Constraints, Actions, Sections
+        case Constraints, Slots, Actions, Sections
 
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -113,8 +113,6 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Slots:
-            return GearSlot.Count.rawValue
         case .Constraints:
             if let item = item {
                 let gearConstraints = Array(item.constraints!) as! [GearConstraint]
@@ -123,6 +121,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             else {
                 return 0
             }
+        case .Slots:
+            return GearSlot.Count.rawValue
         case .Actions:
             return ActionsRows.numberOfRows()
         case .Sections:
@@ -134,8 +134,6 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
-        case .Slots:
-            return "Slot"
         case .Constraints:
             if item != nil {
                 return "Rules"
@@ -143,6 +141,8 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             else {
                 return ""
             }
+        case .Slots:
+            return "Slot"
         case .Actions:
             return "Actions"
         case .Sections:
@@ -160,20 +160,6 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch TableSection(rawValue: indexPath.section)! {
-        case .Slots:
-            let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
-            cell.backgroundColor = Style.navyBlueColor
-            cell.tintColor = UIColor.whiteColor()
-
-            cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
-            cell.textLabel?.textColor = UIColor.whiteColor()
-            cell.detailTextLabel?.text = GearSlot(rawValue: indexPath.row)?.detailedDescription
-            cell.detailTextLabel?.textColor = Style.silverColor
-
-            if let item = item {
-                if Int(item.slot) == indexPath.row { cell.accessoryType = .Checkmark }
-            }
-            return cell
         case .Constraints:
             if item != nil {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RuleSummaryCell", forIndexPath: indexPath) as! RuleSummaryCell
@@ -186,6 +172,20 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.accessoryType = .DisclosureIndicator
                 return cell
             }
+        case .Slots:
+            let cell = tableView.dequeueReusableCellWithIdentifier("GearSlotCell", forIndexPath: indexPath)
+            cell.backgroundColor = Style.navyBlueColor
+            cell.tintColor = UIColor.whiteColor()
+            
+            cell.textLabel?.text = GearSlot(rawValue: indexPath.row)?.description
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.detailTextLabel?.text = GearSlot(rawValue: indexPath.row)?.detailedDescription
+            cell.detailTextLabel?.textColor = Style.silverColor
+            
+            if let item = item {
+                if Int(item.slot) == indexPath.row { cell.accessoryType = .Checkmark }
+            }
+            return cell
         case .Actions:
             let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath)
             cell.backgroundColor = Style.navyBlueColor
@@ -209,18 +209,18 @@ class ItemDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        if indexPath.section == TableSection.Slots.rawValue {
+        if indexPath.section == TableSection.Constraints.rawValue {
+            if let item = item {
+                let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath.row]
+                performSegueWithIdentifier("ConstraintDetail", sender: gearConstraint)
+            }
+        } else if indexPath.section == TableSection.Slots.rawValue {
             if let selectedSlot = selectedSlot {
                 tableView.cellForRowAtIndexPath(selectedSlot)!.accessoryType = .None
             }
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
 
             selectedSlot = indexPath
-        } else if indexPath.section == TableSection.Constraints.rawValue {
-            if let item = item {
-                let gearConstraint = (Array(item.constraints!) as! [GearConstraint])[indexPath.row]
-                performSegueWithIdentifier("ConstraintDetail", sender: gearConstraint)
-            }
         } else if indexPath.section == TableSection.Actions.rawValue {
             switch ActionsRows(rawValue: indexPath.row)! {
             case .AddConstraint:
