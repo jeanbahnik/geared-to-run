@@ -14,7 +14,7 @@ let kTCAppStoreUrl = "https://itunes.apple.com/us/app/geared-to-run/id1075193930
 class PreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
     private enum TableSection: Int {
-        case Communication, Pro, Gender, Gear, Who, Sections
+        case Communication, Gender, Gear, Who, Sections
 
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -81,15 +81,9 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch TableSection(rawValue: section)! {
-        case .Communication, .Who, .Gender:
+        case .Communication, .Who, .Gender, .Gear:
             return 30.0
-        case .Gear:
-            if User.sharedInstance.isPro() {
-                return 30.0
-            } else {
-                return 0.1
-            }
-        case .Sections, .Pro:
+        case .Sections:
             return 0.1
         }
     }
@@ -106,16 +100,10 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).textColor = Style.aquaColor
 
         switch TableSection(rawValue: section)! {
-        case .Communication, .Pro:
+        case .Communication:
             return ""
         case .Gear:
-            // TODO: change it to insert/delete sections instead of hack
-            // just return "Customize your gear" to see
-            if User.sharedInstance.isPro() {
-                return "Customize your gear"
-            } else {
-                return ""
-            }
+            return "Customize your gear"
         case .Gender:
             return "Icon preference"
         case .Who:
@@ -134,17 +122,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         case .Who:
             return WhoRows.numberOfRows()
         case .Gear:
-            if User.sharedInstance.isPro() {
-                return 1
-            } else {
-                return 0
-            }
-        case .Pro:
-            if User.sharedInstance.isPro() {
-                return 0
-            } else {
-                return 1
-            }
+            return 1
         default: return 0
         }
     }
@@ -186,19 +164,6 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             case .Rows: break
             }
 
-        case .Pro:
-            if !User.sharedInstance.isPro() {
-                let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
-                let text = NSMutableAttributedString(string: "Go Pro to customize your gear, and more!", attributes: attribute1)
-                cell.userInteractionEnabled = true
-                cell.textLabel?.attributedText = text
-                cell.textLabel?.textAlignment = .Center
-                cell.backgroundColor = Style.maroonColor
-                return cell
-            } else {
-                break
-            }
-
         case .Who:
             switch WhoRows(rawValue: indexPath.row)! {
             case .Jean:
@@ -211,15 +176,10 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             }
 
         case .Gear:
-            cell.userInteractionEnabled = false
-            if User.sharedInstance.isPro() {
-                cell.userInteractionEnabled = true
-                cell.accessoryType = .DisclosureIndicator
-                cell.textLabel?.text = "My gear"
-                return cell
-            } else {
-                break
-            }
+            cell.userInteractionEnabled = true
+            cell.accessoryType = .DisclosureIndicator
+            cell.textLabel?.text = "My gear"
+            return cell
 
         case .Sections: break
         }
@@ -232,8 +192,6 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         switch TableSection(rawValue: indexPath.section)! {
-        case .Pro:
-            performSegueWithIdentifier("GoPro", sender: nil)
 
         case .Communication:
             switch CommunicationRows(rawValue: indexPath.row)! {
@@ -271,24 +229,6 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             performSegueWithIdentifier("Gear", sender: nil)
 
         case .Sections: break
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-
-        if (segue.identifier == "GoPro") {
-            let vc = segue.destinationViewController as! GoProViewController
-            vc.isProBlock = { [weak self] Void in
-                let indexPathForGear = NSIndexPath(forRow: 0, inSection: TableSection.Gear.rawValue)
-                let indexPathForPro = NSIndexPath(forRow: 0, inSection: TableSection.Pro.rawValue)
-
-                self?.tableView.beginUpdates()
-                self?.tableView.insertRowsAtIndexPaths([indexPathForGear], withRowAnimation: .Automatic)
-                self?.tableView.deleteRowsAtIndexPaths([indexPathForPro], withRowAnimation: .Automatic)
-                self?.tableView.endUpdates()
-                self?.tableView.reloadData()
-            }
         }
     }
 

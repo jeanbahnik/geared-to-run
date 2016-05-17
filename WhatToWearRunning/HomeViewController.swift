@@ -12,7 +12,7 @@ import GoogleMobileAds
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private enum TableSection: Int {
-        case Weather, PageControl, Pro, Runner, Quote, BannerAd, Sections
+        case Weather, PageControl, Runner, Quote, BannerAd, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -120,19 +120,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .Quote, .Runner: return 1
-        case .PageControl:
-            if User.sharedInstance.isPro() {
-                return 1
-            } else {
-                return 0
-            }
-        case .BannerAd, .Pro:
-            if User.sharedInstance.isPro() {
-                return 0
-            } else {
-                return 1
-            }
+        case .Weather, .Quote, .Runner, .PageControl, .BannerAd: return 1
         case .Sections: return 0
         }
     }
@@ -140,7 +128,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch TableSection(rawValue: indexPath.section)! {
         case .Weather: return 120.0
-        case .PageControl, .Pro: return 37.0
+        case .PageControl: return 37.0
         case .Runner: return 322.0
         case .Quote: return 60.0
         case .BannerAd: return 280.0
@@ -159,16 +147,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath) as! PageControlTableViewCell
             cell.pageControl.numberOfPages = kHourlyWeatherCount
             cell.pageControl.currentPage = collectionViewItem
-            return cell
-
-        case .Pro:
-            let cell = tableView.dequeueReusableCellWithIdentifier("PageControlTableViewCell", forIndexPath: indexPath)
-            let attribute1 = [ NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Arial Rounded MT Bold", size: 15.0)! ]
-            let text = NSMutableAttributedString(string: "Go Pro to see the next 10 hours, and more!", attributes: attribute1)
-            cell.userInteractionEnabled = true
-            cell.textLabel?.attributedText = text
-            cell.textLabel?.textAlignment = .Center
-            cell.backgroundColor = Style.maroonColor
             return cell
 
         case .Runner:
@@ -205,14 +183,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == TableSection.Pro.rawValue {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-
-            performSegueWithIdentifier("GoPro", sender: nil)
-        }
-    }
-
     func setupBannerAdRequest() -> GADRequest {
         let request = GADRequest()
         if User.sharedInstance.prefersFemale() {
@@ -291,7 +261,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let elapsedTime = -Int(updatedAtDate.timeIntervalSinceNow)
             if elapsedTime > 3600 { return true }
         }
-        if User.sharedInstance.isPro() { return true }
         return false
     }
     
@@ -343,31 +312,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self?.tableView.reloadData()
             }
         }
-        if (segue.identifier == "GoPro") {
-            let vc = segue.destinationViewController as! GoProViewController
-            vc.isProBlock = { [weak self] Void in
-                let indexPathForBannerAd = NSIndexPath(forRow: 0, inSection: TableSection.BannerAd.rawValue)
-                let indexPathForPro = NSIndexPath(forRow: 0, inSection: TableSection.Pro.rawValue)
-                let indexPathForPageControl = NSIndexPath(forRow: 0, inSection: TableSection.PageControl.rawValue)
-
-                self?.tableView.beginUpdates()
-                self?.tableView.insertRowsAtIndexPaths([indexPathForPageControl], withRowAnimation: .Automatic)
-                self?.tableView.deleteRowsAtIndexPaths([indexPathForBannerAd, indexPathForPro], withRowAnimation: .Automatic)
-                self?.tableView.endUpdates()
-                self?.tableView.reloadData()
-            }
-        }
     }
-
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if User.sharedInstance.isPro() {
-            return kHourlyWeatherCount
-        } else {
-            return 1
-        }
+        return kHourlyWeatherCount
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

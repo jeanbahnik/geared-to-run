@@ -53,13 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create the coordinator and store
 
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        var storeOptions: [NSObject: AnyObject]? = nil
-        if User.sharedInstance.isPro() {
-            print("Pro")
-            storeOptions = [ NSPersistentStoreUbiquitousContentNameKey: "WhatToWearRunningCloudStore"]
-        } else {
-            print("not Pro")
-        }
+        let storeOptions = [ NSPersistentStoreUbiquitousContentNameKey: "WhatToWearRunningCloudStore"]
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("WhatToWearRunning.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
