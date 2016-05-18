@@ -62,11 +62,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: UIScrollView delegate method implementation
 
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        if handleRefresh() == true {
-            loadCustomRefreshContents("Updating...")
-        } else {
-            loadCustomRefreshContents("Upgrade to Pro to update more than once an hour.")
-        }
+        loadCustomRefreshContents("Updating...")
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -255,35 +251,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        }
 //    }
     
-    func handleRefresh() -> Bool {
-        // Can call first on weather since all weather objects share the same UpdatedAtDate
-        if let weather = weather?.first, updatedAtDate = weather.updatedAtDate {
-            let elapsedTime = -Int(updatedAtDate.timeIntervalSinceNow)
-            if elapsedTime > 3600 { return true }
-        }
-        return false
-    }
-    
     func fetchWeatherAndRecommendation() {
-        if handleRefresh() == true {
-            LocationManager.sharedInstance.getLocation()
-            LocationManager.sharedInstance.locationUpdatedBlock = { [weak self] location in
-                if let location = location {
-                    if Reachability.isConnectedToNetwork() == false {
-    //                    returns to previous screen and display an error message
-    //                    displayError("Connect Internet and Try Again")
-                    } else {
-                        LocationManager.sharedInstance.stopUpdatingLocation()
-                        SVProgressHUD.show()
-                        Weather().getWeatherData(location) { ( weather : [HourlyWeather]? ) in
-                            if let weather = weather {
-                                self?.weather = weather
-                                Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
-                                    self?.outfit = recommendation
-                                    SVProgressHUD.dismiss()
-                                    self?.tableView.reloadSections((self?.indexSet)!, withRowAnimation: .None)
-                                })
-                            }
+        LocationManager.sharedInstance.getLocation()
+        LocationManager.sharedInstance.locationUpdatedBlock = { [weak self] location in
+            if let location = location {
+                if Reachability.isConnectedToNetwork() == false {
+//                    returns to previous screen and display an error message
+//                    displayError("Connect Internet and Try Again")
+                } else {
+                    LocationManager.sharedInstance.stopUpdatingLocation()
+                    SVProgressHUD.show()
+                    Weather().getWeatherData(location) { ( weather : [HourlyWeather]? ) in
+                        if let weather = weather {
+                            self?.weather = weather
+                            Recommendation().getRecommendedOutfit(weather, completion: { recommendation in
+                                self?.outfit = recommendation
+                                SVProgressHUD.dismiss()
+                                self?.tableView.reloadSections((self?.indexSet)!, withRowAnimation: .None)
+                            })
                         }
                     }
                 }
