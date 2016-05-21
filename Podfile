@@ -6,5 +6,3 @@ pod 'ForecastIO', '~> 1.3'
 pod 'Instabug'
 pod 'SVProgressHUD', '~> 1.0'
 pod "TTRangeSlider"
-pod 'Google-Mobile-Ads-SDK', '~> 7.0'
-pod 'SwiftyStoreKit'

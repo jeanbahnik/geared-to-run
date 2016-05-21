@@ -11,8 +11,6 @@
 		FF1E977F1C9771C30085C407 /* GearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E977E1C9771C30085C407 /* GearViewController.swift */; };
 		FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */; };
 		FF3EE1CD1CB1638E00E5209B /* GearItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */; };
-		FF3EE1D01CB1781100E5209B /* AdmobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3EE1CE1CB1781100E5209B /* AdmobTableViewCell.swift */; };
-		FF3EE1D11CB1781100E5209B /* AdmobTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3EE1CF1CB1781100E5209B /* AdmobTableViewCell.xib */; };
 		FF42AAF41CBC2442001762F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF42AAF31CBC2442001762F9 /* User.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
@@ -78,8 +76,6 @@
 		FF1E977E1C9771C30085C407 /* GearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearViewController.swift; sourceTree = "<group>"; };
 		FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FF3EE1CE1CB1781100E5209B /* AdmobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobTableViewCell.swift; sourceTree = "<group>"; };
-		FF3EE1CF1CB1781100E5209B /* AdmobTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdmobTableViewCell.xib; sourceTree = "<group>"; };
 		FF42AAF31CBC2442001762F9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -273,8 +269,6 @@
 				FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */,
 				FF48A0291CAB10900059FBF7 /* RuleSummaryCell.xib */,
 				FF48A02B1CAB140C0059FBF7 /* RuleSummaryCell.swift */,
-				FF3EE1CE1CB1781100E5209B /* AdmobTableViewCell.swift */,
-				FF3EE1CF1CB1781100E5209B /* AdmobTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -419,7 +413,6 @@
 				FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */,
 				FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */,
 				FFD619451C7FBA8D0035119B /* PageControlTableViewCell.xib in Resources */,
-				FF3EE1D11CB1781100E5209B /* AdmobTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +516,6 @@
 				FFACB21B1C73977C009627E6 /* Location.swift in Sources */,
 				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
 				FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */,
-				FF3EE1D01CB1781100E5209B /* AdmobTableViewCell.swift in Sources */,
 				FF8A56861C9060AF009E5869 /* Quote.swift in Sources */,
 				FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
@@ -681,6 +673,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WhatToWearRunning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -699,6 +692,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jean Bahnik (BHAVC2B76G)";
 				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = WhatToWearRunning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeanbahnik.whattowearrunning;
 				PRODUCT_NAME = "$(TARGET_NAME)";

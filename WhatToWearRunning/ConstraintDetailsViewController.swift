@@ -47,8 +47,8 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
         temperatureRange.delegate = self
         temperatureRange.backgroundColor = Style.navyBlueColor
         temperatureRange.tintColor = UIColor.whiteColor()
-        temperatureRange.minValue = 0
-        temperatureRange.maxValue = 100
+        temperatureRange.minValue = -20
+        temperatureRange.maxValue = 120
         temperatureRange.selectedMinimum = 0.0
         temperatureRange.selectedMaximum = 100.0
         temperatureRange.enableStep = true
@@ -95,8 +95,8 @@ class ConstraintDetailsViewController: UIViewController, TTRangeSliderDelegate {
 
     func fillPlaceholders() {
         if let constraint = constraint {
-            temperatureRange.selectedMinimum = Float(constraint.minWindSpeed)
-            temperatureRange.selectedMaximum = Float(constraint.maxWindSpeed)
+            temperatureRange.selectedMinimum = Float(constraint.minTemperature)
+            temperatureRange.selectedMaximum = Float(constraint.maxTemperature)
             windRange.selectedMinimum = Float(constraint.minWindSpeed)
             windRange.selectedMaximum = Float(constraint.maxWindSpeed)
             rainRange.selectedMinimum = constraint.minPrecipProbability

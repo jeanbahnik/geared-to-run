@@ -7,12 +7,11 @@
 //
 
 import SVProgressHUD
-import GoogleMobileAds
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private enum TableSection: Int {
-        case Weather, PageControl, Runner, Quote, BannerAd, Sections
+        case Weather, PageControl, Runner, Quote, Sections
         
         static func numberOfSections() -> Int {
             return TableSection.Sections.rawValue
@@ -24,7 +23,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var refreshControl: UIRefreshControl!
     var pullToRefreshView: UIView!
     var collectionViewItem = 0
-    let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 1))
+    let indexSet = NSIndexSet(indexesInRange: NSMakeRange(1, 2))
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -100,7 +99,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         tableView.registerNib(UINib(nibName: "PageControlTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "PageControlTableViewCell")
         tableView.registerNib(UINib(nibName: "QuoteTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "QuoteTableViewCell")
-        tableView.registerNib(UINib(nibName: "AdmobTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "AdmobTableViewCell")
 
         // Can call first on this one since locality is the same for all HourlyWeather objects
         if let weather = weather?.first, locality = weather.locality {
@@ -116,7 +114,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch TableSection(rawValue: section)! {
-        case .Weather, .Quote, .Runner, .PageControl, .BannerAd: return 1
+        case .Weather, .Quote, .Runner, .PageControl: return 1
         case .Sections: return 0
         }
     }
@@ -127,7 +125,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .PageControl: return 37.0
         case .Runner: return 322.0
         case .Quote: return 60.0
-        case .BannerAd: return 280.0
         case .Sections: return 0
         }
     }
@@ -165,39 +162,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.quoteLabel.attributedText = Quote.sharedInstance.randomQuote()
             return cell
 
-        case .BannerAd:
-            let cell = tableView.dequeueReusableCellWithIdentifier("AdmobTableViewCell", forIndexPath: indexPath) as! AdmobTableViewCell
-
-            cell.bannerView.adUnitID = "ca-app-pub-8751298084412936/7088781805"
-            cell.bannerView.rootViewController = self
-            cell.bannerView.adSize = kGADAdSizeMediumRectangle
-            cell.bannerView.loadRequest(setupBannerAdRequest())
-
-            return cell
-
         default: return UITableViewCell()
         }
-    }
-    
-    func setupBannerAdRequest() -> GADRequest {
-        let request = GADRequest()
-        if User.sharedInstance.prefersFemale() {
-            request.gender = .Male
-        } else {
-            request.gender = .Female
-        }
-        LocationManager.sharedInstance.getLocation()
-        LocationManager.sharedInstance.locationUpdatedBlock = { location in
-            LocationManager.sharedInstance.stopUpdatingLocation()
-            if let currentLocation = location {
-                request.setLocationWithLatitude(CGFloat(currentLocation.coordinate.latitude),
-                                                longitude: CGFloat(currentLocation.coordinate.longitude),
-                                                accuracy: CGFloat(currentLocation.horizontalAccuracy))
-            }
-        }
-        request.testDevices = [kGADSimulatorID, "baa701bcf71eaf89dd9f1255c0435d7d"]
-
-        return request
     }
 
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
