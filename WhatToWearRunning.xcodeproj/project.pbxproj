@@ -10,46 +10,46 @@
 		7C15F3EAFD050A338ECB11B1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719878DD5F3A324EAFBEF830 /* Pods.framework */; };
 		FF1E977F1C9771C30085C407 /* GearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E977E1C9771C30085C407 /* GearViewController.swift */; };
 		FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */; };
-		FF3EE1CD1CB1638E00E5209B /* GearItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */; };
-		FF42AAF41CBC2442001762F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF42AAF31CBC2442001762F9 /* User.swift */; };
 		FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368BF1C60139C00081FA8 /* HomeViewController.swift */; };
 		FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */; };
 		FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */; };
-		FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */; };
-		FF48A02A1CAB10900059FBF7 /* RuleSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF48A0291CAB10900059FBF7 /* RuleSummaryCell.xib */; };
-		FF48A02C1CAB140C0059FBF7 /* RuleSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF48A02B1CAB140C0059FBF7 /* RuleSummaryCell.swift */; };
-		FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56B3101C4E8D7700C30BA3 /* Weather.swift */; };
-		FF640B781C7E759200D9E261 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */; };
-		FF762A541C74DA5700B19483 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF762A531C74DA5700B19483 /* Reachability.swift */; };
-		FF7C1E781C7675E4000F3329 /* WeatherCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF7C1E771C7675E4000F3329 /* WeatherCollectionViewCell.xib */; };
-		FF855C3D1C79213100B9D4C8 /* GearListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF855C3C1C79213100B9D4C8 /* GearListTableViewCell.swift */; };
-		FF855C3F1C79216800B9D4C8 /* GearListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF855C3E1C79216800B9D4C8 /* GearListTableViewCell.xib */; };
+		FF5272E61D071E83009BE229 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272DA1D071E83009BE229 /* Gear.swift */; };
+		FF5272E71D071E83009BE229 /* GearConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272DB1D071E83009BE229 /* GearConstraint.swift */; };
+		FF5272E81D071E83009BE229 /* GearConstraint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272DC1D071E83009BE229 /* GearConstraint+CoreDataProperties.swift */; };
+		FF5272E91D071E83009BE229 /* GearItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272DD1D071E83009BE229 /* GearItem.swift */; };
+		FF5272EA1D071E83009BE229 /* GearItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272DE1D071E83009BE229 /* GearItem+CoreDataProperties.swift */; };
+		FF5272EB1D071E83009BE229 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272DF1D071E83009BE229 /* Location.swift */; };
+		FF5272EC1D071E83009BE229 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272E01D071E83009BE229 /* Quote.swift */; };
+		FF5272ED1D071E83009BE229 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272E11D071E83009BE229 /* Reachability.swift */; };
+		FF5272EE1D071E83009BE229 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272E21D071E83009BE229 /* Recommendation.swift */; };
+		FF5272EF1D071E83009BE229 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272E31D071E83009BE229 /* Style.swift */; };
+		FF5272F01D071E83009BE229 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272E41D071E83009BE229 /* User.swift */; };
+		FF5272F11D071E83009BE229 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272E51D071E83009BE229 /* Weather.swift */; };
+		FF5273001D07251E009BE229 /* GearListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272F21D07251E009BE229 /* GearListTableViewCell.swift */; };
+		FF5273011D07251E009BE229 /* GearListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5272F31D07251E009BE229 /* GearListTableViewCell.xib */; };
+		FF5273021D07251E009BE229 /* PageControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272F41D07251E009BE229 /* PageControlTableViewCell.swift */; };
+		FF5273031D07251E009BE229 /* PageControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5272F51D07251E009BE229 /* PageControlTableViewCell.xib */; };
+		FF5273041D07251E009BE229 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272F61D07251E009BE229 /* PullToRefreshView.swift */; };
+		FF5273051D07251E009BE229 /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5272F71D07251E009BE229 /* PullToRefreshView.xib */; };
+		FF5273061D07251E009BE229 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272F81D07251E009BE229 /* QuoteTableViewCell.swift */; };
+		FF5273071D07251E009BE229 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5272F91D07251E009BE229 /* QuoteTableViewCell.xib */; };
+		FF5273081D07251E009BE229 /* RuleSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272FA1D07251E009BE229 /* RuleSummaryCell.swift */; };
+		FF5273091D07251E009BE229 /* RuleSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5272FB1D07251E009BE229 /* RuleSummaryCell.xib */; };
+		FF52730A1D07251E009BE229 /* RunnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272FC1D07251E009BE229 /* RunnerTableViewCell.swift */; };
+		FF52730B1D07251E009BE229 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272FD1D07251E009BE229 /* WeatherCollectionViewCell.swift */; };
+		FF52730C1D07251E009BE229 /* WeatherCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5272FE1D07251E009BE229 /* WeatherCollectionViewCell.xib */; };
+		FF52730D1D07251E009BE229 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5272FF1D07251E009BE229 /* WeatherTableViewCell.swift */; };
 		FF866D461C978DFD0056EE42 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF866D451C978DFD0056EE42 /* ItemDetailsViewController.swift */; };
-		FF8A56861C9060AF009E5869 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A56851C9060AF009E5869 /* Quote.swift */; };
-		FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */; };
-		FF8A568A1C906487009E5869 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */; };
 		FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */; };
-		FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA61DA91C950E54007BF174 /* GearItem.swift */; };
-		FFACB21B1C73977C009627E6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACB21A1C73977C009627E6 /* Location.swift */; };
-		FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0921C1C681EA800308EDB /* Recommendation.swift */; };
 		FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */; };
-		FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */; };
-		FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */; };
-		FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */; };
-		FFD619451C7FBA8D0035119B /* PageControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */; };
 		FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */; };
 		FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED11C4834D5006EF28A /* Main.storyboard */; };
 		FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED41C4834D5006EF28A /* Assets.xcassets */; };
 		FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE02ED61C4834D5006EF28A /* LaunchScreen.storyboard */; };
-		FFEC0A1C1C83C47700A1B760 /* RunnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */; };
-		FFEC6FB81C61082B0010D994 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC6FB71C61082B0010D994 /* Style.swift */; };
 		FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */; };
 		FFF6A9221C703FA700B34CF7 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */; };
 		FFF717331CC6ADB100049FE7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF717321CC6ADB100049FE7 /* StoreKit.framework */; };
 		FFF717381CC6B05900049FE7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF717371CC6B05900049FE7 /* CloudKit.framework */; };
-		FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF9757E1C4F190400B624F4 /* Gear.swift */; };
-		FFFD35BE1C96001F00A3996B /* GearConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35BB1C96001F00A3996B /* GearConstraint.swift */; };
-		FFFD35C21C96219000A3996B /* GearConstraint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,34 +75,39 @@
 		7D9B4E573EA7F372CE2EFE1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FF1E977E1C9771C30085C407 /* GearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearViewController.swift; sourceTree = "<group>"; };
 		FF3691AB1C8D0666007499F0 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
-		FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FF42AAF31CBC2442001762F9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FF4368BF1C60139C00081FA8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF4368C51C601A0C00081FA8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintDetailsViewController.swift; sourceTree = "<group>"; };
-		FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
-		FF48A0291CAB10900059FBF7 /* RuleSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleSummaryCell.xib; sourceTree = "<group>"; };
-		FF48A02B1CAB140C0059FBF7 /* RuleSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleSummaryCell.swift; sourceTree = "<group>"; };
-		FF56B3101C4E8D7700C30BA3 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
-		FF762A531C74DA5700B19483 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		FF7C1E771C7675E4000F3329 /* WeatherCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCollectionViewCell.xib; sourceTree = "<group>"; };
-		FF855C3C1C79213100B9D4C8 /* GearListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearListTableViewCell.swift; sourceTree = "<group>"; };
-		FF855C3E1C79216800B9D4C8 /* GearListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GearListTableViewCell.xib; sourceTree = "<group>"; };
+		FF5272DA1D071E83009BE229 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gear.swift; path = Models/Gear.swift; sourceTree = "<group>"; };
+		FF5272DB1D071E83009BE229 /* GearConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GearConstraint.swift; path = Models/GearConstraint.swift; sourceTree = "<group>"; };
+		FF5272DC1D071E83009BE229 /* GearConstraint+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GearConstraint+CoreDataProperties.swift"; path = "Models/GearConstraint+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FF5272DD1D071E83009BE229 /* GearItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GearItem.swift; path = Models/GearItem.swift; sourceTree = "<group>"; };
+		FF5272DE1D071E83009BE229 /* GearItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GearItem+CoreDataProperties.swift"; path = "Models/GearItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FF5272DF1D071E83009BE229 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Models/Location.swift; sourceTree = "<group>"; };
+		FF5272E01D071E83009BE229 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quote.swift; path = Models/Quote.swift; sourceTree = "<group>"; };
+		FF5272E11D071E83009BE229 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Models/Reachability.swift; sourceTree = "<group>"; };
+		FF5272E21D071E83009BE229 /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recommendation.swift; path = Models/Recommendation.swift; sourceTree = "<group>"; };
+		FF5272E31D071E83009BE229 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Models/Style.swift; sourceTree = "<group>"; };
+		FF5272E41D071E83009BE229 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		FF5272E51D071E83009BE229 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weather.swift; path = Models/Weather.swift; sourceTree = "<group>"; };
+		FF5272F21D07251E009BE229 /* GearListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GearListTableViewCell.swift; path = Views/GearListTableViewCell.swift; sourceTree = "<group>"; };
+		FF5272F31D07251E009BE229 /* GearListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GearListTableViewCell.xib; path = Views/GearListTableViewCell.xib; sourceTree = "<group>"; };
+		FF5272F41D07251E009BE229 /* PageControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageControlTableViewCell.swift; path = Views/PageControlTableViewCell.swift; sourceTree = "<group>"; };
+		FF5272F51D07251E009BE229 /* PageControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PageControlTableViewCell.xib; path = Views/PageControlTableViewCell.xib; sourceTree = "<group>"; };
+		FF5272F61D07251E009BE229 /* PullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefreshView.swift; path = Views/PullToRefreshView.swift; sourceTree = "<group>"; };
+		FF5272F71D07251E009BE229 /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PullToRefreshView.xib; path = Views/PullToRefreshView.xib; sourceTree = "<group>"; };
+		FF5272F81D07251E009BE229 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuoteTableViewCell.swift; path = Views/QuoteTableViewCell.swift; sourceTree = "<group>"; };
+		FF5272F91D07251E009BE229 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuoteTableViewCell.xib; path = Views/QuoteTableViewCell.xib; sourceTree = "<group>"; };
+		FF5272FA1D07251E009BE229 /* RuleSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleSummaryCell.swift; path = Views/RuleSummaryCell.swift; sourceTree = "<group>"; };
+		FF5272FB1D07251E009BE229 /* RuleSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RuleSummaryCell.xib; path = Views/RuleSummaryCell.xib; sourceTree = "<group>"; };
+		FF5272FC1D07251E009BE229 /* RunnerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunnerTableViewCell.swift; path = Views/RunnerTableViewCell.swift; sourceTree = "<group>"; };
+		FF5272FD1D07251E009BE229 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherCollectionViewCell.swift; path = Views/WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF5272FE1D07251E009BE229 /* WeatherCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WeatherCollectionViewCell.xib; path = Views/WeatherCollectionViewCell.xib; sourceTree = "<group>"; };
+		FF5272FF1D07251E009BE229 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherTableViewCell.swift; path = Views/WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		FF866D451C978DFD0056EE42 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
-		FF8A56851C9060AF009E5869 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
-		FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
-		FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuoteTableViewCell.xib; sourceTree = "<group>"; };
 		FF8A96871C5933C50013AF60 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FFA61DA71C94AD33007BF174 /* WhatToWearRunning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToWearRunning.xcdatamodel; sourceTree = "<group>"; };
-		FFA61DA91C950E54007BF174 /* GearItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearItem.swift; sourceTree = "<group>"; };
-		FFACB21A1C73977C009627E6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		FFB0921C1C681EA800308EDB /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		FFBA172B1C8A988A006CAF35 /* UIVerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVerticalAlignLabel.swift; sourceTree = "<group>"; };
-		FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
-		FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
-		FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlTableViewCell.swift; sourceTree = "<group>"; };
-		FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageControlTableViewCell.xib; sourceTree = "<group>"; };
 		FFE02ECA1C4834D5006EF28A /* WhatToWearRunning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToWearRunning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02ECD1C4834D5006EF28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE02ED21C4834D5006EF28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,16 +118,11 @@
 		FFE02EE41C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFE02EE91C4834D5006EF28A /* WhatToWearRunningUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatToWearRunningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE02EEF1C4834D5006EF28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerTableViewCell.swift; sourceTree = "<group>"; };
-		FFEC6FB71C61082B0010D994 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		FFF265941C6E75A20045E0F4 /* PrivateSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateSettings.swift; sourceTree = "<group>"; };
 		FFF6A9211C703FA700B34CF7 /* WeatherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		FFF717321CC6ADB100049FE7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FFF717361CC6B04800049FE7 /* WhatToWearRunning.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WhatToWearRunning.entitlements; sourceTree = "<group>"; };
 		FFF717371CC6B05900049FE7 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		FFF9757E1C4F190400B624F4 /* Gear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gear.swift; sourceTree = "<group>"; };
-		FFFD35BB1C96001F00A3996B /* GearConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GearConstraint.swift; sourceTree = "<group>"; };
-		FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GearConstraint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +172,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FF5272D91D071E74009BE229 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FF5272DA1D071E83009BE229 /* Gear.swift */,
+				FF5272DB1D071E83009BE229 /* GearConstraint.swift */,
+				FF5272DC1D071E83009BE229 /* GearConstraint+CoreDataProperties.swift */,
+				FF5272DD1D071E83009BE229 /* GearItem.swift */,
+				FF5272DE1D071E83009BE229 /* GearItem+CoreDataProperties.swift */,
+				FF5272DF1D071E83009BE229 /* Location.swift */,
+				FF5272E01D071E83009BE229 /* Quote.swift */,
+				FF5272E11D071E83009BE229 /* Reachability.swift */,
+				FF5272E21D071E83009BE229 /* Recommendation.swift */,
+				FF5272E31D071E83009BE229 /* Style.swift */,
+				FF5272E41D071E83009BE229 /* User.swift */,
+				FF5272E51D071E83009BE229 /* Weather.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		FFE02EC11C4834D5006EF28A = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +227,7 @@
 				FF44BAA01C9F6AD000E54877 /* ConstraintDetailsViewController.swift */,
 				FFA61DA61C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld */,
 				FFE02ED41C4834D5006EF28A /* Assets.xcassets */,
-				FFFD1CD11C78CD4A00EBDC6A /* Models */,
+				FF5272D91D071E74009BE229 /* Models */,
 				FFFD1CD21C78D39600EBDC6A /* Views */,
 				FFFD1CD31C78D3EA00EBDC6A /* SupportFiles */,
 			);
@@ -232,43 +251,24 @@
 			path = WhatToWearRunningUITests;
 			sourceTree = "<group>";
 		};
-		FFFD1CD11C78CD4A00EBDC6A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				FFB0921C1C681EA800308EDB /* Recommendation.swift */,
-				FF56B3101C4E8D7700C30BA3 /* Weather.swift */,
-				FFF9757E1C4F190400B624F4 /* Gear.swift */,
-				FFEC6FB71C61082B0010D994 /* Style.swift */,
-				FFACB21A1C73977C009627E6 /* Location.swift */,
-				FF762A531C74DA5700B19483 /* Reachability.swift */,
-				FF8A56851C9060AF009E5869 /* Quote.swift */,
-				FFA61DA91C950E54007BF174 /* GearItem.swift */,
-				FFFD35BB1C96001F00A3996B /* GearConstraint.swift */,
-				FF3EE1CC1CB1638E00E5209B /* GearItem+CoreDataProperties.swift */,
-				FFFD35C01C96219000A3996B /* GearConstraint+CoreDataProperties.swift */,
-				FF42AAF31CBC2442001762F9 /* User.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		FFFD1CD21C78D39600EBDC6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				FFE02ED11C4834D5006EF28A /* Main.storyboard */,
-				FF45AC2E1C767985009F4757 /* WeatherTableViewCell.swift */,
-				FFC3B0A51C77A70900821FC8 /* PullToRefreshView.xib */,
-				FFC3B0A71C77B00C00821FC8 /* PullToRefreshView.swift */,
-				FF855C3E1C79216800B9D4C8 /* GearListTableViewCell.xib */,
-				FF855C3C1C79213100B9D4C8 /* GearListTableViewCell.swift */,
-				FF7C1E771C7675E4000F3329 /* WeatherCollectionViewCell.xib */,
-				FF640B771C7E759200D9E261 /* WeatherCollectionViewCell.swift */,
-				FFD619421C7FBA8D0035119B /* PageControlTableViewCell.swift */,
-				FFD619431C7FBA8D0035119B /* PageControlTableViewCell.xib */,
-				FFEC0A1B1C83C47700A1B760 /* RunnerTableViewCell.swift */,
-				FF8A56891C906487009E5869 /* QuoteTableViewCell.xib */,
-				FF8A56871C9063FE009E5869 /* QuoteTableViewCell.swift */,
-				FF48A0291CAB10900059FBF7 /* RuleSummaryCell.xib */,
-				FF48A02B1CAB140C0059FBF7 /* RuleSummaryCell.swift */,
+				FF5272F21D07251E009BE229 /* GearListTableViewCell.swift */,
+				FF5272F31D07251E009BE229 /* GearListTableViewCell.xib */,
+				FF5272F41D07251E009BE229 /* PageControlTableViewCell.swift */,
+				FF5272F51D07251E009BE229 /* PageControlTableViewCell.xib */,
+				FF5272F61D07251E009BE229 /* PullToRefreshView.swift */,
+				FF5272F71D07251E009BE229 /* PullToRefreshView.xib */,
+				FF5272F81D07251E009BE229 /* QuoteTableViewCell.swift */,
+				FF5272F91D07251E009BE229 /* QuoteTableViewCell.xib */,
+				FF5272FA1D07251E009BE229 /* RuleSummaryCell.swift */,
+				FF5272FB1D07251E009BE229 /* RuleSummaryCell.xib */,
+				FF5272FC1D07251E009BE229 /* RunnerTableViewCell.swift */,
+				FF5272FD1D07251E009BE229 /* WeatherCollectionViewCell.swift */,
+				FF5272FE1D07251E009BE229 /* WeatherCollectionViewCell.xib */,
+				FF5272FF1D07251E009BE229 /* WeatherTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -404,15 +404,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF8A568A1C906487009E5869 /* QuoteTableViewCell.xib in Resources */,
-				FF7C1E781C7675E4000F3329 /* WeatherCollectionViewCell.xib in Resources */,
-				FF48A02A1CAB10900059FBF7 /* RuleSummaryCell.xib in Resources */,
+				FF5273051D07251E009BE229 /* PullToRefreshView.xib in Resources */,
+				FF5273071D07251E009BE229 /* QuoteTableViewCell.xib in Resources */,
+				FF5273091D07251E009BE229 /* RuleSummaryCell.xib in Resources */,
+				FF5273011D07251E009BE229 /* GearListTableViewCell.xib in Resources */,
 				FFE02ED81C4834D5006EF28A /* LaunchScreen.storyboard in Resources */,
-				FF855C3F1C79216800B9D4C8 /* GearListTableViewCell.xib in Resources */,
+				FF52730C1D07251E009BE229 /* WeatherCollectionViewCell.xib in Resources */,
 				FFE02ED51C4834D5006EF28A /* Assets.xcassets in Resources */,
-				FFC3B0A61C77A70900821FC8 /* PullToRefreshView.xib in Resources */,
 				FFE02ED31C4834D5006EF28A /* Main.storyboard in Resources */,
-				FFD619451C7FBA8D0035119B /* PageControlTableViewCell.xib in Resources */,
+				FF5273031D07251E009BE229 /* PageControlTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,36 +498,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF855C3D1C79213100B9D4C8 /* GearListTableViewCell.swift in Sources */,
-				FFEC0A1C1C83C47700A1B760 /* RunnerTableViewCell.swift in Sources */,
+				FF52730D1D07251E009BE229 /* WeatherTableViewCell.swift in Sources */,
+				FF5272EE1D071E83009BE229 /* Recommendation.swift in Sources */,
+				FF5272EA1D071E83009BE229 /* GearItem+CoreDataProperties.swift in Sources */,
+				FF5273021D07251E009BE229 /* PageControlTableViewCell.swift in Sources */,
+				FF5272F11D071E83009BE229 /* Weather.swift in Sources */,
+				FF5273041D07251E009BE229 /* PullToRefreshView.swift in Sources */,
 				FF866D461C978DFD0056EE42 /* ItemDetailsViewController.swift in Sources */,
 				FFBA172C1C8A988A006CAF35 /* UIVerticalAlignLabel.swift in Sources */,
-				FF42AAF41CBC2442001762F9 /* User.swift in Sources */,
-				FF56B3111C4E8D7700C30BA3 /* Weather.swift in Sources */,
-				FF8A56881C9063FE009E5869 /* QuoteTableViewCell.swift in Sources */,
+				FF5272E81D071E83009BE229 /* GearConstraint+CoreDataProperties.swift in Sources */,
+				FF5272F01D071E83009BE229 /* User.swift in Sources */,
 				FF4368C61C601A0C00081FA8 /* LaunchViewController.swift in Sources */,
-				FF45AC301C767985009F4757 /* WeatherTableViewCell.swift in Sources */,
-				FFF9757F1C4F190400B624F4 /* Gear.swift in Sources */,
-				FF3EE1CD1CB1638E00E5209B /* GearItem+CoreDataProperties.swift in Sources */,
-				FFB0921D1C681EA800308EDB /* Recommendation.swift in Sources */,
-				FF48A02C1CAB140C0059FBF7 /* RuleSummaryCell.swift in Sources */,
+				FF5272E71D071E83009BE229 /* GearConstraint.swift in Sources */,
+				FF5272EB1D071E83009BE229 /* Location.swift in Sources */,
+				FF52730B1D07251E009BE229 /* WeatherCollectionViewCell.swift in Sources */,
+				FF5272ED1D071E83009BE229 /* Reachability.swift in Sources */,
+				FF5273001D07251E009BE229 /* GearListTableViewCell.swift in Sources */,
+				FF5273061D07251E009BE229 /* QuoteTableViewCell.swift in Sources */,
 				FF1E977F1C9771C30085C407 /* GearViewController.swift in Sources */,
 				FF44BAA11C9F6AD000E54877 /* ConstraintDetailsViewController.swift in Sources */,
-				FFACB21B1C73977C009627E6 /* Location.swift in Sources */,
 				FFF265951C6E75A20045E0F4 /* PrivateSettings.swift in Sources */,
-				FFD619441C7FBA8D0035119B /* PageControlTableViewCell.swift in Sources */,
-				FF8A56861C9060AF009E5869 /* Quote.swift in Sources */,
+				FF5273081D07251E009BE229 /* RuleSummaryCell.swift in Sources */,
+				FF5272E61D071E83009BE229 /* Gear.swift in Sources */,
+				FF5272EF1D071E83009BE229 /* Style.swift in Sources */,
+				FF52730A1D07251E009BE229 /* RunnerTableViewCell.swift in Sources */,
+				FF5272E91D071E83009BE229 /* GearItem.swift in Sources */,
 				FF3691AC1C8D0666007499F0 /* PreferencesViewController.swift in Sources */,
 				FFE02ECE1C4834D5006EF28A /* AppDelegate.swift in Sources */,
-				FFA61DAA1C950E54007BF174 /* GearItem.swift in Sources */,
-				FFC3B0A81C77B00D00821FC8 /* PullToRefreshView.swift in Sources */,
-				FFFD35BE1C96001F00A3996B /* GearConstraint.swift in Sources */,
 				FF4368C01C60139C00081FA8 /* HomeViewController.swift in Sources */,
 				FFA61DA81C94AD33007BF174 /* WhatToWearRunning.xcdatamodeld in Sources */,
-				FF762A541C74DA5700B19483 /* Reachability.swift in Sources */,
-				FFFD35C21C96219000A3996B /* GearConstraint+CoreDataProperties.swift in Sources */,
-				FFEC6FB81C61082B0010D994 /* Style.swift in Sources */,
-				FF640B781C7E759200D9E261 /* WeatherCollectionViewCell.swift in Sources */,
+				FF5272EC1D071E83009BE229 /* Quote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
